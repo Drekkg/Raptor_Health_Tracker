@@ -110,6 +110,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://8000-drekkg-raptorhealthtrac-439x53tjdnt.ws.codeinstitute-ide.net/",
+    "https://*.herokuapp.com"
+]
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
