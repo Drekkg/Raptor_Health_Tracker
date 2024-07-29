@@ -4,4 +4,4 @@ from django.http import HttpResponse
 
 
 def bird_detail(request):
-    return HttpResponse("Rator Health Tracker")
+    return HttpResponse("Raptor Health Tracker")
