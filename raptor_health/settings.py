@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.8000-drekkg-raptorhealthtrac-439x53tjdnt.ws.codeinstitute-ide.net/",
+    "https://8000-drekkg-raptorhealthtrac-439x53tjdnt.ws.codeinstitute-ide.net/",
     "https://*.herokuapp.com"
 ]
 
