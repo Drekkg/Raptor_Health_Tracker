@@ -12,7 +12,7 @@ BEHAVIOUR = ((0, "Motivated"), (1, "Reticent"))
 class Bird(models.Model):
 
     bird_name = models.CharField(max_length=20, unique=True)
-    type = models.CharField(max_length=20, unique=True)
+    type = models.CharField(max_length=20)
     sex = models.IntegerField(choices=SEX, default=0)
     date_of_birth = models.DateField()
     additional_info = models.CharField(max_length=200)
@@ -40,7 +40,7 @@ class Daily_data(models.Model):
     behaviour = models.IntegerField(choices=BEHAVIOUR, default=0)
 
     class Meta:
-        ordering = ["date"]
+        ordering = ["-date"]
 
     def __str__(self):
-        return (f"Bird {self.selected_bird} Trained by {self.trainer}")
+        return (f"Bird {self.selected_bird} Trained by {self.trainer} | {self.date}")
