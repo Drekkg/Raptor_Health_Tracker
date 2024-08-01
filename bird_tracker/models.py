@@ -34,9 +34,9 @@ class Daily_data(models.Model):
     weight = models.IntegerField()
     food_type = models.CharField(max_length=12)
     food_weight = models.IntegerField()
-    Weather = models.IntegerField(choices=WEATHER, default=1)
-    Temp = models.IntegerField()
-    Training = models.IntegerField(choices=TRAINING, default=0)
+    weather = models.IntegerField(choices=WEATHER, default=1)
+    temp = models.IntegerField()
+    training = models.IntegerField(choices=TRAINING, default=0)
     behaviour = models.IntegerField(choices=BEHAVIOUR, default=0)
 
     class Meta:
