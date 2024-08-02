@@ -1,0 +1,63 @@
+{% block bird_detail %}
+
+<body>
+    <!-- index.html content starts here -->
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-12 mt-3 left">
+                <div class="row">
+                    <h3>Bird Data</h3>
+
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div>
+                                    <div>
+                                        <p>{{ bird_detail.bird_name}}</p>
+                                        <p>{{bird_detail.type }}</p>
+                                        <p>{{bird_detail.get_sex_display }}</p>
+                                        <p>{{bird_detail.date_of_birth }}</p>
+                                        <p>{{bird_detail.additional_info }}</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% for data in selected_bird %}
+                    <div>
+                        <p>{{data.date}}</p>
+                    </div>
+                    <div>
+                        <p>{{data.trainer}}</p>
+                    </div>
+                    <div>
+                        <p>{{data.weight}}</p>
+                    </div>
+                    <div>
+                        <p>{{data.food_type}}</p>
+                    </div>
+                    <div>
+                        <p>{{data.food_weight}}</p>
+                    </div>
+                    <div>
+                        <p>{{data.get_weather_display}}</p>
+                    </div>
+                    <div>
+                        <p>{{data.temp}}</p>
+                    </div>
+                    <div>
+                        <p>{{data.get_training_display}}</p>
+                    </div>
+                    <div>
+                        <p>{{data.get_behaviour_display}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock bird_detail %}

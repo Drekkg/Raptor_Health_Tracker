@@ -15,15 +15,15 @@ class BirdList(generic.ListView):
 def bird_detail(request, bird_name):
     """display alist of the birds details
     ***Template 
-    bird_tracker/daily_detail.html"""
+    bird_tracker/bird_detail.html"""
     queryset = Bird.objects.all()
     bird_detail = get_object_or_404(queryset, bird_name=bird_name)
-    daily_detail = bird_detail.selected_bird.all()
+    selected_bird = bird_detail.selected_bird.all()
 
     return render(
         request,
-        "bird_tracker/daily_detail.html",
+        "bird_tracker/bird_detail.html",
         {"bird_detail": bird_detail,
-         "daily_detail": daily_detail,
+         "selected_bird": selected_bird,
          },
     )
