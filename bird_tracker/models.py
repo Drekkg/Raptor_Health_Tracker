@@ -11,12 +11,12 @@ BEHAVIOUR = ((0, "Motivated"), (1, "Reticent"))
 
 class Bird(models.Model):
 
-    bird_name = models.CharField(max_length=20, unique=True)
-    type = models.CharField(max_length=20)
-    sex = models.IntegerField(choices=SEX, default=0)
-    date_of_birth = models.DateField()
-    additional_info = models.CharField(max_length=200)
-    created_on = models.DateTimeField(auto_now_add=True)
+    bird_name = models.CharField(max_length=20, unique=True, blank=False)
+    type = models.CharField(max_length=20, blank=False)
+    sex = models.IntegerField(choices=SEX, default=0, null=False)
+    date_of_birth = models.DateField(null=False)
+    additional_info = models.CharField(max_length=200, blank=False)
+    created_on = models.DateTimeField(auto_now_add=True, null=False)
 
     class Meta:
         ordering = ["created_on"]
@@ -30,14 +30,14 @@ class Daily_data(models.Model):
         Bird, on_delete=models.CASCADE, related_name='selected_bird')
     trainer = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='trainer')
-    date = models.DateTimeField(auto_now=True)
-    weight = models.IntegerField()
-    food_type = models.CharField(max_length=12)
-    food_weight = models.IntegerField()
-    weather = models.IntegerField(choices=WEATHER, default=1)
-    temp = models.IntegerField()
-    training = models.IntegerField(choices=TRAINING, default=0)
-    behaviour = models.IntegerField(choices=BEHAVIOUR, default=0)
+    date = models.DateTimeField(auto_now=True, null=False)
+    weight = models.IntegerField(null=False)
+    food_type = models.CharField(max_length=12, blank=False)
+    food_weight = models.IntegerField(null=False)
+    weather = models.IntegerField(choices=WEATHER, default=1, null=False)
+    temperature = models.IntegerField(null=False)
+    training = models.IntegerField(choices=TRAINING, default=0, null=False)
+    behaviour = models.IntegerField(choices=BEHAVIOUR, default=0, null=False)
 
     class Meta:
         ordering = ["-date"]

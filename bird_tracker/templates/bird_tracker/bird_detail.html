@@ -28,31 +28,31 @@
                     </div>
                     {% for data in selected_bird %}
                     <div>
-                        <p>{{data.date}}</p>
+                        <p>Date: {{data.date}}</p>
                     </div>
                     <div>
-                        <p>{{data.trainer}}</p>
+                        <p>Trainer: {{data.trainer}}</p>
                     </div>
                     <div>
-                        <p>{{data.weight}}</p>
+                        <p>Weight: {{data.weight}}grams</p>
                     </div>
                     <div>
-                        <p>{{data.food_type}}</p>
+                        <p>Type of Food: {{data.food_type}}</p>
                     </div>
                     <div>
-                        <p>{{data.food_weight}}</p>
+                        <p>Weight of Food: {{data.food_weight}}grams</p>
                     </div>
                     <div>
-                        <p>{{data.get_weather_display}}</p>
+                        <p>Weather: {{data.get_weather_display}}</p>
                     </div>
                     <div>
-                        <p>{{data.temp}}</p>
+                        <p>Temperature: {{data.temperature}}&degC</p>
                     </div>
                     <div>
-                        <p>{{data.get_training_display}}</p>
+                        <p>Type of training: {{data.get_training_display}}</p>
                     </div>
                     <div>
-                        <p>{{data.get_behaviour_display}}</p>
+                        <p>Behaviour/Mood: {{data.get_behaviour_display}}</p>
                     </div>
                     {% endfor %}
                 </div>
