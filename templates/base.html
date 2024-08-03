@@ -37,7 +37,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
-                            href="#">Home</a>
+                            href="{% url 'home' %}">Home</a>
                     </li>
 
                 </ul>
@@ -53,6 +53,9 @@
         {% block bird %}
         <!-- Content Goes here -->
         {% endblock bird %}
+        {% block bird_detail %}
+        <!-- Content Goes here -->
+        {% endblock bird_detail %}
 
 
     </main>
