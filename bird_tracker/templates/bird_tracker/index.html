@@ -1,12 +1,12 @@
 {% extends "base.html" %}{% block bird %}
 
 
-
+{% if user.is_authenticated %}
 <!-- index.html content starts here -->
 <div class="container-fluid">
     <div class="row">
 
-        <!-- Blog Entries Column -->
+        <!-- Bird List Column -->
         <div class="col-12 mt-3 left">
             <div class="row">
                 {% for bird in bird_list %}
@@ -42,6 +42,17 @@
     </nav>
 
 </div>
+{% else %}
+<h2 class="login">Welcome to the Raptor Tracking App. Please Log in or Register</h2>
+<li class="nav-item">
+    <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+        href="{% url 'account_signup' %}">Register</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
+        href="{% url 'account_login' %}">Login</a>
+</li>
+{% endif %}
 
 <!-- index.html content ends here -->
 {% endblock %}
