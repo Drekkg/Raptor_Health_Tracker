@@ -1,0 +1,32 @@
+{% extends "base.html" %}{% block daily_data_form %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!-- Creating Daily Data -->
+<div class="col-md-4 card mb-4 mt-3">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                href="{% url 'home' %}">Back to
+                Bird List
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="card-body">
+
+        <h3>Please enter the required information for:
+        </h3>
+        <p>Trainer: {{ user.username }}</p>
+        <form id="AddNewBirdForm" method="post" style="margin-top: 1.3em;">
+            {{ add_new_bird_form | crispy }}
+            {% csrf_token %}
+            <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+        </form>
+
+
+    </div>
+</div>
+
+{% endblock daily_data_form %}

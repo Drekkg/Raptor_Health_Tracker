@@ -5,6 +5,7 @@ from django.views import generic
 from .models import Bird
 from .models import DailyData
 from .forms import DailyDataForm
+from .forms import AddNewBirdForm
 from django.contrib import messages
 # Create your views here.
 
@@ -71,5 +72,51 @@ def daily_data_form(request, bird_name):
             "daily_data_form": daily_data_form,
             "bird_detail": bird_detail,
             "selected_bird": selected_bird,
+        },
+    )
+
+
+def add_new_bird_form(request):
+    """Form
+    ***Template
+    # bird_tracker/daily_data_form.html"""
+    queryset = Bird.objects.all()
+    # bird_detail = get_object_or_404(queryset)
+    # selected_bird = bird_detail.selected_bird.all()
+
+    if request.method == "POST":
+        print("recieved a POST request")
+        add_new_bird_form = AddNewBirdForm(data=request.POST)
+
+        if add_new_bird_form.is_valid():
+            print("valid form")
+            new_bird = add_new_bird_form.save()
+            # daily_data.trainer = request.user
+            # daily_data.selected_bird = bird_detail
+            # daily_data.save()
+
+            messages.add_message(
+                request, messages.SUCCESS,
+                'New Bird added'
+            )
+            add_new_bird_form = AddNewBirdForm()
+            return render(
+                request,
+                "bird_tracker/add_new_bird_form.html",
+                {
+                    "add_new_bird_form": add_new_bird_form,
+                    # "bird_detail": bird_detail,
+                    #  "selected_bird": selected_bird,
+                },
+            )
+
+    add_new_bird_form = AddNewBirdForm()
+    return render(
+        request,
+        "bird_tracker/add_new_bird_form.html",
+        {
+            "add_new_bird_form": add_new_bird_form,
+            # "bird_detail": bird_detail,
+            # "selected_bird": selected_bird,
         },
     )

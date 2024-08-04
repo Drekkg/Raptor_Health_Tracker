@@ -49,7 +49,13 @@
                     </li>
 
                     <span class="navbar-text">
-                        You are logged in as {{ user }}</span>
+                        You are logged in as {{ user }}
+                    </span>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'add_new_bird_form' %}">Add New Bird</a>
+                    </li>
 
                     {% else %}
                     <!-- <li class="nav-item">
