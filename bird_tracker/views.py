@@ -5,6 +5,7 @@ from django.views import generic
 from .models import Bird
 from .models import DailyData
 from .forms import DailyDataForm
+from django.contrib import messages
 # Create your views here.
 
 
@@ -38,8 +39,31 @@ def daily_data_form(request, bird_name):
     queryset = Bird.objects.all()
     bird_detail = get_object_or_404(queryset, bird_name=bird_name)
     selected_bird = bird_detail.selected_bird.all()
-    daily_data_form = DailyDataForm()
 
+    if request.method == "POST":
+        print("recieved a POST request")
+        daily_data_form = DailyDataForm(data=request.POST)
+
+        if daily_data_form.is_valid():
+            print("valid form")
+            daily_data = daily_data_form.save(commit=False)
+            daily_data.trainer = request.user
+            daily_data.selected_bird = bird_detail
+            daily_data.save()
+
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Daily Data added'
+            )
+            return render(
+                request,
+                "bird_tracker/bird_detail.html",
+                {"bird_detail": bird_detail,
+                 "selected_bird": selected_bird,
+                 },
+            )
+
+    daily_data_form = DailyDataForm()
     return render(
         request,
         "bird_tracker/daily_data_form.html",
