@@ -1,4 +1,6 @@
 {% extends "base.html" %}{% block bird_detail %}
+{% load static %}
+{% load crispy_forms_tags %}
 
 
 <body>
@@ -27,6 +29,11 @@
                             </div>
                         </div>
                     </div>
+                    <a href="{% url 'daily_data_form'  bird_detail.bird_name %}" class="post-link">
+                        <h2 class="card-title">Add daily data for {{ bird_detail.bird_name}}</h2>
+                    </a>
+
+
                     {% for data in selected_bird %}
                     <div>
                         <p>Date: {{data.date}}</p>
@@ -58,6 +65,7 @@
                     {% endfor %}
                 </div>
             </div>
+
         </div>
     </div>
 </body>

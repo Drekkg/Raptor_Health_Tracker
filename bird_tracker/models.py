@@ -25,7 +25,7 @@ class Bird(models.Model):
         return (f"{self.bird_name} | {self.type}")
 
 
-class Daily_data(models.Model):
+class DailyData(models.Model):
     selected_bird = models.ForeignKey(
         Bird, on_delete=models.CASCADE, related_name='selected_bird')
     trainer = models.ForeignKey(

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Bird
-from .models import Daily_data
+from .models import DailyData
 
 # Register your models here.
 admin.site.register(Bird)
-admin.site.register(Daily_data)
+admin.site.register(DailyData)
