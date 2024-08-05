@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 https://raptor-health-tracker-670ca7ff3a4d.herokuapp.com/
 Welcome Derek Garnett,
@@ -129,3 +130,5 @@ Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` f
 ---
 
 Happy coding!
+=======
+>>>>>>> db4999d (empty readme)
