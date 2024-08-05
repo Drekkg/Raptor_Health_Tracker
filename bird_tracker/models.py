@@ -31,9 +31,9 @@ class DailyData(models.Model):
     trainer = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='trainer')
     date = models.DateTimeField(auto_now=True, null=False)
-    weight = models.IntegerField(null=False)
+    weight = models.PositiveSmallIntegerField(null=False)
     food_type = models.CharField(max_length=12, blank=False)
-    food_weight = models.IntegerField(null=False)
+    food_weight = models.PositiveSmallIntegerField(null=False)
     weather = models.IntegerField(choices=WEATHER, default=1, null=False)
     temperature = models.IntegerField(null=False)
     training = models.IntegerField(choices=TRAINING, default=0, null=False)

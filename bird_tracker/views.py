@@ -63,6 +63,11 @@ def daily_data_form(request, bird_name):
                  "selected_bird": selected_bird,
                  },
             )
+        else:
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Please check the entered Data'
+            )
 
     daily_data_form = DailyDataForm()
     return render(
@@ -108,6 +113,11 @@ def add_new_bird_form(request):
                     # "bird_detail": bird_detail,
                     #  "selected_bird": selected_bird,
                 },
+            )
+        else:
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Please check the entered Data'
             )
 
     add_new_bird_form = AddNewBirdForm()
