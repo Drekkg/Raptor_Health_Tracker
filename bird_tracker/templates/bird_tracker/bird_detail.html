@@ -18,11 +18,14 @@
                             <div class="card-body">
                                 <div>
                                     <div>
-                                        <p>Bird Name: {{ bird_detail.bird_name}}</p>
+                                        <div id="{{ bird_name}}">
+                                            <p>Bird Name: {{ bird_detail.bird_name}}</p>
+                                        </div>
                                         <p>Type: {{bird_detail.type }}</p>
                                         <p>Gender: {{bird_detail.get_sex_display }}</p>
                                         <p>Date of Birth {{bird_detail.date_of_birth }}</p>
                                         <p>Additional Info: {{bird_detail.additional_info }}</p>
+                                        <p>Additional ID: {{bird_detail.id }}</p>
 
                                     </div>
                                 </div>
@@ -30,10 +33,17 @@
                                     <a class="nav-link {% if request.path == home_url %}active{% endif %}"
                                         aria-current="page" href="{% url 'home' %}">Back to Bird List</a>
                                 </li>
+
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page"
+                                        href="{% url 'bird_edit' bird_detail.id %}">Edit Bird Data</a>
+                                </li>
                             </div>
                         </div>
                     </div>
-                    <a href="{% url 'daily_data_form'  bird_detail.bird_name %}" class="post-link">
+                    <a href="{% url 'daily_data_form'  bird_detail.id %}" class="post-link">
                         <h2 class="card-title">Add daily data for {{ bird_detail.bird_name}}</h2>
                     </a>
 
@@ -69,7 +79,19 @@
                     {% endfor %}
                 </div>
             </div>
+            <!-- <div class="card-body">
 
+                <h3>Please enter the required information for:
+                </h3>
+                <p>Trainer: {{ user.username }}</p>
+                <form id="AddNewBirdForm" method="post" style="margin-top: 1.3em;">
+                    {{ add_new_bird_form | crispy }}
+                    {% csrf_token %}
+                    <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+                </form>
+
+
+            </div> -->
         </div>
     </div>
 </body>

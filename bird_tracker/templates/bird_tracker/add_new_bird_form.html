@@ -24,7 +24,11 @@
             {% csrf_token %}
             <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
         </form>
-
+        <form method="post">
+            {% csrf_token %}
+            {{ edit_bird_form | crispy }}
+            <button type="submit">Save changes</button>
+        </form>
 
     </div>
 </div>

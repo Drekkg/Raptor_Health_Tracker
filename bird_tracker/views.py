@@ -1,13 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
-from .models import Bird
-from .models import DailyData
-from .forms import DailyDataForm
-from .forms import AddNewBirdForm
+from .models import Bird, DailyData
+from .forms import AddNewBirdForm, DailyDataForm
 from django.contrib import messages
-# Create your views here.
+from django.http import HttpResponseRedirect
 
 
 class BirdList(generic.ListView):
@@ -15,12 +13,12 @@ class BirdList(generic.ListView):
     template_name = "bird_tracker/index.html"
 
 
-def bird_detail(request, bird_name):
+def bird_detail(request, id):
     """display alist of the birds details
     ***Template
     bird_tracker/bird_detail.html"""
     queryset = Bird.objects.all()
-    bird_detail = get_object_or_404(queryset, bird_name=bird_name)
+    bird_detail = get_object_or_404(queryset, id=id)
     selected_bird = bird_detail.selected_bird.all()
 
     return render(
@@ -33,20 +31,18 @@ def bird_detail(request, bird_name):
     )
 
 
-def daily_data_form(request, bird_name):
+def daily_data_form(request, id):
     """Form
     ***Template
     # bird_tracker/daily_data_form.html"""
     queryset = Bird.objects.all()
-    bird_detail = get_object_or_404(queryset, bird_name=bird_name)
+    bird_detail = get_object_or_404(queryset, id=id)
     selected_bird = bird_detail.selected_bird.all()
 
     if request.method == "POST":
-        print("recieved a POST request")
         daily_data_form = DailyDataForm(data=request.POST)
 
         if daily_data_form.is_valid():
-            print("valid form")
             daily_data = daily_data_form.save(commit=False)
             daily_data.trainer = request.user
             daily_data.selected_bird = bird_detail
@@ -84,22 +80,14 @@ def daily_data_form(request, bird_name):
 def add_new_bird_form(request):
     """Form
     ***Template
-    # bird_tracker/daily_data_form.html"""
+    # bird_tracker/add_new_bird_form"""
     queryset = Bird.objects.all()
-    # bird_detail = get_object_or_404(queryset)
-    # selected_bird = bird_detail.selected_bird.all()
 
     if request.method == "POST":
-        print("recieved a POST request")
         add_new_bird_form = AddNewBirdForm(data=request.POST)
 
         if add_new_bird_form.is_valid():
-            print("valid form")
             new_bird = add_new_bird_form.save()
-            # daily_data.trainer = request.user
-            # daily_data.selected_bird = bird_detail
-            # daily_data.save()
-
             messages.add_message(
                 request, messages.SUCCESS,
                 'New Bird added'
@@ -110,8 +98,6 @@ def add_new_bird_form(request):
                 "bird_tracker/add_new_bird_form.html",
                 {
                     "add_new_bird_form": add_new_bird_form,
-                    # "bird_detail": bird_detail,
-                    #  "selected_bird": selected_bird,
                 },
             )
         else:
@@ -120,13 +106,78 @@ def add_new_bird_form(request):
                 'Please check the entered Data'
             )
 
-    add_new_bird_form = AddNewBirdForm()
+    add_new_bird_form = AddNewBirdForm(data=request.POST)
     return render(
         request,
         "bird_tracker/add_new_bird_form.html",
         {
             "add_new_bird_form": add_new_bird_form,
-            # "bird_detail": bird_detail,
-            # "selected_bird": selected_bird,
+
         },
+    )
+
+
+# def bird_edit(request, bird_name):
+#     """
+#     view to edit bird
+#     """
+#     if request.method == "POST":
+
+#         queryset = Bird.objects.all()
+#         bird = get_object_or_404(queryset, bird_name=bird_name)
+#         # comment = get_object_or_404(Comment, pk=comment_id)
+#         edit_bird_form = AddNewBirdForm(data=request.POST, instance=bird)
+
+#         if edit_bird_form.is_valid():
+#             bird = edit_bird_form.save()
+#             # comment.post = post
+#             # comment.approved = False
+#             # comment.save()
+#             messages.add_message(request, messages.SUCCESS, 'Bird Updated!')
+#         else:
+#             messages.add_message(request, messages.ERROR,
+#                                  'Error updating bird!')
+
+#     queryset = Bird.objects.all()
+#     bird = get_object_or_404(queryset, bird_name=bird_name)
+#     # comment = get_object_or_404(Comment, pk=comment_id)
+#     edit_bird_form = AddNewBirdForm(data=request.POST, instance=bird)
+
+#     return render(
+#         request,
+#         "bird_tracker/add_new_bird_form.html",
+#         {
+#             "edit_bird_form": edit_bird_form,
+#         }
+#     )
+
+    # return HttpResponseRedirect(reverse('bird_detail', args=[bird_name]))
+def bird_edit(request, id):
+    """
+    View to edit bird information.
+    """
+    # Retrieve the bird instance outside the if statement to avoid duplication
+    queryset = Bird.objects.all()
+    bird = get_object_or_404(queryset, id=id)
+
+    if request.method == "POST":
+        # Initialize the form with POST data and the specific bird instance
+        edit_bird_form = AddNewBirdForm(request.POST, instance=bird)
+        if edit_bird_form.is_valid():
+            edit_bird_form.save()
+            messages.success(request, 'Bird Updated!')
+            # Redirect to a success page or detail view of the bird
+            return HttpResponseRedirect(reverse('bird_detail', args=[id]))
+        else:
+            messages.error(request, 'Error updating bird!')
+    else:
+        # Initialize the form with the bird instance for GET requests
+        edit_bird_form = AddNewBirdForm(instance=bird)
+
+    return render(
+        request,
+        "bird_tracker/add_new_bird_form.html",
+        {
+            "edit_bird_form": edit_bird_form,
+        }
     )
