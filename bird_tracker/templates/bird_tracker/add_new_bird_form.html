@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-<!-- Creating Daily Data -->
+{% if view == "add"%}
 <div class="col-md-4 card mb-4 mt-3">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -19,7 +19,6 @@
         <h3>Please enter the required information:
         </h3>
         <p>Trainer: {{ user.username }}</p>
-        {% if view == "add"%}
 
         <form id="AddNewBirdForm" method="post" style="margin-top: 1.3em;">
             {{ add_new_bird_form | crispy }}
@@ -28,14 +27,30 @@
         </form>
 
         {% elif view == "edit" %}
-        <form method="post">
-            {% csrf_token %}
-            {{ edit_bird_form | crispy }}
-            <button type="submit">Save changes</button>
-        </form>
-        {% endif %}
-    </div>
-</div>
+        <div class="col-md-4 card mb-4 mt-3">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                        href="{% url 'bird_detail' id %}">Back to
+                        Bird Data
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="card-body">
+
+                <h3>Please enter the required information:
+                </h3>
+                <p>Trainer: {{ user.username }}</p>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ edit_bird_form | crispy }}
+                    <button type="submit">Save changes</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
 
 
-{% endblock daily_data_form %}
+        {% endblock daily_data_form %}

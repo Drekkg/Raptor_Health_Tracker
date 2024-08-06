@@ -160,5 +160,6 @@ def bird_edit(request, id):
         {
             "view": "edit",
             "edit_bird_form": edit_bird_form,
+            "id": id,
         },
     )
