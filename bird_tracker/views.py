@@ -97,7 +97,9 @@ def add_new_bird_form(request):
                 request,
                 "bird_tracker/add_new_bird_form.html",
                 {
+                    "view": "add",
                     "add_new_bird_form": add_new_bird_form,
+
                 },
             )
         else:
@@ -111,47 +113,13 @@ def add_new_bird_form(request):
         request,
         "bird_tracker/add_new_bird_form.html",
         {
+            "view": "add",
             "add_new_bird_form": add_new_bird_form,
 
         },
     )
 
 
-# def bird_edit(request, bird_name):
-#     """
-#     view to edit bird
-#     """
-#     if request.method == "POST":
-
-#         queryset = Bird.objects.all()
-#         bird = get_object_or_404(queryset, bird_name=bird_name)
-#         # comment = get_object_or_404(Comment, pk=comment_id)
-#         edit_bird_form = AddNewBirdForm(data=request.POST, instance=bird)
-
-#         if edit_bird_form.is_valid():
-#             bird = edit_bird_form.save()
-#             # comment.post = post
-#             # comment.approved = False
-#             # comment.save()
-#             messages.add_message(request, messages.SUCCESS, 'Bird Updated!')
-#         else:
-#             messages.add_message(request, messages.ERROR,
-#                                  'Error updating bird!')
-
-#     queryset = Bird.objects.all()
-#     bird = get_object_or_404(queryset, bird_name=bird_name)
-#     # comment = get_object_or_404(Comment, pk=comment_id)
-#     edit_bird_form = AddNewBirdForm(data=request.POST, instance=bird)
-
-#     return render(
-#         request,
-#         "bird_tracker/add_new_bird_form.html",
-#         {
-#             "edit_bird_form": edit_bird_form,
-#         }
-#     )
-
-    # return HttpResponseRedirect(reverse('bird_detail', args=[bird_name]))
 def bird_edit(request, id):
     """
     View to edit bird information.
@@ -159,6 +127,7 @@ def bird_edit(request, id):
     # Retrieve the bird instance outside the if statement to avoid duplication
     queryset = Bird.objects.all()
     bird = get_object_or_404(queryset, id=id)
+    context = {"view": "edit_bird"}
 
     if request.method == "POST":
         # Initialize the form with POST data and the specific bird instance
@@ -178,6 +147,7 @@ def bird_edit(request, id):
         request,
         "bird_tracker/add_new_bird_form.html",
         {
+            "view": "edit",
             "edit_bird_form": edit_bird_form,
-        }
+        },
     )
