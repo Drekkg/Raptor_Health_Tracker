@@ -102,13 +102,24 @@ def add_new_bird_form(request):
 
                 },
             )
+
         else:
             messages.add_message(
                 request, messages.SUCCESS,
                 'Please check the entered Data'
             )
+            add_new_bird_form = AddNewBirdForm(data=request.POST)
+            return render(
+                request,
+                "bird_tracker/add_new_bird_form.html",
+                {
+                    "view": "add",
+                    "add_new_bird_form": add_new_bird_form,
 
-    add_new_bird_form = AddNewBirdForm(data=request.POST)
+                },
+            )
+
+    add_new_bird_form = AddNewBirdForm()
     return render(
         request,
         "bird_tracker/add_new_bird_form.html",
