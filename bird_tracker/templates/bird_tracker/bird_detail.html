@@ -40,9 +40,13 @@
                                     <a class="nav-link" aria-current="page"
                                         href="{% url 'bird_edit' bird_detail.id %}">Edit Bird Data</a>
                                 </li>
+
+                                <button class="btn btn-delete" bird_id="{{ selected_bird.id }}">Delete Bird</button>
                             </div>
                         </div>
                     </div>
+
+
                     <a href="{% url 'daily_data_form'  bird_detail.id %}" class="post-link">
                         <h2 class="card-title">Add daily data for {{ bird_detail.bird_name}}</h2>
                     </a>
@@ -79,20 +83,31 @@
                     {% endfor %}
                 </div>
             </div>
-            <!-- <div class="card-body">
 
-                <h3>Please enter the required information for:
-                </h3>
-                <p>Trainer: {{ user.username }}</p>
-                <form id="AddNewBirdForm" method="post" style="margin-top: 1.3em;">
-                    {{ add_new_bird_form | crispy }}
-                    {% csrf_token %}
-                    <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
-                </form>
-
-
-            </div> -->
         </div>
     </div>
 </body>
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Bird?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your comment?
+                This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a id="deleteConfirm" href="#" class="btn
+          btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock bird_detail %}
+{% block extras %}
+<script src="{% static 'js/birdData.js' %}"></script>
+{% endblock %}
