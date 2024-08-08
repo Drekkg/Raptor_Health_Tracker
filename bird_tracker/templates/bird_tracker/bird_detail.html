@@ -33,9 +33,6 @@
                                     <a class="nav-link {% if request.path == home_url %}active{% endif %}"
                                         aria-current="page" href="{% url 'home' %}">Back to Bird List</a>
                                 </li>
-
-
-
                                 <li class="nav-item">
                                     <a class="nav-link" aria-current="page"
                                         href="{% url 'bird_edit' bird_detail.id %}">Edit Bird Data</a>
@@ -50,42 +47,52 @@
                     <a href="{% url 'daily_data_form'  bird_detail.id %}" class="post-link">
                         <h2 class="card-title">Add daily data for {{ bird_detail.bird_name}}</h2>
                     </a>
+                    <div class="accordion" id="accordionExample">
+                        {% for data in selected_bird %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="true"
+                                    aria-controls="collapse{{ forloop.counter }}">
+                                    <p>Date: {{ data.date }} Trainer: {{ data.trainer }}</p>
+                                </button>
+                            </h2>
+                            <div id="collapse{{ forloop.counter }}"
+                                class="accordion-collapse collapse {% if forloop.first %}show{% endif %}"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div>
+                                        <p>Weight: {{ data.weight }} grams</p>
+                                    </div>
+                                    <div>
+                                        <p>Type of Food: {{ data.food_type }}</p>
+                                    </div>
+                                    <div>
+                                        <p>Weight of Food: {{ data.food_weight }} grams</p>
+                                    </div>
+                                    <div>
+                                        <p>Weather: {{ data.get_weather_display }}</p>
+                                    </div>
+                                    <div>
+                                        <p>Temperature: {{ data.temperature }}&degC</p>
+                                    </div>
+                                    <div>
+                                        <p>Type of training: {{ data.get_training_display }}</p>
+                                    </div>
+                                    <div>
+                                        <p>Behaviour/Mood: {{ data.get_behaviour_display }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
 
 
-                    {% for data in selected_bird %}
-                    <div>
-                        <p>Date: {{data.date}}</p>
-                    </div>
-                    <div>
-                        <p>Trainer: {{data.trainer}}</p>
-                    </div>
-                    <div>
-                        <p>Weight: {{data.weight}}grams</p>
-                    </div>
-                    <div>
-                        <p>Type of Food: {{data.food_type}}</p>
-                    </div>
-                    <div>
-                        <p>Weight of Food: {{data.food_weight}}grams</p>
-                    </div>
-                    <div>
-                        <p>Weather: {{data.get_weather_display}}</p>
-                    </div>
-                    <div>
-                        <p>Temperature: {{data.temperature}}&degC</p>
-                    </div>
-                    <div>
-                        <p>Type of training: {{data.get_training_display}}</p>
-                    </div>
-                    <div>
-                        <p>Behaviour/Mood: {{data.get_behaviour_display}}</p>
-                    </div>
-                    {% endfor %}
+
                 </div>
-            </div>
 
-        </div>
-    </div>
+            </div>
 </body>
 <!-- Delete confirmation modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

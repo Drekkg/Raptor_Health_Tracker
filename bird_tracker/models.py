@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 SEX = ((0, "Female"), (1, "Male"))
 WEATHER = ((0, "Rainy"), (1, "Sunny"), (2, "Windy"), (3, "Cold"))
-TRAINING = ((0, "Featherplay"), (1, "Faustappel"))
+TRAINING = ((0, "Featherplay"), (1, "Faustappel"), (2, "Free Flight"))
 BEHAVIOUR = ((0, "Motivated"), (1, "Reticent"))
 
 # Create your models here.
