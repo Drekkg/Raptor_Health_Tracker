@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 SEX = ((0, "Female"), (1, "Male"))
 WEATHER = ((0, "Rainy"), (1, "Sunny"), (2, "Windy"), (3, "Cold"))
@@ -17,6 +18,7 @@ class Bird(models.Model):
     date_of_birth = models.DateField(null=False)
     additional_info = models.CharField(max_length=200, blank=False)
     created_on = models.DateTimeField(auto_now_add=True, null=False)
+    main_image = CloudinaryField('image', default='placeholder')
 
     class Meta:
         ordering = ["created_on"]
@@ -38,6 +40,8 @@ class DailyData(models.Model):
     temperature = models.IntegerField(null=False)
     training = models.IntegerField(choices=TRAINING, default=0, null=False)
     behaviour = models.IntegerField(choices=BEHAVIOUR, default=0, null=False)
+    notable_info = models.CharField(max_length=200, blank=False, default="")
+    notable_image = CloudinaryField('image', default='placeholder')
 
     class Meta:
         ordering = ["-date"]

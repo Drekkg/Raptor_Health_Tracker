@@ -1,4 +1,5 @@
 {% extends "base.html" %}{% block bird %}
+{% load static %}
 
 
 {% if user.is_authenticated %}
@@ -11,10 +12,16 @@
         <div class="col-12 mt-3 left">
             <div class="row">
                 {% for bird in bird_list %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-2">
+                    <div class="card mb-2">
                         <div class="card-body">
                             <div class="image-container">
+                                {% if "placeholder" in bird.main_image.url %}
+                                <img class="card-img-top" src="{% static 'images/default.jpeg/' %}"
+                                    alt="placeholder image">
+                                {% else %}
+                                <img class="card-img-top" src=" {{ bird.main_image.url }}" alt="{{ bird.bird_name }}">
+                                {% endif %}
                                 <div class="image-flash">
                                     <p class="author">Bird: {{ bird.bird_name | safe }}</p>
                                 </div>

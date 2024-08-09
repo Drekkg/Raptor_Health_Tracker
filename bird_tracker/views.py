@@ -128,7 +128,7 @@ def add_new_bird_form(request):
 
         else:
             messages.add_message(
-                request, messages.SUCCESS,
+                request, messages.ERROR,
                 'Please check the entered Data'
             )
             add_new_bird_form = AddNewBirdForm(data=request.POST)

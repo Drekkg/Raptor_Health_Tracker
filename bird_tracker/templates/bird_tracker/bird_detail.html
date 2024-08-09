@@ -9,9 +9,19 @@
         <div class="row">
 
             <!-- Blog Entries Column -->
-            <div class="col-12 mt-3 left">
+            <div class="col-12 mt-3 right">
                 <div class="row">
                     <h3>Bird Data</h3>
+                    <div class="col-md-2 ">
+                        <div class="image-container">
+                            {% if "placeholder" in bird_detail.main_image.url %}
+                            <img class="card-img-top" src="{% static 'images/default.jpeg/' %}" alt="placeholder image">
+                            {% else %}
+                            <img class="card-img-top" src=" {{ bird_detail.main_image.url }}"
+                                alt="{{ bird_detail.bird_name }}">
+                            {% endif %}
+                        </div>
+                    </div>
 
                     <div class="col-md-4">
                         <div class="card mb-4">
@@ -19,7 +29,7 @@
                                 <div>
                                     <div>
                                         <div id="{{ bird_name}}">
-                                            <p>Bird Name: {{ bird_detail.bird_name}}</p>
+                                            <p>Bird Name: {{ bird_detail.bird_name }}</p>
                                         </div>
                                         <p>Type: {{bird_detail.type }}</p>
                                         <p>Gender: {{bird_detail.get_sex_display }}</p>
