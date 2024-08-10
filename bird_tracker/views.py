@@ -115,16 +115,13 @@ def add_new_bird_form(request):
                 request, messages.SUCCESS,
                 'New Bird added'
             )
-            add_new_bird_form = AddNewBirdForm()
-            return render(
-                request,
-                "bird_tracker/add_new_bird_form.html",
-                {
-                    "view": "add",
-                    "add_new_bird_form": add_new_bird_form,
+            # add_new_bird_form = AddNewBirdForm()
+            return HttpResponseRedirect(reverse('home'))
+            # {
+            #     "view": "add",
+            #     "add_new_bird_form": add_new_bird_form,
 
-                },
-            )
+            # },
 
         else:
             messages.add_message(
