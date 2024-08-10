@@ -20,7 +20,7 @@
         </h3>
         <p>Trainer: {{ user.username }}</p>
 
-        <form id="AddNewBirdForm" method="post" style="margin-top: 1.3em;">
+        <form id="AddNewBirdForm" method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
             {{ add_new_bird_form | crispy }}
             {% csrf_token %}
             <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
@@ -43,7 +43,7 @@
                 <h3>Please enter the required information:
                 </h3>
                 <p>Trainer: {{ user.username }}</p>
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ edit_bird_form | crispy }}
                     <button type="submit">Save changes</button>

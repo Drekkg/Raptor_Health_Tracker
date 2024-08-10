@@ -19,7 +19,7 @@
             {% now "d-m-Y" %}
         </h3>
         <p>Trainer: {{ user.username }}</p>
-        <form id="DailyDataForm" method="post" style="margin-top: 1.3em;">
+        <form id="DailyDataForm" method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
             {{ daily_data_form | crispy }}
             {% csrf_token %}
             <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>

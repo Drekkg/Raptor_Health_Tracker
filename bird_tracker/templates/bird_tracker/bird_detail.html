@@ -92,6 +92,27 @@
                                     <div>
                                         <p>Behaviour/Mood: {{ data.get_behaviour_display }}</p>
                                     </div>
+                                    <div>
+                                        <p>Notable Info: {{ data.notable_info }}</p>
+                                    </div>
+                                    <!-- <div class="image-container">
+                                        {% if "placeholder" in data.notable_image.url %}
+                                        <img class="card-img-top" src="" alt="">
+                                        {% else %}
+                                        <img class="card-img-top" src=" {{ data.notable_image.url }}"
+                                            alt="{{ bird.bird_name }}">
+                                        {% endif %}
+                                    </div> -->
+                                    <div class="col-md-2 ">
+                                        <div class="image-container">
+                                            {% if "placeholder" in data.notable_image.url %}
+                                            <img class="card-img-top" src="" alt="No Image">
+                                            {% else %}
+                                            <img class="card-img-top" src=" {{data.notable_image.url  }}"
+                                                alt="{{ bird.bird_name }}">
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

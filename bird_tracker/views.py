@@ -81,7 +81,7 @@ def daily_data_form(request, id):
     selected_bird = bird_detail.selected_bird.all()
 
     if request.method == "POST":
-        form = DailyDataForm(request.POST)
+        form = DailyDataForm(request.POST, request.FILES)
         if form.is_valid():
             daily_data = form.save(commit=False)
             daily_data.trainer = request.user
@@ -107,7 +107,7 @@ def add_new_bird_form(request):
     queryset = Bird.objects.all()
 
     if request.method == "POST":
-        add_new_bird_form = AddNewBirdForm(data=request.POST)
+        add_new_bird_form = AddNewBirdForm(request.POST, request.FILES)
 
         if add_new_bird_form.is_valid():
             new_bird = add_new_bird_form.save()
@@ -164,7 +164,8 @@ def bird_edit(request, id):
     context = {"view": "edit_bird"}
 
     if request.method == "POST":
-        edit_bird_form = AddNewBirdForm(request.POST, instance=bird)
+        edit_bird_form = AddNewBirdForm(
+            request.POST, request.FILES, instance=bird)
         if edit_bird_form.is_valid():
             edit_bird_form.save()
             messages.success(request, 'Bird Updated!')
