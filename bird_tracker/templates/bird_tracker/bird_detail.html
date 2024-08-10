@@ -55,7 +55,7 @@
 
 
                     <a href="{% url 'daily_data_form'  bird_detail.id %}" class="post-link">
-                        <h2 class="card-title">Add daily data for {{ bird_detail.bird_name}}</h2>
+                        <h2 class="card-title">Add daily data for <em>{{ bird_detail.bird_name}}</em></h2>
                     </a>
                     <div class="accordion" id="accordionExample">
                         {% for data in selected_bird %}
@@ -72,7 +72,7 @@
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <div>
-                                        <p>Weight: {{ data.weight }} grams</p>
+                                        <p>Bird Weight: {{ data.weight }} grams</p>
                                     </div>
                                     <div>
                                         <p>Type of Food: {{ data.food_type }}</p>
