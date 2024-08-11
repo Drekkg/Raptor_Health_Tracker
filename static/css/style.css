@@ -3,7 +3,7 @@ body {
 }
 .login {
     text-align: center;
-    color:#981678;
+    color:#837d90;
 }
 
 .brand {
@@ -11,6 +11,22 @@ body {
     font-size: 1.4rem;
     font-weight: 700;
     color: #8d1a5f;
+}
+
+
+.flex-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+
+.nav-fixed {
+position: fixed;
+top: 0;
+right: 0;
+left: 0;
+z-index: 1030;
 }
 
 .red-o {
@@ -26,11 +42,20 @@ body {
 }
 
 .dark-bg {
-    background-color: #445261;
+    background-color: #4c525a;
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: #eaecf0;
+    margin-top: 2.1rem;
+    /* background-color: #acb6c0; */
+}
+
+.alert {
+    margin-top: 2rem;
+}
+.mt-4 {
+    text-align: center;
 }
 
 .card {

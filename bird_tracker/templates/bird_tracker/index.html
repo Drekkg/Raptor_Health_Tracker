@@ -5,62 +5,66 @@
 {% if user.is_authenticated %}
 <!-- index.html content starts here -->
 
-<div class="container-fluid">
-    <div class="row">
+<body class="bg">
+    <h1 class="mt-4">Raptor Health Tracker</h1>
+    <div class="container-fluid main-item ">
+        <div class="row">
 
-        <!-- Bird List Column -->
-        <div class="col-12 mt-3 left">
-            <div class="row">
-                {% for bird in bird_list %}
-                <div class="col-md-2">
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            <div class="image-container">
-                                {% if "placeholder" in bird.main_image.url %}
-                                <img class="card-img-top" src="{% static 'images/default.jpg' %}"
-                                    alt="placeholder image">
-                                {% else %}
-                                <img class="card-img-top" src=" {{ bird.main_image.url }}" alt="{{ bird.bird_name }}">
-                                {% endif %}
-                                <div class="image-flash">
-                                    <p class="author">Bird: {{ bird.bird_name | safe }}</p>
+            <!-- Bird List Column -->
+            <div class="col-12 mt-3 center">
+                <div class="row">
+                    {% for bird in bird_list %}
+                    <div class="col-md-2">
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <div class="image-container">
+                                    {% if "placeholder" in bird.main_image.url %}
+                                    <img class="card-img-top" src="{% static 'images/default.jpg' %}"
+                                        alt="placeholder image">
+                                    {% else %}
+                                    <img class="card-img-top" src=" {{ bird.main_image.url }}"
+                                        alt="{{ bird.bird_name }}">
+                                    {% endif %}
+                                    <div class="image-flash">
+                                        <p class="author">Bird: {{ bird.bird_name | safe }}</p>
+                                    </div>
                                 </div>
+                                <a href="{% url 'bird_detail' bird.id %}" class="post-link">
+                                    <h2 class="card-title">{{ bird.type | safe }}</h2>
+                                </a>
+                                <hr />
+                                <p class="card-text text-muted h6">
+                                </p>
                             </div>
-                            <a href="{% url 'bird_detail' bird.id %}" class="post-link">
-                                <h2 class="card-title">{{ bird.type | safe }}</h2>
-                            </a>
-                            <hr />
-                            <p class="card-text text-muted h6">
-                            </p>
                         </div>
                     </div>
+                    {% if forloop.counter|divisibleby:6 %}
                 </div>
-                {% if forloop.counter|divisibleby:3 %}
-            </div>
-            <div class="row">
-                {% endif %}
-                {% endfor %}
+                <div class="row">
+                    {% endif %}
+                    {% endfor %}
 
+                </div>
             </div>
         </div>
-    </div>
-    </ul>
-    </nav>
+        </ul>
+        </nav>
 
-</div>
-{% else %}
-<h2 class="login">Welcome to the Raptor Tracking App. Please Log in or Register</h2>
-<li class="nav-item">
-    <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-        href="{% url 'account_signup' %}">Register</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
-        href="{% url 'account_login' %}">Login</a>
-</li>
-<li>
-    <a href="/admin/" class="btn btn-primary">Admin Login</a>
-</li>
+    </div>
+    {% else %}
+    <h2 class="login">Welcome to the Raptor Tracking App. Please Log in or Register</h2>
+    <li class="nav-item">
+        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+            href="{% url 'account_signup' %}">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
+            href="{% url 'account_login' %}">Login</a>
+    </li>
+    <li>
+        <a href="/admin/" class="btn btn-primary">Admin Login</a>
+    </li>
+</body>
 {% endif %}
 
 <!-- index.html content ends here -->

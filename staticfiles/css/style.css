@@ -1,16 +1,19 @@
 body {
     background-color: #7c8699;
 }
+
+
+
 .login {
     text-align: center;
-    color:#981678;
+    color:#bdadb9;
 }
 
 .brand {
     font-family: Lato, sans-serif;
     font-size: 1.4rem;
     font-weight: 700;
-    color: #8d1a5f;
+    color: #5755cc;
 }
 
 .red-o {

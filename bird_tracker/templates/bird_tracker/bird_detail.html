@@ -5,12 +5,12 @@
 
 <body>
     <!-- index.html content starts here -->
-    <div class="container-fluid">
+    <div class="container-fluid main-item">
         <div class="row">
 
             <!-- Blog Entries Column -->
             <div class="col-12 mt-3 right">
-                <div class="row">
+                <div class="row justify-content-center">
                     <h3>Bird Data</h3>
                     <div class="col-md-2 ">
                         <div class="image-container">
@@ -35,8 +35,6 @@
                                         <p>Gender: {{bird_detail.get_sex_display }}</p>
                                         <p>Date of Birth {{bird_detail.date_of_birth }}</p>
                                         <p>Additional Info: {{bird_detail.additional_info }}</p>
-                                        <p>Additional ID: {{bird_detail.id }}</p>
-
                                     </div>
                                 </div>
                                 <li class="nav-item">
@@ -95,14 +93,6 @@
                                     <div>
                                         <p>Notable Info: {{ data.notable_info }}</p>
                                     </div>
-                                    <!-- <div class="image-container">
-                                        {% if "placeholder" in data.notable_image.url %}
-                                        <img class="card-img-top" src="" alt="">
-                                        {% else %}
-                                        <img class="card-img-top" src=" {{ data.notable_image.url }}"
-                                            alt="{{ bird.bird_name }}">
-                                        {% endif %}
-                                    </div> -->
                                     <div class="col-md-2 ">
                                         <div class="image-container">
                                             {% if "placeholder" in data.notable_image.url %}
@@ -118,9 +108,6 @@
                         </div>
                         {% endfor %}
                     </div>
-
-
-
                 </div>
 
             </div>
