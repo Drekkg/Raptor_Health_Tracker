@@ -11,7 +11,7 @@ class AddNewBirdForm(forms.ModelForm):
         fields = ('bird_name', 'type', 'sex', 'date_of_birth',
                   'additional_info', 'main_image')
         labels = {
-            'date_of_birth': 'Date of Birth:      format: YYY-MM-DD'
+            'date_of_birth': 'Date of Birth:      format: YYYY-MM-DD'
         }
 
 

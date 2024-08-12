@@ -155,6 +155,7 @@ MESSAGE_TAGS = {
 
 # Static files (CSS, JavaScript, Images)
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]

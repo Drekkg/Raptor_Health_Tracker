@@ -37,21 +37,25 @@
                                         <p>Additional Info: {{bird_detail.additional_info }}</p>
                                     </div>
                                 </div>
-                                <ul>
-                                    <li class="li-style">
-                                        <a class="btn btn-signup" aria-current="page" href="{% url 'home' %}">Back to
-                                            Bird List</a>
-                                    </li>
-                                    <li class="li-style">
-                                        <a class="btn btn-secondary" aria-current="page"
-                                            href="{% url 'bird_edit' bird_detail.id %}">Edit Bird Data</a>
-                                    </li>
-                                    <li class="li-style">
-                                        <button class="btn btn-delete" bird_id="{{ selected_bird.id }}">Delete
-                                            Bird</button>
-                                    </li>
-                                </ul>
-
+                                {% if user.is_superuser %}
+                                <div>
+                                    <ul>
+                                        <li class="li-style">
+                                            <a class="btn btn-signup" aria-current="page" href="{% url 'home' %}">Back
+                                                to
+                                                Bird List</a>
+                                        </li>
+                                        <li class="li-style">
+                                            <a class="btn btn-secondary" aria-current="page"
+                                                href="{% url 'bird_edit' bird_detail.id %}">Edit Bird Data</a>
+                                        </li>
+                                        <li class="li-style">
+                                            <button class="btn btn-delete" bird_id="{{ selected_bird.id }}">Delete
+                                                Bird</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                {% endif %}
 
                             </div>
 

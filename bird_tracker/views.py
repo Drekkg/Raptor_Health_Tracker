@@ -7,6 +7,7 @@ from .forms import AddNewBirdForm, DailyDataForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required, permission_required
 
 
 class BirdList(generic.ListView):
@@ -139,6 +140,7 @@ def bird_edit(request, id):
     )
 
 
+@permission_required('app_name.permission_code', raise_exception=True)
 def bird_delete(request, id):
     """
     Bird delete View
