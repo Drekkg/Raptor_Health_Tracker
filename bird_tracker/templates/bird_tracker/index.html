@@ -9,7 +9,6 @@
     <h1 class="mt-4">Raptor Health Tracker</h1>
     <div class="container-fluid main-item ">
         <div class="row">
-
             <!-- Bird List Column -->
             <div class="col-12 mt-3 center flex-wrapper">
                 <div class="row">
@@ -53,17 +52,17 @@
     </div>
     {% else %}
     <h2 class="login">Welcome to the Raptor Tracking App. Please Log in or Register</h2>
-    <li class="nav-item">
-        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-            href="{% url 'account_signup' %}">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
-            href="{% url 'account_login' %}">Login</a>
-    </li>
-    <li>
-        <a href="/admin/" class="btn btn-primary">Admin Login</a>
-    </li>
+    <ul>
+        <li class="li-style">
+            <a class="btn btn-secondary" aria-current="page" href="{% url 'account_signup' %}">Register</a>
+        </li>
+        <li class="li-style">
+            <a class="btn btn-secondary" aria-current="page" href="{% url 'account_login' %}">Login</a>
+        </li>
+        <li class="li-style">
+            <a href="/admin/" class="btn btn-primary">Admin Login</a>
+        </li>
+    </ul>
 </body>
 {% endif %}
 

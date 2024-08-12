@@ -3,29 +3,34 @@
 {% load crispy_forms_tags %}
 
 <!-- Creating Daily Data -->
-<div class="col-md-4 card mb-4 mt-3">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-            <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
-                href="{% url 'bird_detail' bird_detail.id  %}">Back to {{bird_detail.bird_name}}</a>
-        </li>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 card mb-4 mt-3">
+            <ul>
+                <li class="">
+                    <a class="btn btn-secondary" aria-current="page" href="{% url 'bird_detail' bird_detail.id  %}">Back
+                        to
+                        {{bird_detail.bird_name}}</a>
+                </li>
 
-    </ul>
+            </ul>
 
-    <div class="card-body">
+            <div class="card-body">
 
-        <h3>Please enter the required information for:
-            {{bird_detail.bird_name}}
-            {% now "d-m-Y" %}
-        </h3>
-        <p>Trainer: {{ user.username }}</p>
-        <form id="DailyDataForm" method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
-            {{ daily_data_form | crispy }}
-            {% csrf_token %}
-            <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
-        </form>
+                <h3>Please enter the required information for:
+                    {{bird_detail.bird_name}}
+                    {% now "d-m-Y" %}
+                </h3>
+                <p>Trainer: {{ user.username }}</p>
+                <form id="DailyDataForm" method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
+                    {{ daily_data_form | crispy }}
+                    {% csrf_token %}
+                    <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+                </form>
 
 
+            </div>
+        </div>
     </div>
 </div>
 

@@ -37,23 +37,30 @@
                                         <p>Additional Info: {{bird_detail.additional_info }}</p>
                                     </div>
                                 </div>
-                                <li class="nav-item">
-                                    <a class="nav-link {% if request.path == home_url %}active{% endif %}"
-                                        aria-current="page" href="{% url 'home' %}">Back to Bird List</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" aria-current="page"
-                                        href="{% url 'bird_edit' bird_detail.id %}">Edit Bird Data</a>
-                                </li>
+                                <ul>
+                                    <li class="li-style">
+                                        <a class="btn btn-signup" aria-current="page" href="{% url 'home' %}">Back to
+                                            Bird List</a>
+                                    </li>
+                                    <li class="li-style">
+                                        <a class="btn btn-secondary" aria-current="page"
+                                            href="{% url 'bird_edit' bird_detail.id %}">Edit Bird Data</a>
+                                    </li>
+                                    <li class="li-style">
+                                        <button class="btn btn-delete" bird_id="{{ selected_bird.id }}">Delete
+                                            Bird</button>
+                                    </li>
+                                </ul>
 
-                                <button class="btn btn-delete" bird_id="{{ selected_bird.id }}">Delete Bird</button>
+
                             </div>
+
                         </div>
                     </div>
 
 
-                    <a href="{% url 'daily_data_form'  bird_detail.id %}" class="post-link">
-                        <h2 class="card-title">Add daily data for <em>{{ bird_detail.bird_name}}</em></h2>
+                    <a href="{% url 'daily_data_form'  bird_detail.id %}" class="btn btn-lg">
+                        <h2 class="">Add daily data for <em>{{ bird_detail.bird_name}}</em></h2>
                     </a>
                     <div class="accordion" id="accordionExample">
                         {% for data in selected_bird %}
@@ -126,7 +133,7 @@
                 This action cannot be undone.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <a id="deleteConfirm" href="#" class="btn
           btn-danger">Delete</a>
             </div>
