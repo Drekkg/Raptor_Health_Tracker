@@ -28,7 +28,7 @@ ul {
 
 .body-404 {
     
-    background-image: url('/static/images/blue_sky.jpg');
+    background-image: url("/static/images/blue_sky.b959e17d4f83.jpg");
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -42,7 +42,7 @@ ul {
 }
 
 .flown-away {
-    margin: 2rem;
+    margin: 3rem;
 }
 
 

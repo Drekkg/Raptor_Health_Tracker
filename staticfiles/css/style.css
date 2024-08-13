@@ -1,6 +1,8 @@
 body {
     background-color: #7c8699;
 }
+
+
 ul {
     list-style-type: none;
     margin: 0 auto;
@@ -14,7 +16,7 @@ ul {
     color:#837d90;
 }
 .card-bg {
-   background-color: #627aaa; 
+    background-color: #627aaa; 
 }
 
 .brand {
@@ -23,6 +25,27 @@ ul {
     font-weight: 700;
     color: #8d1a5f;
 }
+
+.body-404 {
+    
+    background-image: url('/static/images/blue_sky.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden
+}
+
+.flown-away {
+    margin: 2rem;
+}
+
+
 
 
 .flex-wrapper {

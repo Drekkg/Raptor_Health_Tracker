@@ -140,7 +140,6 @@ def bird_edit(request, id):
     )
 
 
-@permission_required('app_name.permission_code', raise_exception=True)
 def bird_delete(request, id):
     """
     Bird delete View
