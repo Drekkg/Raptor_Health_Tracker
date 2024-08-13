@@ -23,10 +23,10 @@
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
         <ul>
-          <li class="li-style">
+          <li class="li-style d-grid gap-2">
             <button class="btn btn-signup right" type="submit">{% trans 'Sign Out' %}</button>
           </li>
-          <li class="li-style">
+          <li class="li-style d-grid gap-2">
             <a class="btn btn-secondary" aria-current="page" href="{% url 'home' %}">Cancel</a>
           </li>
         </ul>

@@ -64,7 +64,9 @@ right: 0;
 left: 0;
 z-index: 1030;
 }
-
+.nav-link {
+    padding: 0 3rem !important;
+}
 .red-o {
     color: #E84610;
 }

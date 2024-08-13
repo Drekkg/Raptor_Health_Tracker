@@ -26,10 +26,10 @@
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
         <ul>
-          <li class="li-style">
+          <li class="li-style d-grid gap-2">
             <button class="btn btn-signup right" type="submit">{% trans "Sign In" %}</button>
           </li>
-          <li>
+          <li class="li-style d-grid gap-2">
             <a class="btn btn-secondary" aria-current="page" href="{% url 'home' %}">Cancel</a>
           </li>
         </ul>
@@ -38,3 +38,7 @@
   </div>
 </div>
 {% endblock %}
+<!-- <div class="d-grid gap-2">
+  <button class="btn btn-primary" type="button">Button</button>
+  <button class="btn btn-primary" type="button">Button</button>
+</div> -->

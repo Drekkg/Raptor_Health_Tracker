@@ -6,7 +6,7 @@
 <!-- index.html content starts here -->
 
 <body class="bg">
-    <h1 class="mt-4">Raptor Health Tracker</h1>
+    <h1 class="mt-4 display-2">Raptor Health Tracker</h1>
     <div class="container-fluid main-item ">
         <div class="row">
             <!-- Bird List Column -->
@@ -46,23 +46,25 @@
                 </div>
             </div>
         </div>
-        </ul>
+
         </nav>
 
     </div>
     {% else %}
-    <h2 class="login">Welcome to the Raptor Tracking App. Please Log in or Register</h2>
-    <ul>
-        <li class="li-style">
-            <a class="btn btn-secondary" aria-current="page" href="{% url 'account_signup' %}">Register</a>
-        </li>
-        <li class="li-style">
-            <a class="btn btn-secondary" aria-current="page" href="{% url 'account_login' %}">Login</a>
-        </li>
-        <li class="li-style">
-            <a href="/admin/" class="btn btn-primary">Admin Login</a>
-        </li>
-    </ul>
+    <div class="col-md-6 mt-3 offset-md-2">
+        <h2 class="login">Welcome to the Raptor Tracking App. Please Log in or Register</h2>
+        <ul>
+            <li class="li-style d-grid gap-2">
+                <a class="btn btn-secondary" aria-current="page" href="{% url 'account_signup' %}">Register</a>
+            </li>
+            <li class="li-style d-grid gap-2">
+                <a class="btn btn-secondary" aria-current="page" href="{% url 'account_login' %}">Login</a>
+            </li>
+            <li class="li-style d-grid gap-2">
+                <a href="/admin/" class="btn btn-primary">Admin Login</a>
+            </li>
+        </ul>
+    </div>
 </body>
 {% endif %}
 
