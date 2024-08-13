@@ -37,7 +37,6 @@
                                         <p>Additional Info: {{bird_detail.additional_info }}</p>
                                     </div>
                                 </div>
-                                {% if user.is_superuser %}
                                 <div>
                                     <ul>
                                         <li class="li-style">
@@ -45,6 +44,7 @@
                                                 to
                                                 Bird List</a>
                                         </li>
+                                        {% if user.is_superuser %}
                                         <li class="li-style">
                                             <a class="btn btn-secondary" aria-current="page"
                                                 href="{% url 'bird_edit' bird_detail.id %}">Edit Bird Data</a>
@@ -66,7 +66,7 @@
                     <a href="{% url 'daily_data_form'  bird_detail.id %}" class="btn btn-lg">
                         <h2 class="">Add daily data for <em>{{ bird_detail.bird_name}}</em></h2>
                     </a>
-                    <div class="accordion" id="accordionExample">
+                    <div class="accordion">
                         {% for data in selected_bird %}
 
                         <div class="accordion-item">
