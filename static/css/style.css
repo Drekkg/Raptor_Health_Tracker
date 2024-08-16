@@ -163,14 +163,22 @@ z-index: 1030;
 
 .image-container {
     position: relative;
+    margin-left: 1.8rem;
+   
 }
 
+.bird-list-image {
+    width: 13rem;
+    height: 11rem;
+}
+
+
 .image-flash {
-    position: absolute;
+    position: relative;
     bottom: 5%;
-    min-width: 30%;
-    left: -2px;
-    background-color: #188181;
+    width: 13rem;
+
+    background-color: #6096ba;
 }
 
 .scale {

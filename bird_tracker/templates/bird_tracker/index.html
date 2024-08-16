@@ -18,20 +18,21 @@
                             <div class="card-body">
                                 <div class="image-container">
                                     {% if "placeholder" in bird.main_image.url %}
-                                    <img class="card-img-top" src="{% static 'images/default.jpg' %}"
+                                    <img class="bird-list-image" src="{% static 'images/default.jpg' %}"
                                         alt="placeholder image">
                                     {% else %}
-                                    <img class="card-img-top" src=" {{ bird.main_image.url }}"
+                                    <img class="bird-list-image" src=" {{ bird.main_image.url }}"
                                         alt="{{ bird.bird_name }}">
                                     {% endif %}
                                     <div class="image-flash">
                                         <p class="bird-type">{{ bird.type | safe }}</p>
                                     </div>
+
+                                    <a href="{% url 'bird_detail' bird.id %}" class="bird-link">
+                                        <h2>{{ bird.bird_name | safe }}</h2>
+                                    </a>
+                                    <hr />
                                 </div>
-                                <a href="{% url 'bird_detail' bird.id %}" class="bird-link">
-                                    <h2>Bird: {{ bird.bird_name | safe }}</h2>
-                                </a>
-                                <hr />
                             </div>
                         </div>
                     </div>
