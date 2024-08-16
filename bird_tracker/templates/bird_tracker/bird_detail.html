@@ -13,10 +13,9 @@
             <div class="col-md-4 ">
                 <div class="image-container">
                     {% if "placeholder" in bird_detail.main_image.url %}
-                    <img class="bird-detail-img" src="{% static 'images/default.jpg' %}" alt="placeholder image">
+                    <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
                     {% else %}
-                    <img class="bird-detail-img" src=" {{ bird_detail.main_image.url }}"
-                        alt="{{ bird_detail.bird_name }}">
+                    <img class="card-img-top" src=" {{ bird_detail.main_image.url }}" alt="{{ bird_detail.bird_name }}">
                     {% endif %}
                 </div>
             </div>
