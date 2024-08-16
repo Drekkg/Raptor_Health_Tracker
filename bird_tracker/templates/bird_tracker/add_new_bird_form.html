@@ -20,7 +20,7 @@
                     style="margin-top: 1.3em; width: 100%;">
                     {% csrf_token %}
                     {{ add_new_bird_form | crispy }}
-                    <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+                    <button id="submitButton" type="submit" class="btn btn-custom-color-action2">Submit</button>
                 </form>
             </div>
             {% elif view == "edit" %}
@@ -37,7 +37,7 @@
                 <form method="post" enctype="multipart/form-data" style="width: 100%;">
                     {% csrf_token %}
                     {{ edit_bird_form | crispy }}
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-custom-color-action2">Save changes</button>
                 </form>
             </div>
             {% endif %}

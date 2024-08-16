@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8 mt-3 offset-md-2">
+    <div class="col-md-8 mt-3 offset-md-2 flex-wrapper">
 
       <form method="post" action="{% url 'account_logout' %}">
         {% csrf_token %}
@@ -24,7 +24,7 @@
         {% endif %}
         <ul>
           <li class="li-style d-grid gap-2">
-            <button class="btn btn-signup right" type="submit">{% trans 'Sign Out' %}</button>
+            <button class="btn btn-custom-color-action2" type="submit">{% trans 'Sign Out' %}</button>
           </li>
           <li class="li-style d-grid gap-2">
             <a class="btn btn-secondary" aria-current="page" href="{% url 'home' %}">Cancel</a>

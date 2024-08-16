@@ -13,12 +13,12 @@
       <h3>{% trans "Sign In" %}</h3>
 
       <p>{% blocktrans %}Welcome to Raptor Health Tracking App. Please log in to continue. If you are not registered,
-        Please <a class="link" href="{{ signup_url }}">sign up</a>
+        Please <a class="link btn-custom-color-action2" href="{{ signup_url }}">sign up</a>
         first.{% endblocktrans %}</p>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8 mt-3 offset-md-2">
+    <div class="col-md-8 mt-3 offset-md-2 flex-wrapper">
       <form class="login" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
         {{ form.as_p }}
@@ -27,7 +27,7 @@
         {% endif %}
         <ul>
           <li class="li-style d-grid gap-2">
-            <button class="btn btn-signup right" type="submit">{% trans "Sign In" %}</button>
+            <button class="btn btn-custom-color-action2" type="submit">{% trans "Sign In" %}</button>
           </li>
           <li class="li-style d-grid gap-2">
             <a class="btn btn-secondary" aria-current="page" href="{% url 'home' %}">Cancel</a>
@@ -38,7 +38,3 @@
   </div>
 </div>
 {% endblock %}
-<!-- <div class="d-grid gap-2">
-  <button class="btn btn-primary" type="button">Button</button>
-  <button class="btn btn-primary" type="button">Button</button>
-</div> -->

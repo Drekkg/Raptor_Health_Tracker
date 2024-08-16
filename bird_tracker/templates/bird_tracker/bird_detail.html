@@ -9,8 +9,6 @@
         <div class="row">
 
             <!-- Bird detail starts here -->
-            <!-- <div class="col-12 mt-3 right"> -->
-            <!-- <div class="row justify-content-center"> -->
             <h3 class="display-4">Bird Data</h3>
             <div class="col-md-4 ">
                 <div class="image-container">
@@ -26,19 +24,21 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <div id="{{ bird_name}}">
-                            <p>Bird Name: {{ bird_detail.bird_name }}</p>
+                            <p class="lead"><b>Bird Name:</b> {{ bird_detail.bird_name }}</p>
                         </div>
-                        <p>Type: {{bird_detail.type }}</p>
-                        <p>Gender: {{bird_detail.get_sex_display }}</p>
-                        <p>Date of Birth {{bird_detail.date_of_birth }}</p>
-                        <p>Additional Info: {{bird_detail.additional_info }}</p>
+                        <p class="lead">
+                            <b>Type: </b>{{bird_detail.type }}
+                        </p>
+                        <p class="lead"><b>Gender: </b>{{bird_detail.get_sex_display }}</p>
+                        <p class="lead"><b>Date of Birth:</b> {{bird_detail.date_of_birth }}</p>
+                        <p class="lead"><b>Additional Info: </b>{{bird_detail.additional_info }}</p>
                     </div>
                 </div>
             </div>
 
 
 
-            <div class="col-md-4">
+            <div class="col-md-4 button-card">
                 <ul>
                     <li class="li-style d-grid ">
                         <a class="btn btn-secondary btn-block" aria-current="page" href="{% url 'home' %}">Back
@@ -47,28 +47,29 @@
                     </li>
                     {% if user.is_superuser %}
                     <li class="li-style d-grid">
-                        <a class="btn btn-signup btn-block" aria-current="page"
-                            href="{% url 'bird_edit' bird_detail.id %}">Edit
+                        <a class="btn btn-signup " aria-current="page" href="{% url 'bird_edit' bird_detail.id %}">Edit
                             Bird Data</a>
                     </li>
-                    <li class="li-style">
-                        <button class="btn btn-delete" bird_id="{{ selected_bird.id }}">Delete
+                    <li class="li-style d-grid">
+                        <button class="btn btn-delete btn-block" bird_id="{{ selected_bird.id }}">Delete
                             Bird</button>
                     </li>
                 </ul>
             </div>
             {% endif %}
-
-
+        </div>
+        <hr class="divider">
+    </div>
+    <div class="daily-button">
+        <div class="d-grid">
+            <a href="{% url 'daily_data_form'  bird_detail.id %}"
+                class="btn btn-custom-color-action3 btn-lg col-8 mx-auto ">Add
+                daily data for: <br>
+                <b>{{bird_detail.bird_name}}</b>
+            </a>
         </div>
     </div>
     <div class="flex-wrapper">
-        <div class="d-grid ">
-            <a href="{% url 'daily_data_form'  bird_detail.id %}" class="btn btn-primary btn-lg col-8 mx-auto">Add daily
-                data for
-                <em>{{bird_detail.bird_name}}</em></button>
-            </a>
-        </div>
         <div class="accordion" id="daily_data">
             {% for data in selected_bird %}
             <div class="accordion-item">
@@ -77,55 +78,55 @@
                         data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="true"
                         aria-controls="collapse{{ forloop.counter }}">
                         <p>Date: {{ data.date }} Trainer: {{ data.trainer }}</p>
+                        <span class="weight-heading">Weight: {{ data.weight}}g</span>
                     </button>
                 </h2>
-                <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse "
-                    data-bs-parent="#daily_data">
-                    <div class="accordion-body">
-                        <div>
-                            <p>Bird Weight: {{ data.weight }} grams</p>
-                        </div>
-                        <div>
-                            <p>Type of Food: {{ data.food_type }}</p>
-                        </div>
-                        <div>
-                            <p>Weight of Food: {{ data.food_weight }} grams</p>
-                        </div>
-                        <div>
-                            <p>Weather: {{ data.get_weather_display }}</p>
-                        </div>
-                        <div>
-                            <p>Temperature: {{ data.temperature }}&degC</p>
-                        </div>
-                        <div>
-                            <p>Type of training: {{ data.get_training_display }}</p>
-                        </div>
-                        <div>
-                            <p>Behaviour/Mood: {{ data.get_behaviour_display }}</p>
-                        </div>
-                        <div>
-                            <p>Notable Info: {{ data.notable_info }}</p>
-                        </div>
-                        <div class="col-md-2 ">
-                            <div class="image-container">
-                                {% if "placeholder" in data.notable_image.url %}
-                                <img class="card-img-top" src="" alt="">
-                                {% else %}
-                                <img class="card-img-top" src=" {{data.notable_image.url  }}"
-                                    alt="{{ bird.bird_name }}">
-                                {% endif %}
-                            </div>
+            </div>
+            <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse " data-bs-parent="#daily_data">
+                <div class="accordion-body">
+                    <div>
+                        <p>Bird Weight: {{ data.weight }} grams</p>
+                    </div>
+                    <div>
+                        <p>Type of Food: {{ data.food_type }}</p>
+                    </div>
+                    <div>
+                        <p>Weight of Food: {{ data.food_weight }} grams</p>
+                    </div>
+                    <div>
+                        <p>Weather: {{ data.get_weather_display }}</p>
+                    </div>
+                    <div>
+                        <p>Temperature: {{ data.temperature }}&degC</p>
+                    </div>
+                    <div>
+                        <p>Type of training: {{ data.get_training_display }}</p>
+                    </div>
+                    <div>
+                        <p>Behaviour/Mood: {{ data.get_behaviour_display }}</p>
+                    </div>
+                    <div>
+                        <p>Notable Info: {{ data.notable_info }}</p>
+                    </div>
+                    <div class="col-md-2 ">
+                        <div class="image-container">
+                            {% if "placeholder" in data.notable_image.url %}
+                            <img class="card-img-top" src="" alt="">
+                            {% else %}
+                            <img class="card-img-top" src=" {{data.notable_image.url  }}" alt="{{ bird.bird_name }}">
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
     </div>
     </div>
     </div>
     </div>
-
+    </div>
+    </div>
     </div>
 </body>
 <!-- Delete confirmation modal -->

@@ -13,7 +13,7 @@
       <p>{% blocktrans %}
         Welcome to the Raptor Health Tracking App.
         Do you already have an account? Then please
-        <a class="link" href="{{ login_url }}">sign in</a>
+        <a class="link btn-custom-color-action2" href="{{ login_url }}">sign in</a>
         instead.
         {% endblocktrans %}
       </p>
@@ -28,15 +28,18 @@
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
         <ul>
-          <li class="li-style">
-            <button class="btn btn-signup right" type="submit">
-              {% trans "Sign Up" %} &raquo;</button>
+          <li class="li-style d-grid gap-2">
+            <button class="btn btn-custom-color-action2" type="submit">
+              {% trans "Sign Up" %}</button>
           </li>
-          <li class="li-style">
+          <li class="li-style d-grid gap-2">
             <a class="btn btn-secondary" aria-current="page" href="{% url 'home' %}">Cancel</a>
           </li>
         </ul>
+        <div class="flex-wrapper">
+        </div>
       </form>
+
     </div>
   </div>
 
