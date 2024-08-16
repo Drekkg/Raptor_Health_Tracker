@@ -84,31 +84,33 @@
             </div>
             <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse " data-bs-parent="#daily_data">
                 <div class="accordion-body">
-                    <div>
-                        <p>Bird Weight: {{ data.weight }} grams</p>
+                    <div class="accordion-text col-md-4 ">
+                        <div>
+                            <p><b>Bird Weight: </b>{{ data.weight }} grams</p>
+                        </div>
+                        <div>
+                            <p><b>Type of Food: </b>{{ data.food_type }}</p>
+                        </div>
+                        <div>
+                            <p><b>Weight of Food: </b>{{ data.food_weight }} grams</p>
+                        </div>
+                        <div>
+                            <p><b>Weather: </b>{{ data.get_weather_display }}</p>
+                        </div>
+                        <div>
+                            <p><b>Temperature: </b>{{ data.temperature }}&degC</p>
+                        </div>
+                        <div>
+                            <p><b>Type of training:</b> {{ data.get_training_display }}</p>
+                        </div>
+                        <div>
+                            <p><b>Behaviour/Mood: </b>{{ data.get_behaviour_display }}</p>
+                        </div>
+                        <div>
+                            <p><b>Notable Info:</b> {{ data.notable_info }}</p>
+                        </div>
                     </div>
-                    <div>
-                        <p>Type of Food: {{ data.food_type }}</p>
-                    </div>
-                    <div>
-                        <p>Weight of Food: {{ data.food_weight }} grams</p>
-                    </div>
-                    <div>
-                        <p>Weather: {{ data.get_weather_display }}</p>
-                    </div>
-                    <div>
-                        <p>Temperature: {{ data.temperature }}&degC</p>
-                    </div>
-                    <div>
-                        <p>Type of training: {{ data.get_training_display }}</p>
-                    </div>
-                    <div>
-                        <p>Behaviour/Mood: {{ data.get_behaviour_display }}</p>
-                    </div>
-                    <div>
-                        <p>Notable Info: {{ data.notable_info }}</p>
-                    </div>
-                    <div class="col-md-2 ">
+                    <div class="col-md-3 ">
                         <div class="image-container">
                             {% if "placeholder" in data.notable_image.url %}
                             <img class="card-img-top" src="" alt="">
@@ -117,6 +119,7 @@
                             {% endif %}
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

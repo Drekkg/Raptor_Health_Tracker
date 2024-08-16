@@ -49,6 +49,9 @@ ul {
     
 }
 
+.accordion-text {
+   font-size: 1.2rem;
+}
 
 .divider {
     max-width: 80%;

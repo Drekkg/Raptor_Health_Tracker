@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponse
+import os
 from django.shortcuts import render
 from django.views import generic
 from .models import Bird, DailyData
@@ -8,6 +9,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, permission_required
+from cloudinary.exceptions import Error as CloudinaryError
 
 
 class BirdList(generic.ListView):
@@ -60,50 +62,110 @@ def daily_data_form(request, id):
                       {"daily_data_form": form, "bird_detail": bird_detail, "selected_bird": selected_bird})
 
 
+# def add_new_bird_form(request):
+#     """Form
+#     ***Template
+#     # bird_tracker/add_new_bird_form"""
+#     queryset = Bird.objects.all()
+#     if request.method == "POST":
+#         add_new_bird_form = AddNewBirdForm(request.POST, request.FILES)
+#         if add_new_bird_form.is_valid():
+#             new_bird = add_new_bird_form.save()
+#             messages.add_message(
+#                 request, messages.SUCCESS,
+#                 'New Bird added'
+#             )
+
+#             return HttpResponseRedirect(reverse('home'))
+
+#         else:
+#             messages.add_message(
+#                 request, messages.ERROR,
+#                 'Please check the entered Data'
+#             )
+#             add_new_bird_form = AddNewBirdForm(data=request.POST)
+#             return render(
+#                 request,
+#                 "bird_tracker/add_new_bird_form.html",
+#                 {
+#                     "view": "add",
+#                     "add_new_bird_form": add_new_bird_form,
+
+#                 },
+#             )
+
+#     add_new_bird_form = AddNewBirdForm()
+#     return render(
+#         request,
+#         "bird_tracker/add_new_bird_form.html",
+#         {
+#             "view": "add",
+#             "add_new_bird_form": add_new_bird_form,
+
+#         },
+#     )
+# from django.shortcuts import render, redirect
+# from django.http import HttpResponseRedirect
+# from django.urls import reverse
+# from django.contrib import messages
+# from .forms import AddNewBirdForm  # Assuming this is the correct import for your form
+# from cloudinary.exceptions import Error as CloudinaryError
+
 def add_new_bird_form(request):
     """Form
     ***Template
     # bird_tracker/add_new_bird_form"""
-    queryset = Bird.objects.all()
-
     if request.method == "POST":
         add_new_bird_form = AddNewBirdForm(request.POST, request.FILES)
-
         if add_new_bird_form.is_valid():
-            new_bird = add_new_bird_form.save()
-            messages.add_message(
-                request, messages.SUCCESS,
-                'New Bird added'
-            )
+            try:
+                new_bird = add_new_bird_form.save()
+                messages.add_message(
+                    request, messages.SUCCESS,
+                    'New Bird added'
+                )
+                return HttpResponseRedirect(reverse('home'))
+            except CloudinaryError as e:
 
-            return HttpResponseRedirect(reverse('home'))
+                messages.add_message(
+                    request, messages.ERROR,
+                    f'Error uploading image: {str(e)}'
+                )
 
+                return render(
+                    request,
+                    "bird_tracker/add_new_bird_form.html",
+                    {
+                        "view": "add",
+                        "add_new_bird_form": add_new_bird_form,
+                    },
+                )
         else:
             messages.add_message(
                 request, messages.ERROR,
                 'Please check the entered Data'
             )
-            add_new_bird_form = AddNewBirdForm(data=request.POST)
+
+            add_new_bird_form = AddNewBirdForm(request.POST, request.FILES)
             return render(
                 request,
                 "bird_tracker/add_new_bird_form.html",
                 {
                     "view": "add",
                     "add_new_bird_form": add_new_bird_form,
-
                 },
             )
 
-    add_new_bird_form = AddNewBirdForm()
-    return render(
-        request,
-        "bird_tracker/add_new_bird_form.html",
-        {
-            "view": "add",
-            "add_new_bird_form": add_new_bird_form,
-
-        },
-    )
+    else:
+        add_new_bird_form = AddNewBirdForm()
+        return render(
+            request,
+            "bird_tracker/add_new_bird_form.html",
+            {
+                "view": "add",
+                "add_new_bird_form": add_new_bird_form,
+            },
+        )
 
 
 def bird_edit(request, id):
@@ -119,9 +181,17 @@ def bird_edit(request, id):
         edit_bird_form = AddNewBirdForm(
             request.POST, request.FILES, instance=bird)
         if edit_bird_form.is_valid():
-            edit_bird_form.save()
-            messages.success(request, 'Bird Updated!')
-            return HttpResponseRedirect(reverse('bird_detail', args=[id]))
+            try:
+                edit_bird_form.save()
+                messages.success(request, 'Bird Updated!')
+                return HttpResponseRedirect(reverse('bird_detail', args=[id]))
+
+            except CloudinaryError as e:
+                messages.add_message(
+                    request, messages.ERROR,
+                    f'Error uploading image: {str(e)}'
+                )
+
         else:
             messages.error(request, 'Error updating bird!')
 
