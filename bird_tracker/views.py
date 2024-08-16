@@ -43,13 +43,23 @@ def daily_data_form(request, id):
     if request.method == "POST":
         form = DailyDataForm(request.POST, request.FILES)
         if form.is_valid():
-            daily_data = form.save(commit=False)
-            daily_data.trainer = request.user
-            daily_data.selected_bird = bird_detail
-            daily_data.save()
-            messages.success(request, 'Daily Data added successfully.')
-            return render(request, "bird_tracker/bird_detail.html",
-                          {"bird_detail": bird_detail, "selected_bird": selected_bird})
+            try:
+                daily_data = form.save(commit=False)
+                daily_data.trainer = request.user
+                daily_data.selected_bird = bird_detail
+                daily_data.save()
+                messages.success(request, 'Daily Data added successfully.')
+                return render(request, "bird_tracker/bird_detail.html",
+                              {"bird_detail": bird_detail, "selected_bird": selected_bird})
+            except CloudinaryError as e:
+                messages.add_message(
+                    request, messages.ERROR,
+                    f'Error uploading image: {str(e)}'
+                )
+                form = DailyDataForm(request.POST)
+                return render(request, "bird_tracker/daily_data_form.html",
+                              {"daily_data_form": form, "bird_detail": bird_detail, "selected_bird": selected_bird})
+
         elif not form.is_valid():
             messages.error(request, 'Please check the entered data.')
             form = DailyDataForm(request.POST)
@@ -61,55 +71,6 @@ def daily_data_form(request, id):
         return render(request, "bird_tracker/daily_data_form.html",
                       {"daily_data_form": form, "bird_detail": bird_detail, "selected_bird": selected_bird})
 
-
-# def add_new_bird_form(request):
-#     """Form
-#     ***Template
-#     # bird_tracker/add_new_bird_form"""
-#     queryset = Bird.objects.all()
-#     if request.method == "POST":
-#         add_new_bird_form = AddNewBirdForm(request.POST, request.FILES)
-#         if add_new_bird_form.is_valid():
-#             new_bird = add_new_bird_form.save()
-#             messages.add_message(
-#                 request, messages.SUCCESS,
-#                 'New Bird added'
-#             )
-
-#             return HttpResponseRedirect(reverse('home'))
-
-#         else:
-#             messages.add_message(
-#                 request, messages.ERROR,
-#                 'Please check the entered Data'
-#             )
-#             add_new_bird_form = AddNewBirdForm(data=request.POST)
-#             return render(
-#                 request,
-#                 "bird_tracker/add_new_bird_form.html",
-#                 {
-#                     "view": "add",
-#                     "add_new_bird_form": add_new_bird_form,
-
-#                 },
-#             )
-
-#     add_new_bird_form = AddNewBirdForm()
-#     return render(
-#         request,
-#         "bird_tracker/add_new_bird_form.html",
-#         {
-#             "view": "add",
-#             "add_new_bird_form": add_new_bird_form,
-
-#         },
-#     )
-# from django.shortcuts import render, redirect
-# from django.http import HttpResponseRedirect
-# from django.urls import reverse
-# from django.contrib import messages
-# from .forms import AddNewBirdForm  # Assuming this is the correct import for your form
-# from cloudinary.exceptions import Error as CloudinaryError
 
 def add_new_bird_form(request):
     """Form
@@ -125,8 +86,8 @@ def add_new_bird_form(request):
                     'New Bird added'
                 )
                 return HttpResponseRedirect(reverse('home'))
-            except CloudinaryError as e:
 
+            except CloudinaryError as e:
                 messages.add_message(
                     request, messages.ERROR,
                     f'Error uploading image: {str(e)}'
@@ -172,7 +133,6 @@ def bird_edit(request, id):
     """
     View to edit bird information.
     """
-    # Retrieve the bird instance outside the if statement to avoid duplication
     queryset = Bird.objects.all()
     bird = get_object_or_404(queryset, id=id)
     context = {"view": "edit_bird"}
