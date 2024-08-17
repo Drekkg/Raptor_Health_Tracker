@@ -1,8 +1,10 @@
-fg { color:#8b8c89;  
-bg-color: #a3cef1;
-color: #6096ba;
-color: #274c77;
-color: #e7ecef;} 
+fg {
+    color: #8b8c89;
+    bg-color: #a3cef1;
+    color: #6096ba;
+    color: #274c77;
+    color: #e7ecef;
+}
 
 
 body {
@@ -19,20 +21,24 @@ i {
     margin-right: 1rem;
     color: #274c77;
 }
+
 #add-bird-icon {
-    color:  #d66e18;
+    color: #d66e18;
 }
+
 .li-style {
     margin: 2rem;
 }
+
 .login {
     text-align: center;
-    color:#302743;;
+    color: #302743;
+    ;
 }
 
 
 .card-bg {
-    background-color: #6096ba; 
+    background-color: #6096ba;
 }
 
 .daily-button {
@@ -43,33 +49,36 @@ i {
     background-color: #6096ba;
     color: white;
 }
+
 .btn-custom-color-action2 {
     background-color: #09615b;
     color: white;
 }
+
 .btn-custom-color-action3 {
     background-color: #6096ba;
-    color: white;  
+    color: white;
 }
 
 .btn-custom-color-action3:hover {
     background-color: white;
     border: 4px solid #a3cef1;
-    
+
 }
 
 .accordion-text {
-   font-size: 1.2rem;
+    font-size: 1.2rem;
 }
 
 .divider {
     max-width: 80%;
     margin: 2rem auto 0rem auto;
 }
+
 .weight-heading {
-   font-size: 1.5rem; 
-   margin: auto;
-   color: #274c77;
+    font-size: 1.5rem;
+    margin: auto;
+    color: #274c77;
 }
 
 .brand {
@@ -80,7 +89,7 @@ i {
 }
 
 .body-404 {
-    
+
     background-image: url('/static/images/blue_sky.jpg');
     background-repeat: no-repeat;
     background-position: center center;
@@ -102,29 +111,30 @@ i {
 
 
 .flex-wrapper {
-    
+
     min-height: 71vh;
     display: flex;
     flex-direction: column;
 
-  }
+}
 
-  .flex-wrapper-login {
-    
+.flex-wrapper-login {
+
     min-height: 84vh;
     display: flex;
     flex-direction: column;
 
-  }
+}
 
 
 .nav-fixed {
-position: fixed;
-top: 0;
-right: 0;
-left: 0;
-z-index: 1030;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
 }
+
 .nav-link {
     padding: 0 3rem !important;
 }
@@ -134,8 +144,9 @@ z-index: 1030;
     max-height: 15rem;
     border-right: 1rem;
     border-radius: 3%;
-   
+
 }
+
 .red-o {
     color: #E84610;
 }
@@ -155,12 +166,13 @@ z-index: 1030;
 .main-bg {
     background-color: #c5cddc;
     margin-top: 4.5rem;
-    
+
 }
 
 .alert {
     margin-top: 2rem;
 }
+
 .mt-4 {
     text-align: center;
 }
@@ -169,20 +181,23 @@ z-index: 1030;
     border: none;
     background-color: transparent;
     width: 18rem;
-    
-} 
+
+}
+
 .bird-card {
     width: 19rem;
     background-color: #edf0f392;
     border-radius: 5%;
     box-shadow: 1px 2px black;
-    
+    margin-left: 1rem;
+
 }
+
 .image-container {
     position: relative;
     margin-left: 1rem;
-    
-   
+
+
 }
 
 .bird-list-image {
@@ -304,4 +319,10 @@ z-index: 1030;
 
 .approval {
     color: rgb(222, 146, 168);
+}
+
+@media (max-width: 340px) {
+    .bird-card {
+        margin-left: 0rem;
+    }
 }
