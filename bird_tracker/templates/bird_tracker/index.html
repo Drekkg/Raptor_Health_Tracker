@@ -15,7 +15,7 @@
                     {% for bird in bird_list %}
                     <div class="col-md-2">
                         <div class="card mb-2">
-                            <div class="card-body">
+                            <div class="bird-card">
                                 <div class="image-container">
                                     {% if "placeholder" in bird.main_image.url %}
                                     <img class="bird-list-image" src="{% static 'images/default.jpg' %}"
@@ -30,7 +30,7 @@
                                     <a href="{% url 'bird_detail' bird.id %}" class="bird-link">
                                         <h2>{{ bird.bird_name | safe }}</h2>
                                     </a>
-                                    <hr />
+
                                 </div>
                             </div>
                         </div>

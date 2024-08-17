@@ -22,6 +22,8 @@ ul {
     text-align: center;
     color:#302743;;
 }
+
+
 .card-bg {
     background-color: #6096ba; 
 }
@@ -144,7 +146,7 @@ z-index: 1030;
 }
 
 .main-bg {
-    background-color: #c5cddc;;
+    background-color: #c5cddc;
     margin-top: 2.1rem;
     /* background-color: #acb6c0; */
 }
@@ -159,25 +161,31 @@ z-index: 1030;
 .card {
     border: none;
     background-color: transparent;
+    
 }
-
+.bird-card {
+    width: 19rem;
+    background-color: #edf0f392;
+    border-radius: 5%;
+    box-shadow: 1px 2px black;
+}
 .image-container {
     position: relative;
-    margin-left: 1.8rem;
+    margin-left: 1rem;
    
 }
 
 .bird-list-image {
-    width: 13rem;
-    height: 11rem;
+    width: 17rem;
+    height: 15rem;
+    padding-top: 1rem;
 }
 
 
 .image-flash {
     position: relative;
     bottom: 5%;
-    width: 13rem;
-
+    width: 17rem;
     background-color: #6096ba;
 }
 
