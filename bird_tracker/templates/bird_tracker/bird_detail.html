@@ -35,9 +35,6 @@
                     </div>
                 </div>
             </div>
-
-
-
             <div class="col-md-4 button-card">
                 <ul>
                     <li class="li-style d-grid ">
@@ -82,7 +79,7 @@
                     </button>
                 </h2>
             </div>
-            <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse " data-bs-parent="#daily_data">
+            <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" data-bs-parent="#daily_data">
                 <div class="accordion-body">
                     <div class="accordion-text col-md-4 ">
                         <div>
@@ -109,28 +106,21 @@
                         <div>
                             <p><b>Notable Info:</b> {{ data.notable_info }}</p>
                         </div>
-                    </div>
-                    <div class="col-md-3 ">
-                        <div class="image-container">
-                            {% if "placeholder" in data.notable_image.url %}
-                            <img class="card-img-top" src="" alt="">
-                            {% else %}
-                            <img class="card-img-top" src=" {{data.notable_image.url  }}" alt="{{ bird.bird_name }}">
-                            {% endif %}
+                        <div class="col-md-3 ">
+                            <div class="image-container">
+                                {% if "placeholder" in data.notable_image.url %}
+                                <img class="card-img-top" src="" alt="">
+                                {% else %}
+                                <img class="card-img-top" src=" {{data.notable_image.url  }}"
+                                    alt="{{ bird.bird_name }}">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
 </body>
 <!-- Delete confirmation modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
