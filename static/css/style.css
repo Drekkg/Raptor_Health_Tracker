@@ -168,8 +168,9 @@ z-index: 1030;
 .card {
     border: none;
     background-color: transparent;
+    width: 18rem;
     
-}
+} 
 .bird-card {
     width: 19rem;
     background-color: #edf0f392;
@@ -180,6 +181,7 @@ z-index: 1030;
 .image-container {
     position: relative;
     margin-left: 1rem;
+    
    
 }
 
