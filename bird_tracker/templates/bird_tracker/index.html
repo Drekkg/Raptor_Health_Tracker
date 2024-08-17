@@ -6,22 +6,23 @@
 <!-- index.html content starts here -->
 
 <body class="bg">
-    <h1 class="mt-4 display-2">Raptor Health Tracker</h1>
-    <div class="container-fluid main-item ">
-        <div class="row">
+    <h1 class="mt-4 display-2 text-center">Raptor Health Tracker</h1>
+    <div class="container-fluid main-item">
+        <div class="row justify-content-center">
             <!-- Bird List Column -->
-            <div class="col-12 mt-3 center flex-wrapper">
+            <div class="col-12 mt-3 ">
                 <div class="row">
                     {% for bird in bird_list %}
-                    <div class="col-md-2">
-                        <div class="card mb-2">
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="card ms-5 mb-5">
                             <div class="bird-card">
                                 <div class="image-container">
                                     {% if "placeholder" in bird.main_image.url %}
-                                    <img class="bird-list-image" src="{% static 'images/default.jpg' %}"
+                                    <img class="bird-list-image img-fluid" src="{% static 'images/default.jpg' %}"
                                         alt="placeholder image">
                                     {% else %}
-                                    <img class="bird-list-image" src=" {{ bird.main_image.url }}"
+                                    <img class="bird-list-image img-fluid" src="{{ bird.main_image.url }}"
                                         alt="{{ bird.bird_name }}">
                                     {% endif %}
                                     <div class="image-flash">
@@ -30,7 +31,6 @@
                                     <a href="{% url 'bird_detail' bird.id %}" class="bird-link">
                                         <h2>{{ bird.bird_name | safe }}</h2>
                                     </a>
-
                                 </div>
                             </div>
                         </div>
@@ -40,13 +40,9 @@
                 <div class="row">
                     {% endif %}
                     {% endfor %}
-
                 </div>
             </div>
         </div>
-
-        </nav>
-
     </div>
     {% else %}
     <div class="flex-wrapper-login">
