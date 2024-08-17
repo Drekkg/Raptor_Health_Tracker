@@ -5,7 +5,7 @@
 <!-- Creating Daily Data -->
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6 card mb-4 mt-3">
+        <div class="col-md-6 col-lg-6 card mb-4 mt-3">
             <ul>
                 <li class="">
                     <a class="btn btn-secondary" aria-current="page" href="{% url 'bird_detail' bird_detail.id  %}">Back
@@ -27,8 +27,6 @@
                     {% csrf_token %}
                     <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
                 </form>
-
-
             </div>
         </div>
     </div>
