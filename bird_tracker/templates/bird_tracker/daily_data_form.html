@@ -12,11 +12,8 @@
                         to
                         {{bird_detail.bird_name}}</a>
                 </li>
-
             </ul>
-
             <div class="card-body">
-
                 <h3>Please enter the required information for:
                     <span>{{bird_detail.bird_name}}</span>
                     {% now "d-m-Y" %}
@@ -25,11 +22,32 @@
                 <form id="DailyDataForm" method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
                     {{ daily_data_form | crispy }}
                     {% csrf_token %}
-                    <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
-                </form>
+                    <button class="btn btn-signup btn-lg btn-add-data" href="#">Submit</button>
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addDataModal" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addDataModalLabel">Is the Data you enetred correct?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to add the Data?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="submitButton" type="submit" id="dailyDataForm" class="btn
+          btn-warning">Enter</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>
 
 {% endblock daily_data_form %}
+{% block extras %}
+<script src="{% static 'js/addBirdData.js' %}"></script>
+{% endblock %}
