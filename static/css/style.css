@@ -1,9 +1,9 @@
-/* #8b8c89  
-a3cef1
-6096ba
-274c77
-e7ecef
-*/
+fg { color:#8b8c89;  
+bg-color: #a3cef1;
+color: #6096ba;
+color: #274c77;
+color: #e7ecef;} 
+
 
 body {
     background-color: #e7ecef;
@@ -15,6 +15,13 @@ ul {
     margin: 0 auto;
 }
 
+i {
+    margin-right: 1rem;
+    color: #274c77;
+}
+#add-bird-icon {
+    color:  #d66e18;
+}
 .li-style {
     margin: 2rem;
 }
