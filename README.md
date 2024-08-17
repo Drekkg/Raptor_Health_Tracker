@@ -1,5 +1,5 @@
-# Esports Teammates
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/30be1f01-4b22-45ff-9455-95161df96fea)
+# Raptor Health Tracker
+![image](assets/responsive-img.png)
 
 - Esports Teammates is a site created for people who like to play online, but couldn't find right teammates yet
 - By creating a post, you can select your game, and describe your exerience, gaming skills and times preffered to play with your mates
