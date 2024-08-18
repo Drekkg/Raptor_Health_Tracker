@@ -150,8 +150,7 @@ Daily data accordion displaying essential data
 - Cloudinary
 # Data Models
 - Users can add daily data
-- Users can also register and start adding data. In production users would have to be vetoed by an admin to prohibit malicous or incompetent 
-users adding data, but in lieu of this project I gave users the ability to create data.
+- Users can also register and start adding data. In production users would have to be vetoed by an admin to prohibit malicous or incompetent users adding data, but in lieu of this project I gave users the ability to create data.
 - Logged in Admin can add birds, delete birds, delete bird daily data and edit bird data. 
 
 ## Bird Daily Data
@@ -188,9 +187,9 @@ Custom models:
 ## Initial User Stories
 [GitHub Project] (https://github.com/users/Drekkg/projects/6/views/1)
 
-I used the MOSCOW principal to help me decide what features to include and which features to add in a futere iteration.\
+I used the MOSCOW principal to help me decide what features to include and which features to add in a future iteration.\
 I first got a minimal viable product and then added extra features.\
-A few features on the todo list will be added in futere iterations.
+A few features on the todo list will be added in future iterations.
 
 ![image](assets/github_project_screenshot.png)
 
@@ -313,40 +312,49 @@ Admins can add new bird data
 
 ## Administrator Site
 ### There are a few differences when the admin is logged in.
-![image](assets/admin_message.png)
 - The message in the Navbar displays that you are logged in as an Admin
 
-![image](assets/admin_navbar.png)
+![image](assets/admin_message.png)
+
+
 - The open Navbar displays links to:
 - The Admin Dashboard
 - The Add New Bird Form
 - The Add New Bird  Icon is orange to draw the users attention to it.
 - It is hidden in the navbar because Admins will rarely need to add new birds.
 
+![image](assets/admin_navbar.png)
 
-![image](assets/admin_detail_button.png)
+
+
 - On the Bird Detail there are extra buttons
 - A button to delete the bird from the table 
 - A button to edit the bird data.
 
-![image](assets/delete_modal.png)
+![image](assets/admin_detail_button.png)
+
 - After clicking the delete button a delete bird modal is displayed.
 - The Admin is asked to affirm that they  want to delete the selected bird from the table.
 - Clicking Cancel takes the Admin back to the bird detail page.
 - Clicking Delete permanently removes the bird data from the table.
 
-![image](assets/edit_bird_form.png)
+![image](assets/delete_modal.png)
+
+
+
 - Clicking the edit bird button takes the Admin to the edit bird form
 - Here all Bird data can be edited.
 - Clicking the Save Changes button  updates the table for the selected bird.
 
+![image](assets/edit_bird_form.png)
+
 
 ## Future Features
-- team apply button and form. Currently, users can apply to join a team by comments, in the future I am planning to create an application form for this
-- search filter on top of the page to display particular game or skill level
-- Team Ad owners will be able to accept od reject a joing team application
-- more games and templates (as different games have different options, positions, etc.)
-- upgrade profile page so users can ad a description, skill level, favourite games, and comment counter
+- A graph displaying the daily bird weight in a quick to scan visually appaeling manner.
+- Birds that have not exercised or been fed will display a different colour in the birdlist.
+- The image container on the birdlist will be adaptive so images don't appear squashed.
+- A really important feature would be the implementation of Index DB a JS mobile DB for when the users in the field have no internet connection. Data is stored locally and written to the table when the user has internet connectivity again.
+
 
 # Testing
 ## Manual Testing
