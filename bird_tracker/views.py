@@ -11,10 +11,14 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, permission_required
 from cloudinary.exceptions import Error as CloudinaryError
 
+# built in django view
+
 
 class BirdList(generic.ListView):
     queryset = Bird.objects.all()
     template_name = "bird_tracker/index.html"
+
+# view to display bird details
 
 
 def bird_detail(request, id):
@@ -33,6 +37,8 @@ def bird_detail(request, id):
 
          },
     )
+
+# View for the daily data form
 
 
 def daily_data_form(request, id):
@@ -70,6 +76,8 @@ def daily_data_form(request, id):
         form = DailyDataForm()
         return render(request, "bird_tracker/daily_data_form.html",
                       {"daily_data_form": form, "bird_detail": bird_detail, "selected_bird": selected_bird})
+
+# view for the add new bird form
 
 
 def add_new_bird_form(request):
@@ -128,6 +136,8 @@ def add_new_bird_form(request):
             },
         )
 
+# view to edit bird form
+
 
 def bird_edit(request, id):
     """
@@ -168,6 +178,7 @@ def bird_edit(request, id):
             "id": id,
         },
     )
+# view to delete bird
 
 
 def bird_delete(request, id):

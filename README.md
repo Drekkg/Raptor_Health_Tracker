@@ -348,12 +348,15 @@ Admins can add new bird data
 
 ![image](assets/edit_bird_form.png)
 
+## 404 Page Not found
+![image](assets/404_not_found.png)
+- Custom 404 not found page
+
 
 ## Future Features
-- A graph displaying the daily bird weight in a quick to scan visually appaeling manner.
-- Birds that have not exercised or been fed will display a different colour in the birdlist.
-- The image container on the birdlist will be adaptive so images don't appear squashed.
-- A really important feature would be the implementation of Index DB a JS mobile DB for when the users in the field have no internet connection. Data is stored locally and written to the table when the user has internet connectivity again.
+- A graph displaying the daily bird weight, in a quick to scan, visually appealing manner.
+- Birds that have not exercised or been fed will display a different colour in the bird list.
+- A really important feature would be the implementation of Index DB, a mobile DB for when the users in the field have no internet connection. Data is stored locally and written to the table when the user has internet connectivity again.
 
 
 # Testing

@@ -1,7 +1,7 @@
 from . import views
 from django.urls import path, include
 
-
+# the urls for the respective views
 urlpatterns = [
     path('', views.BirdList.as_view(), name='home'),
     path('daily_data_forms/<int:id>', views.daily_data_form, name='daily_data_form'),  # noqa

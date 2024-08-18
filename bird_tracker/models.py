@@ -3,15 +3,16 @@ from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
-
+# Constants to be used in the Bird and DailyData Model
 SEX = ((0, "Female"), (1, "Male"))
 WEATHER = ((0, "Rainy"), (1, "Sunny"), (2, "Windy"), (3, "Cold"))
 TRAINING = ((0, "Featherplay"), (1, "Faustappel"), (2, "Free Flight"))
 BEHAVIOUR = ((0, "Motivated"), (1, "Reticent"))
 
+# Bird Custom Model
+
 
 class Bird(models.Model):
-
     bird_name = models.CharField(max_length=20, unique=True, blank=False)
     type = models.CharField(max_length=20, blank=False)
     sex = models.IntegerField(choices=SEX, default=0, null=False)
@@ -25,6 +26,8 @@ class Bird(models.Model):
 
     def __str__(self):
         return (f"{self.bird_name} | {self.type}")
+
+# Daily data custom model
 
 
 class DailyData(models.Model):
