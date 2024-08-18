@@ -362,7 +362,11 @@ Admins can add new bird data
 # Testing
 ## Manual Testing
 
+https://github.com/user-attachments/assets/f5e31c91-e5d8-4a1b-84e3-8fb8488b3fc2
 
+
+
+video
 ## Defensive programming testing
 
 In the video below, I would like to present some defensive programming implemented in my project:
