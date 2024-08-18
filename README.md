@@ -18,7 +18,7 @@ https://github.com/Drekkg/Raptor_Health_Tracker.git
 Derek Garnett
 
 # Table of contents
-- [Esports Teammates](#esports-teammates)
+- [Raptor Health Tracker](#raptor-health-tracker)
   - [Live Site](#live-site)
   - [Repository](#repository)
   - [Author](#author)
@@ -82,7 +82,7 @@ Natural greens to fit the conservation theme.
 
 
 ### Typography
-I chose basic for readability.
+I chose a basic font for readability.
 - Roboto
 - Lato 
 From google
@@ -140,9 +140,9 @@ Daily data accordion displaying essential data
 
 
 
-# Database and models
+# Information Architecture
 ## Entity Relationship Diagram
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/c246472a-40b9-4172-838d-bf5c0533515d)
+![image](assets/erd.png)
 
 ## Database Choice
 - postgres relational database 
@@ -162,21 +162,7 @@ The bird daily data view/page is the main feature of the app. Users can quickly 
 - **Update:** Only Administrators/super-users can edit data. 
 - **Delete:** Only Administrators/super-users can delete data. 
 
-## Comments
-Comments are means of communication for prospective players to join a team
-### CRUD
-- **Create:** Registered/ Authenticated Users can Add a comment to a Team  ad via a custom view and form
-- **Read:** All users can read comments on the Detail page for a given team ad, they do not need to be logged in
-- **Update:** Only users who are logged in and own a Comment can update the Comment via a custom view and form. 
-- **Delete:** Only authenticated users (owners) and superusers can delete comments (admin view for superusers)
 
-## Profile
-When users register, a profile is created. 
-### CRUD
-- **Create:** Automatically happens upon registration
-- **Read:** All users can read their profile by clicking on their name in the navigation
-- **Update:** Only accessible via Django Admin super users
-- **Delete:** Only accessible via Django Admin super users
 
 ![image](https://github.com/PPindel/esports-teammates/assets/114284732/cd7e1773-fa8b-44ef-9e01-fa62dbdfcc31)
 
