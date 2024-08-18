@@ -199,17 +199,46 @@ Example: Changed the ability to add birds to the table from normal User to Admin
 
 
 ## Scope
-When I started my project I was very ambitious to develop a complete portal for gamers to search online for friends, teams and improve their skills. I imagined custom applications, profiles, filtering tools, game sections, guilds, and many more...
-But in the middle of developing, I realized that this may take much more time than I had to make it good.
-I've created a functional website working similarly to a blog website where people can connect and make an advert. All previous ideas are still in GitHub user stories for this project.
-
+The initial plan for the app was increasingly made more complex as desirable features were added.\
+During development a lot of features had to be recalled.\
+All features were added to future features.\
+The app successfully manages to make all entered data available for review.\
+Out in the field, users can add the required data on mobile devices(Tablets and phones)\
+Admins and users can view and track the data from HQ
+Admins can edit the data where errors have ocurred\
+Admins can delete bird data\
+Admins can add new bird data
 # Features
 ## Implemented Features
-- unauthenticated users can view only the landing page
-- defensive programming has been used to protect tampering pages without authentication
-- users can register an account
-- usernames and email addresses must be unique
-- a superuser account has been created (admin)
+## Landing Page 
+![image](assets/landing_page.png)
+- New unauthenticted users can view the landing Page.
+- Defensive programming has been used to protect tampering pages without authentication
+- Users can register an account
+- Usernames and email addresses must be unique
+- An already registered user can login 
+- A superuser account has been created (admin)
+- Superuser can login using the Admin Login button and is taken to the Admin dashboard
+### Admin Dashboard
+![image](assets/admin_dash.png)
+- The Admin Dashboard supplied by Django.
+- The Admin can edit and delete all data
+### Register Page
+![image](assets/register_page.png)
+- An unregistered user can register on the site 
+- Choosing a username, entering email address and creating a password
+- In production, out in the wild, a new user would have to be vetoed by an administrator-\
+  but for the purposes of this project I have allowed new users onto the site.   
+## User Login
+![image](assets/user_login.png)
+- A registered user can login by entereing their username and password.
+- A cancel button takes the user back to the landing page.
+### Bird List Page
+![image](assets/bird_list.png)
+
+
+
+
 - all users can create posts (Team Ads), edit and delete them (if they are authors, authentication is implemented)
 - all users can create a comment to existing post (Team Ad), edit and delete (if they are authors, authentication is implemented)
 - admin can edit or delete any post, comment or remove user from admin panel
