@@ -71,6 +71,10 @@ i {
     font-size: 1.2rem;
 }
 
+.dark-bg {
+    background-color: #242a30;
+}
+
 .weight-heading {
     font-size: 1.5rem;
     margin: auto;
