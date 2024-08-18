@@ -56,6 +56,17 @@ i {
 
 }
 
+.btn-signup,
+.btn-edit {
+    background-color: #188181;
+    color: #fff;
+}
+
+.btn-delete {
+    color: #fff;
+    background: #E84610;
+}
+
 .accordion-text {
     font-size: 1.2rem;
 }
