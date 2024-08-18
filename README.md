@@ -319,7 +319,7 @@ Admins can add new bird data
 ## Manual Testing
 
 https://github.com/user-attachments/assets/afdf5523-7755-4edf-933e-b6040908f92e
-A video of the app being teated:
+A video of the app being tested:
 1. From the login page an Admin can log into the app.
 2. A message is displayed informing the user that they have logged in.
 3. Clicking on the name of a bird in the bird list takes the user to the bird detail page.
@@ -343,19 +343,24 @@ A video of the app being teated:
 21. The user then logs out of the app and logs into the admin dashboard.
 22. The user goes back to the site and logs out again. 
 
-
-
-
 https://github.com/user-attachments/assets/d96ebfab-c12e-497c-bbf2-401267e93cf1
-
-
-
-
-
+A video of the daily data accordion and the edit bird functionality
+1. A logged in Admin clicks on and opens an accordion element.
+2. Daily data that has been entered is displayed.
+3. Clicking on the element again closes it displaying just the date, trainer and the bird weight in grams in bold.
+4. The user/admin clicks on the edit bird buttton
+5. The user is taken to the edit bird form.
+6. The user adds some text to one of the fields and changes the image.
+7. After saving the changes the user is brought back to the bird detail page.
+8. All the relevant changes are displayed on the page.
+9. The user then swops the images back.
+All edit functionality works without any glitches. the daily data is displayed in a functional way, 
+and is easy to access and read. 
 
 ## Defensive programming testing
 
-In the video below, I would like to present some defensive programming implemented in my project:
+In the video below I demonstrate some of the defensive programming I have implemented,
+mainly with form POST requests and cloudinary safeguarding:
 
 [Screenshare - 2023-06-02 1 19 36 PM.webm](https://github.com/PPindel/esports-teammates/assets/114284732/bb3aff5e-ad97-4125-8efb-83d34de00b19)
 
