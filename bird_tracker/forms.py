@@ -2,6 +2,8 @@ from .models import DailyData
 from .models import Bird
 from django import forms
 
+
+# unicode for degree celsius
 deg = '\u00B0C'
 
 
