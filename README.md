@@ -233,8 +233,30 @@ Admins can add new bird data
 ![image](assets/user_login.png)
 - A registered user can login by entereing their username and password.
 - A cancel button takes the user back to the landing page.
-### Bird List Page
+## Bird List Page
 ![image](assets/bird_list.png)
+- Once a user is logged in they are taken to the Bird List page.
+- Here all birds in the table are displayed using photos and the bird name and type.
+- When no photo is available, a default image is displayed  
+![image](assets/default_img.png)
+- Users can click on the bird name and be taken to the bird detail page
+### Navbar
+![image](assets/navbar.png)
+- The Navbar is sticky and availible on pages where the user has logged in.
+- The users name is displayed with a message informing them that they are logged in.
+![image](assets/login_message.png) 
+-After clicking on the Hamburger icon
+![image](assets/hamburger.png) 
+- the navbar opens giving them the option to logout
+![image](assets/log_out_button.png) 
+- After clicking the button the user is taken to the logout page
+![image](assets/log_out_page.png)
+- Here the user can logout and be taken back to the landing page.
+- or click the cancel button and go back to the bird list 
+
+## Bird Detail Page 
+![image](assets/bird_detail_page2.png)
+- The bird detail page 
 
 
 
