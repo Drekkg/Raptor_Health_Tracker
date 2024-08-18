@@ -1,18 +1,21 @@
 # Raptor Health Tracker
 ![image](assets/responsive-img.png)
 
-- Esports Teammates is a site created for people who like to play online, but couldn't find right teammates yet
-- By creating a post, you can select your game, and describe your exerience, gaming skills and times preffered to play with your mates
-- Easy to operate, easy to navigate, intuitive and well designed site for all gamers!
+The Raptor Health Tracker is a web app designed to aid Falconers, Trainers and Rehabilitation specialists 
+who work with birds of prey.
+Raptors, Crows and Vultures require strict tracking of their food intake, 
+their weight and exercise routines.
+With the ability to upload photos and track numerous other data, 
+The Raptor Health Tracker is here to help to keep the data coherent. 
 
 ## Live Site
-https://esports-teammates.herokuapp.com/
+https://raptor-health-tracker-670ca7ff3a4d.herokuapp.com/
 
 ## Repository
-https://github.com/PPindel/esports-teammates
+https://github.com/Drekkg/Raptor_Health_Tracker.git
 
 ## Author
-Przemyslaw Pindel
+Derek Garnett
 
 # Table of contents
 - [Esports Teammates](#esports-teammates)
@@ -60,91 +63,104 @@ Przemyslaw Pindel
 
 # UX
 ## Target Audience
-Esports Teammates is designed to be attractive to the gaming community.
-It reflects the popular design of gaming accessories (illuminating leds for PCs, keyboards, mouses, etc.).
-The site is easy to operate and navigate, the content is clear and users can communicate with themselves to find new online friends!
+People who work with birds are well aware of how sensitive they are. Small problems can escalate really quickly.
+Having the data on hand, on-line and easy to read helps make informed decisions.
+Birds in breeding programs and rehabilitation centers need constant observation and tracking of various metrics:
+- The bird's weight - it is crucial to notice any fluctuation in weight, especially a decrease. Measurements are taken daily, sometimes twice or more.
+- Food intake - relative to weight the bird needs sufficient nourishment.
+- Excercise - for their psychological well being, birds needs sufficient free flight and other stimulating activities.
+The Raptor Health Tracker is here to digitalise the tracking process. Paper forms can be lost or become unreadable - birds of prey have sharp beaks and talons and enjoy shredding(and pooping on) unattended folders.
+Also the ability for interested parties - vets, specialists etc, to remotely track the birds online.
 
 ## Design Choices
 ### Colors
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/c0967ae8-0651-4f6b-8535-be232ec512e2)
+![image](assets/colours.png)
 
-The pallet inspiration was taken from coolors.co.
-However, some of the colors had to be adjusted to match the contrast standard in the Lighthouse validator.
+The colour palette is from coolors.co
+Lots of blue in different shades to evoke empty skies. Who doesn't want to be a bird - at least sometimes.
+Natural greens to fit the conservation theme.
 
-The idea of colors was to be an 80's arcade vibe to reflect the gaming theme of the site.
 
 ### Typography
-Fonts used:
-- Permanent Marker for modern and attractive design
-- Ubuntu for clear and readable content
-
+I chose basic for readability.
+- Roboto
+- Lato 
+From google
 ### Frameworks, plugins, tools used
 - Bootstrap
 - Django
 - req.txt:
-  - asgiref==3.6.0
-  - cloudinary==1.32.0
-  - crispy-bootstrap5==0.7
-  - dj-database-url==0.5.0
-  - dj3-cloudinary-storage==0.0.6
-  - Django==3.2.18
-  - Django-Accounts==0.1
-  - django-allauth==0.53.1
-  - django-crispy-forms==1.14.0
-  - django-summernote==0.8.20.0
-  - gunicorn==20.1.0
-  - oauthlib==3.2.2
-  - psycopg2==2.9.5
-  - PyJWT==2.6.0
-  - python3-openid==3.2.0
-  - pytz==2022.7.1
-  - requests-oauthlib==1.3.1
-  - sqlparse==0.4.3
-  - django-extensions==3.2.1
-  - graphviz==0.20.1
+ -- asgiref==3.8.1
+ -- cloudinary==1.36.0
+ -- crispy-bootstrap5==0.7
+ -- dj-database-url==0.5.0
+ -- dj3-cloudinary-storage==0.0.6
+ -- Django==4.2.14
+ -- django-allauth==0.57.2
+ -- django-crispy-forms==2.3
+ -- gunicorn==20.1.0
+ -- oauthlib==3.2.2
+ -- psycopg2==2.9.9
+ -- PyJWT==2.9.0
+ -- python3-openid==3.2.0
+ -- requests-oauthlib==2.0.0
+ -- sqlparse==0.5.1
+ -- urllib3==1.26.19
+ -- whitenoise==5.3.0
 
 
 ## Wireframes
-Landing page:
+Landing - Login page:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/69be5979-b6e4-4fa2-8a72-67d009b862ec)
+![image](assets/log-in.png)
 
-Desktop site:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/e2efaa7f-b4f1-468d-a260-57cc0e650a2f)
 
-Mobile site:
+Bird List Page:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/8efc194f-ec88-4cf3-8e94-800d8cca3203)
+![image](assets/bird-list.png)
 
-Team detail page:
+ Bird detail page:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/817847d3-29a1-48c5-b962-3d7067464dbc)
+![image](assets/bird-detail.png)
 
-Register page:
+Back to bird list button - 
+Edit Bird Button - 
+Delete Bird Button
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/54878dc1-0691-4db9-a5a5-7c9a0fa8c86d)
+![image](assets/buttons-page.png)
 
-Some of the details were changed in final product.
+Add bird daily data form
 
-# Information Architecture
+![image](assets/daily-fom.png)
+
+Daily data accordion displaying essential data
+
+![image](assets/daily-data-accordion.png)
+
+
+
+# Database and models
 ## Entity Relationship Diagram
 ![image](https://github.com/PPindel/esports-teammates/assets/114284732/c246472a-40b9-4172-838d-bf5c0533515d)
 
 ## Database Choice
-- postgres as the database because the data is relational
+- postgres relational database 
 - heroku servers
-
+- Cloudinary
 # Data Models
-Users can create and read their own Team Ad, select the title, game, role, and skill level, write a description, and upload a custom image to the ad.
+- Users can add daily data
+- Users can also register and start adding data. In production users would have to be vetoed by an admin to prohibit malicous or incompetent 
+users adding data, but in lieu of this project I gave users the ability to create data.
+- Logged in Admin can add birds, delete birds, delete bird daily data and edit bird data. 
 
-## Team Ad
-Team ads are what is the main focus of this website. Gamers can put up an ad to have others join their crew. Other users can leave comments as a means of communication to figure out other details to play together or if the Team is a good fit for them.
+## Bird Daily Data
+The bird daily data view/page is the main feature of the app. Users can quickly scan and check the selected bird's weight. Clicking on the accordion will reveal all daily bird data. The user can also effortlessly add daily data.
 ### CRUD
-- **Create:** Registered / Authenticated Users can add their Team via a custom view and form
-- **Read:** All users can read team ads on the Home page or by clicking the image/title to get a detail view of a team ad, they do not need to be logged in
-- **Update:** Only users who are logged in and own a Team ad can update the Team ad via a custom view and form. 
-- **Delete:** Only users who are logged in and own a Team ad can delete the Team ad.
+- **Create:** Registered users can add daily data
+- **Read:** Logged in users can read all entered data.
+- **Update:** Only Administrators/super-users can edit data. 
+- **Delete:** Only Administrators/super-users can delete data. 
 
 ## Comments
 Comments are means of communication for prospective players to join a team
