@@ -13,6 +13,9 @@ BEHAVIOUR = ((0, "Motivated"), (1, "Reticent"))
 
 
 class Bird(models.Model):
+    """ 
+    Stores a single bird instance.  foreign key : bird_id 
+    """
     bird_name = models.CharField(max_length=20, unique=True, blank=False)
     type = models.CharField(max_length=20, blank=False)
     sex = models.IntegerField(choices=SEX, default=0, null=False)
@@ -31,6 +34,10 @@ class Bird(models.Model):
 
 
 class DailyData(models.Model):
+    """
+    Stores a single instance of required daily data :model: `selected_bird.Bird`
+                                                    :model: `trainer.User`
+    """
     selected_bird = models.ForeignKey(
         Bird, on_delete=models.CASCADE, related_name='selected_bird')
     trainer = models.ForeignKey(

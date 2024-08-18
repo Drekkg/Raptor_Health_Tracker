@@ -22,7 +22,8 @@ class BirdList(generic.ListView):
 
 
 def bird_detail(request, id):
-    """display alist of the birds details
+    """display a list of the birds details
+    and all daily data that is required
     ***Template
     bird_tracker/bird_detail.html"""
     queryset = Bird.objects.all()
@@ -42,7 +43,8 @@ def bird_detail(request, id):
 
 
 def daily_data_form(request, id):
-    """Form handler for adding daily data for a bird."""
+    """Form handler for adding daily data for a bird.
+    Template: bird_tracker/daily_data_form.html"""
     bird_detail = get_object_or_404(Bird, id=id)
     selected_bird = bird_detail.selected_bird.all()
 
@@ -81,7 +83,7 @@ def daily_data_form(request, id):
 
 
 def add_new_bird_form(request):
-    """Form
+    """Add new bird form. Adds all required data for a bird instance
     ***Template
     # bird_tracker/add_new_bird_form"""
     if request.method == "POST":
@@ -142,6 +144,7 @@ def add_new_bird_form(request):
 def bird_edit(request, id):
     """
     View to edit bird information.
+    Template: "bird_tracker/add_new_bird_form.html"
     """
     queryset = Bird.objects.all()
     bird = get_object_or_404(queryset, id=id)
