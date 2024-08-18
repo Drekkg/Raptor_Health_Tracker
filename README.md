@@ -362,6 +362,8 @@ Admins can add new bird data
 # Testing
 ## Manual Testing
 
+https://github.com/user-attachments/assets/afdf5523-7755-4edf-933e-b6040908f92e
+
 
 
 ## Defensive programming testing
