@@ -31,7 +31,7 @@ Derek Garnett
   - [Entity Relationship Diagram](#entity-relationship-diagram)
   - [Database Choice](#database-choice)
 - [Data Models](#data-models)
-  - [Team Ad](#team-ad)
+  - [The Models](###Breakdown-of-the-Models)
   - [Comments](#comments)
   - [Profile](#profile)
 - [Agile Process](#agile-process)
@@ -162,42 +162,41 @@ The bird daily data view/page is the main feature of the app. Users can quickly 
 - **Update:** Only Administrators/super-users can edit data. 
 - **Delete:** Only Administrators/super-users can delete data. 
 
+## Breakdown of the Models
+The various imports on which the models rely
+![image](assets/model_imports.png)
 
+### The Bird model
+![image](assets/bird_model.png)
+Custom models:
+### All custom models use form validation- either max_length of string; unique entry(where appropriate); null entry not allowed.
+### The cloudinary entry uses validation to check if the data being uploaded is a valid image. This occurs in the appropiate view.
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/cd7e1773-fa8b-44ef-9e01-fa62dbdfcc31)
+### The Daily Data model
+![image](assets/daily1-data_model.png)
+### All custom models use form validation- either max_length of string; max integer input; unique entry(where appropriate); null entry not allowed.
+### The cloudinary entry uses validation to check if the data being uploaded is a valid image. This occurs in the appropiate view.
 
-Unique slug generator function to prevent 2 identical slugs at the same time.
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/458a31f8-07f7-47f5-8293-07c0fbe95856)
-
-Users can write comments under Team Ads.
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/0ad23a35-b1f3-4a19-920a-049a532018ec)
-
-Users can also edit and delete TeamAds and Comments (only if they are the authors - access is protected).
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/52af4858-2fa7-4a72-8470-ad3e43bbd14d)
-
-Default django signup form is slightly upgraded.
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/bbd833f2-f34f-4200-9904-17c9c35bccc8)
 
 # Agile Process
 ## Project Goals
-- users can create and read posts (TeamAds)
-- users can edit and delete their posts
-- users can comment created posts
-- users can edit and delete their own comments
-- admin can do all of the above for any post or comment
-
+- Users can add and read bird daily data
+- Admin can edit and delete bird data
+- Admin can from the Admin dashboard edit and delete users; edit and delete birds; edit and delete daily data.
+ 
 ## Initial User Stories
-https://github.com/users/PPindel/projects/4
-All user stories are marked to show the importance.
-I used MoScOw prioritization to reduce down to an MVP.
+[GitHub Project] (https://github.com/users/Drekkg/projects/6/views/1)
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/13b9da32-d2ef-4de6-bec6-f98f219c21fa)
+I used the MOSCOW principal to help me decide what features to include and which features to add in a futere iteration.\
+I first got a minimal viable product and then added extra features.\
+A few features on the todo list will be added in futere iterations.
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/06993db0-9099-4a91-93b1-82aa83421655)
+![image](assets/github_project_screenshot.png)
+
+![image](assets/git_hub_ac_props.png)
+### specifications changed during development
+Example: Changed the ability to add birds to the table from normal User to Admin
+
 
 ## Scope
 When I started my project I was very ambitious to develop a complete portal for gamers to search online for friends, teams and improve their skills. I imagined custom applications, profiles, filtering tools, game sections, guilds, and many more...
