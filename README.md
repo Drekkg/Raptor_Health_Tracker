@@ -360,46 +360,36 @@ and is easy to access and read.
 ## Defensive programming testing
 
 
-https://github.com/user-attachments/assets/e9c5dd40-7516-4d43-b757-f080e0e86bcb
-
-
 In the video below I demonstrate some of the defensive programming I have implemented,
 mainly with form POST requests and cloudinary safeguarding:
+https://github.com/user-attachments/assets/e9c5dd40-7516-4d43-b757-f080e0e86bcb
 
+1. The admin user opens the ad new bird page.
+2. The user adds the required information in the form
+3. Instead of selecting an image file the tries to upload a music file.
+4. After submitting the form the a cloudinary exception is raised in the view and the user is informed that an error has occured.
+5. The user selects an appropriate file which is uploaded and displayed.
+6. The user opens the add daily data form.
+7. The user tries to enter large strings and integer values.
+8. Again the user tries to upload a music file.
+9. After submisssion the user is informes of  the incorrect data.
+10. The user corrects the errors and the data is added to the table.
+The bird weight, food weight and air temperature integer fields need to be further defined. Another future feature. 
 
 ## Compatibility and Responsive Testing
 
-Iphone 12, Safari:
+:
+Galaxy S10
+![image]assets/galaxy_s10.png()
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/550f216d-7465-4a46-b4d0-2e790c8afad5)
+iPhone se
+![image](assets/i_phone_se.png)
 
-Iphone 14 Pro, Safari:
+i Pad5 
+![image](assets/I_pad5.png)
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/ac0cbf3b-6991-4a16-a556-bd87f224c420)
-
-Ipad 11 Pro, Safari:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/4d0dda90-425c-4c68-bab7-a78427e0b13e)
-
-Samsung Galaxy S21, Chrome:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/dcb15eec-2947-4a9e-91e3-753061c593e5)
-
-Google Pixel 7, Chrome:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/556184ff-dc29-4289-8589-93ae6d4c3e8e)
-
-Desktop, Windows 11, Chrome:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/c9813b9a-dbc8-4e12-93ba-1c1c6b1ae2e6)
-
-Source: https://live.browserstack.com
-
-As the most popular browsers in Europe are Chrome and Safari, I deceided to focus on these 2 browsers.
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/61dd5783-ab40-46a8-96c0-383f69f5834c)
-
-Source: https://gs.statcounter.com/browser-market-share/all/europe
+Linux Desktop :
+![image](assets/full_desktop.png)
 
 ## Accessibility Testing
 Accessibility features has been implemented to Esports Teammates.
