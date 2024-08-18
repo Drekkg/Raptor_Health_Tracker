@@ -19,33 +19,41 @@
                     {% now "d-m-Y" %}
                 </h3>
                 <p>Trainer: {{ user.username }}</p>
-                <form id="DailyDataForm" method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
+                <form id="DailyDataForm" method="post" enctype="multipart/form-data">
                     {{ daily_data_form | crispy }}
                     {% csrf_token %}
-                    <button class="btn btn-signup btn-lg btn-add-data" href="#">Submit</button>
+                    <button class="btn btn-signup btn-lg btn-add-data">Submit</button>
+
+
+                    <div class="modal" id="addDataModal" tabindex="-1" aria-labelledby="addDataModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addDataModalLabel">Is the Data you entered correct?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to add the Data?
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancel</button>
+                                    <button id="submitButton" type="submit" class="btn btn-warning">Enter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="addDataModal" tabindex="-1" aria-labelledby="addDataModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addDataModalLabel">Is the Data you entered correct?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to add the Data?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button id="submitButton" type="submit" id="dailyDataForm" class="btn
-          btn-warning">Enter</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
+
+
 
 {% endblock daily_data_form %}
 {% block extras %}

@@ -6,9 +6,10 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 
 
 //add and wire up the buttons
+
 for(let button of deleteButtons) {
    button.addEventListener("click", (e) => {
-    let birdId = e.target.getAttribute("bird_id");
+    let birdId = e.target.dataset.birdId;
     deleteConfirm.href = `delete_bird/${birdId}`;
     deleteModal.show();
   });
