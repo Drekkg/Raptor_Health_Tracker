@@ -390,6 +390,10 @@ A video of the app being teated:
 
 
 
+https://github.com/user-attachments/assets/d96ebfab-c12e-497c-bbf2-401267e93cf1
+
+
+
 
 
 
