@@ -164,6 +164,7 @@ The bird daily data view/page is the main feature of the app. Users can quickly 
 
 ## Breakdown of the Models
 The various imports on which the models rely
+
 ![image](assets/model_imports.png)
 
 ### The Bird model
@@ -243,103 +244,102 @@ Admins can add new bird data
 ### Navbar
 ![image](assets/navbar.png)
 - The Navbar is sticky and availible on pages where the user has logged in.
-- The users name is displayed with a message informing them that they are logged in.
+
 ![image](assets/login_message.png) 
--After clicking on the Hamburger icon
+- The users name is displayed with a message informing them that they are logged in.
+
+
 ![image](assets/hamburger.png) 
+- After clicking on the Hamburger icon
+
+![image](assets/log_out_button.png)
+
 - the navbar opens giving them the option to logout
-![image](assets/log_out_button.png) 
 - After clicking the button the user is taken to the logout page
+
 ![image](assets/log_out_page.png)
 - Here the user can logout and be taken back to the landing page.
 - or click the cancel button and go back to the bird list 
 
 ## Bird Detail Page 
 ![image](assets/bird_detail_page2.png)
-- The bird detail page 
+- The bird detail page is opened after the user clicks on a bird name in the bird list
+- This is the main page where users can view the daily entered data.
+![image] (assets/bird_detail_left.png)
+- the bird photo is displayed once again to help avoid confusion
+- The bird data is displayed
 
 
+![image](assets/bird_list_button.png)
+- A button to take the user back to the bird list.
+
+![image](assets/add_daily_button.png)
+- A button to display the daily data form.
+- Once clicked the user is taken to the add daily data form where they can enter the required data
+
+## Daily Data List
+ ![image](assets/daily_data_accordion_closed.png)
+ - Below the button a list of all entered daily data is displayed 
+ - An accordion component in a closed conditiion.
+ - The dates of entered data is displayed as well the trainer
+ - The bird weight is prominently displayed. 
+ - The user can quickly scan all daily weight data and spot discrepancies.
+ - Clicking on the element will open it displaying more daily data and also if uploaded an image.
+ ![image](assets/open_acoordion.png)
+ - Clicking on another element will close the open element
+
+ ## Add Daily Data Form
+![image](assets/daily_data_form.png)
+- The add daily data form 
+- The user can enter the following data:
+- Weight: The weight of the bird in grams
+- Food Type: The type of food(mouse, chicken etc)
+- Food weight: The weight of the food 
+- Weather: the weather conditions(dropdown menu)
+- Training: The type of training undertaken(dropdown menu)
+- Behaviour: The modd of the bird on the day(dropdown menu)
+- Notable info: Any extra information
+- Add an image: The user can upload an image from their device or on mobile take a photo and upload it directly.
+
+![image](assets/submit_button.png)
+
+- After clicking the submit button a modal appears asking the user to double check the entered data.
+
+![image](assets/daily_data_modal.png)
+- The Add Data Modal 
+-clicking the cancel button takes the user back to the form
+- Clicking enter submits the form
+- The entered data is displayed on the bird detail page in the daily data accordion element.
+
+## Administrator Site
+### There are a few differences when the admin is logged in.
+![image](assets/admin_message.png)
+- The message in the Navbar displays that you are logged in as an Admin
+
+![image](assets/admin_navbar.png)
+- The open Navbar displays links to:
+- The Admin Dashboard
+- The Add New Bird Form
+- The Add New Bird  Icon is orange to draw the users attention to it.
+- It is hidden in the navbar because Admins will rarely need to add new birds.
 
 
-- all users can create posts (Team Ads), edit and delete them (if they are authors, authentication is implemented)
-- all users can create a comment to existing post (Team Ad), edit and delete (if they are authors, authentication is implemented)
-- admin can edit or delete any post, comment or remove user from admin panel
-- site has a sticky navigation bar, main section and a footer
-- each page is customised (signup, login, logout)
-- 404 and 500 error pages are customised
-- profile page for every user to see data passed on registration
-- when creating a post (Team Ad), users can choose from list of games and skill levels
-- users can add their own image to a post (Team Ad)
-- success messages
-- Favicon
+![image](assets/admin_detail_button.png)
+- On the Bird Detail there are extra buttons
+- A button to delete the bird from the table 
+- A button to edit the bird data.
 
-The site has a common navbar (sticky to the top when scrolling), and footer.
+![image](assets/delete_modal.png)
+- After clicking the delete button a delete bird modal is displayed.
+- The Admin is asked to affirm that they  want to delete the selected bird from the table.
+- Clicking Cancel takes the Admin back to the bird detail page.
+- Clicking Delete permanently removes the bird data from the table.
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/e160e81d-07f4-4581-98c0-0ba1cbb484b4)
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/d604e5db-cefe-424b-a328-56ed0d9f2965)
+![image](assets/edit_bird_form.png)
+- Clicking the edit bird button takes the Admin to the edit bird form
+- Here all Bird data can be edited.
+- Clicking the Save Changes button  updates the table for the selected bird.
 
-Up to six posts per page, two rows of three posts for desktops, and one column for mobile phones.
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/a1bc8c5e-24a9-4d48-aa38-dc9c1bf73e1b)
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/60bdad1b-6473-4965-a7fb-cbae164b295d)
-
-Landing page for not authenticated users:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/3a38c9fb-76dd-4564-b91c-3ee9995a1ca3)
-
-Buttons are changing colors when hovering over:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/9ad37536-54e1-4608-8fc4-c655162a72dd)
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/eba8cb26-a89f-4147-b69f-fce54cc0c267)
-
-All default Django pages (signup, login, etc.) are customised:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/906e3e34-96da-4922-80e3-dca435e099d8)
-
-Custom 403, 404 and 500 error pages:
-
-![obraz](https://github.com/PPindel/esports-teammates/assets/114284732/88bfae82-48ce-4bfe-88b6-0b5f5f9a8069)
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/9621e955-8577-4f84-81ef-e5cc63612f3d)
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/031702af-1700-413f-8b42-0c3475748df3)
-
-JS script for alerts:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/a05ee5b3-523b-44d1-8896-f55e322a273c)
-
-Simple profile page:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/e874c26c-b37b-4668-a805-44f3b9f524d3)
-
-Admin page:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/1c2b2645-fa2d-4f64-ac6e-7346f6612fc6)
-
-Favicon:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/e2800df0-5201-4904-9053-6aba3e9c947a)
-
-User who is trying to tamper (for example open edit page of the ad they don't own) the site will see this page (defensive programming implemented):
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/b686843f-a256-4622-9f2c-280e5c4f1722)
-
-Unique email required:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/1d9f8d84-2a12-446e-9cf2-e6d33aaff260)
-
-Unique username required:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/aab7dbb3-a717-413c-9f58-49976479d04f)
-
-Superuser authentication:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/05b9e16f-0ed3-46f4-9b87-b208ae691104)
-
-The video below shows registration process and functionality of the site:
-
-[Screenshare - 2023-05-31 4 34 11 PM.webm](https://github.com/PPindel/esports-teammates/assets/114284732/af6aec01-671a-4e9f-9bbb-4bf7b09bb114)
-
-Link to my user stories:
-https://github.com/users/PPindel/projects/4
 
 ## Future Features
 - team apply button and form. Currently, users can apply to join a team by comments, in the future I am planning to create an application form for this
@@ -350,9 +350,7 @@ https://github.com/users/PPindel/projects/4
 
 # Testing
 ## Manual Testing
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/b473d591-f60a-4a17-8f13-6cb30acf9aa7)
 
-https://docs.google.com/spreadsheets/d/1cDYbaHAq-m419ljRykuiJm_YKTj6cpFw6ZTD3LT2aIM/edit?usp=sharing
 
 ## Defensive programming testing
 
