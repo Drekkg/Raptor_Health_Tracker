@@ -58,7 +58,7 @@ def daily_data_form(request, id):
                 daily_data.save()
                 messages.success(request, 'Daily Data added successfully.')
                 return render(request, "bird_tracker/bird_detail.html",
-                              {"bird_detail": bird_detail, "selected_bird": selected_bird})
+                              {"bird_detail": bird_detail, "selected_bird": selected_bird})  # noqa
             except CloudinaryError as e:
                 messages.add_message(
                     request, messages.ERROR,
@@ -66,18 +66,24 @@ def daily_data_form(request, id):
                 )
                 form = DailyDataForm(request.POST)
                 return render(request, "bird_tracker/daily_data_form.html",
-                              {"daily_data_form": form, "bird_detail": bird_detail, "selected_bird": selected_bird})
+                              {"daily_data_form": form,
+                               "bird_detail": bird_detail,
+                               "selected_bird": selected_bird})
 
         elif not form.is_valid():
             messages.error(request, 'Please check the entered data.')
             form = DailyDataForm(request.POST)
             return render(request, "bird_tracker/daily_data_form.html",
-                          {"daily_data_form": form, "bird_detail": bird_detail, "selected_bird": selected_bird})
+                          {"daily_data_form": form,
+                           "bird_detail": bird_detail,
+                           "selected_bird": selected_bird})
 
     else:
         form = DailyDataForm()
         return render(request, "bird_tracker/daily_data_form.html",
-                      {"daily_data_form": form, "bird_detail": bird_detail, "selected_bird": selected_bird})
+                      {"daily_data_form": form,
+                       "bird_detail": bird_detail,
+                       "selected_bird": selected_bird})
 
 # view for the add new bird form
 

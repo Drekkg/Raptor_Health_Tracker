@@ -13,8 +13,8 @@ BEHAVIOUR = ((0, "Motivated"), (1, "Reticent"))
 
 
 class Bird(models.Model):
-    """ 
-    Stores a single bird instance.  foreign key : bird_id 
+    """
+    Stores a single bird instance.foreign key : bird_id
     """
     bird_name = models.CharField(max_length=20, unique=True, blank=False)
     type = models.CharField(max_length=20, blank=False)
@@ -35,7 +35,8 @@ class Bird(models.Model):
 
 class DailyData(models.Model):
     """
-    Stores a single instance of required daily data :model: `selected_bird.Bird`
+    Stores a single instance of required
+     daily data :model: `selected_bird.Bird`
                                                     :model: `trainer.User`
     """
     selected_bird = models.ForeignKey(
@@ -58,4 +59,4 @@ class DailyData(models.Model):
         ordering = ["-date"]
 
     def __str__(self):
-        return (f"Bird {self.selected_bird} Trained by {self.trainer} | {self.date}")
+        return (f"Bird {self.selected_bird} Trained by {self.trainer} | {self.date}")  # noqa
