@@ -363,6 +363,33 @@ Admins can add new bird data
 ## Manual Testing
 
 https://github.com/user-attachments/assets/afdf5523-7755-4edf-933e-b6040908f92e
+A video of the app being teated:
+1. From the login page an Admin can log into the app.
+2. A message is displayed informing the user that they have logged in.
+3. Clicking on the name of a bird in the bird list takes the user to the bird detail page.
+4. A photo and all the bird details are displayed.
+5. The 3 buttons are also displayed.
+6. The user clicks on the add daily data button and is taken to the daily data form.
+7. The required information is entered into the form
+8. The form is submittedd.
+9. The enter data modal appears. 
+10. After checking the data and clicking the enter button the user is brought back to the bird detail page.
+11. The daily data added message is displayed and clicked away.
+12. The daily data is displayed in the accordion element.
+13. The clicks on teh back to bird list button and is taken back to the bird list.
+14. The user then clicks on the add bird button 
+15. The user is taken to the add bird form
+16. After entering the required information and selecting a photo the form is submitted.
+17. The user is taken back to the bird list and the new bird is displayed.
+18. The user then clicks on the newly made bird and deletes it.
+19. A message appears saying the delete was successful 
+20. The user clicks it away
+21. The user then logs out of the app and logs into the admin dashboard.
+22. The user goes back to the site and logs out again. 
+
+
+
+
 
 
 
