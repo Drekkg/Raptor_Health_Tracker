@@ -392,43 +392,17 @@ Linux Desktop :
 ![image](assets/full_desktop.png)
 
 ## Accessibility Testing
-Accessibility features has been implemented to Esports Teammates.
-Aria labels and descriptions are added.
-The site is optimized for desktop and mobile devices, please see below the Lighthouse audits:
+Lighthouse accessibility Score
+![image](assets/lighthouse_score.png)
+The app scored 90 or more on all metrics for the lighthouse score.
 
-Desktop landing page:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/366cb896-4382-4024-aaeb-de4767f2ec81)
-
-Mobile landing page:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/646c8e7a-d185-4e3b-bd19-cb723e907022)
-
-Desktop main page:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/eeea49e8-4754-4704-88b2-a3c44d9efcc7)
-
-Mobile main page:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/6018dbd3-bef0-43d8-b85e-57579b81ad85)
-
-Desktop team detail page:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/386ba0e5-f2e8-4299-afe0-ab733616374a)
-
-Mobile team detail page:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/a92919f8-09b9-4b8a-9291-7db857b14587)
-
-### Keyboard Navigation
-Esports Teammates is optimized for keyboard navigation!
 
 ## Validation Testing
 ### CSS Validation
 The [Jigsaw validator](https://jigsaw.w3.org/css-validator/) was used to validate CSS.
 No errors were found.
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/4700efa2-1821-44f0-9ec3-219209e85671)
+![image](assets/css_validation.png)
 
 ### HTML Validation
 The **[W3 HTML Validator](https://validator.w3.org/)** was used to validate HTML by coping the page source as a direct input.
@@ -436,127 +410,80 @@ No errors were found.
 
 Landing page:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/068dfa08-fcc7-4fde-8d80-fae7abe3c19a)
+![image](assets/html_validation1.png)
 
-Signup page:
+Register page:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/a1010812-5d6e-4aa2-a84a-e54ae28c5b1a)
+![image](assets/django_error.png)
+The warnings relate to preinstalled django files
 
-Login page:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/859d4764-485e-4e6e-8c25-c94707aec4a8)
+Bird List:
 
-Home page:
+![image](assets/html_validate2.png)
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/f824bb0c-b579-4091-8d89-f427f67375e3)
+Bird Detail page:
 
-Team Detail page:
+![image](/workspace/Raptor_Health_Tracker/assets/html_bird_detail.png)
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/49ac477d-a53b-47d3-894b-8bfd35420d4d)
+Add bird page:
 
-Add Team Ad page:
+![image](assets/html_validation1.png)
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/d0e4cdc0-59d1-4bd6-b07e-55d6c2770f07)
+Log out page:
 
-Sign out page:
+![image](assets/html_validate2.png)
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/97f7e5ed-a91e-4e3f-b297-d3474c89168b)
-
-Edit Team Ad page:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/7429242d-a9d3-4a3c-bbd1-eb9f4e0b10f9)
-
-Delete Team Ad page:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/ae031252-c0e9-482f-a1cf-e6c1589c9db6)
-
-Edit comment page:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/2e6e214c-650a-4802-9f6a-d9258a51e89a)
 
 404 error page:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/47305e86-41f4-4bf5-abcf-ed75ecd0e32a)
+![image](assets/404_html2.png)
 
 ### JavaScript Validation
 The **[Jshint validator](https://jshint.com)** was used to validate the JS function.
 No errors were found.
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/5b02c45b-428f-4f8a-b204-4e224443ba9f)
+![image](assets/delete_js.png)
+![image](assets/js_add_modal.png)
 
 ### Python Validation
 **[CI's pep8 tool](https://pep8ci.herokuapp.com/)** was used to validate each .py file created.
 No errors were found.
 
-In Blog folder:
-admin.py:
+The bird model
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/0f96eabe-e1c3-4683-9010-00145026a624)
-
-apps.py:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/e549cfd6-bfe7-4c42-a390-1523579e7db7)
+![image](assets/models_py.png)
 
 forms.py:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/cb067742-55c6-4099-ae00-685f7a43b4f8)
+![image](assets/forms_py.png)
 
-models.py:
+app.py:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/e94fc459-d7d2-4475-870f-08768aac46d1)
+![image](assets/apps_py.png)
 
 urls.py:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/f31620f9-39e4-437e-9ae9-dee39ddcba3b)
+![image](assets/urls_py.png)
 
 views.py:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/f09d16da-35ff-4d20-a84b-8d0b76776c64)
+![image](assets/views_py.png)
 
-In teamfinder folder:
-asgi.py:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/e322521c-b17e-4a2b-9769-2e8f2b58a4e9)
+# Bugs 
+- POST request missing the the request.File not uploading images.
+- Errors after using the bird name as the FK when deleting the bird. Duh!! Fix was to use the django supplied bird_id
 
-settings.py:
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/0cffe5e8-7e2f-454e-8f6b-01276bd7e2a6)
+## Bug of Note
+- Cloudinary crashes the app after the user tries to upload a non image file. The fix was to add a try and except clause in both views that upload images.
+![image](assets/cloudinary_try.png) 
 
-urls.py:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/bbf374c9-7d6a-4c44-80e0-3f0b85b80f44)
-
-util.py:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/75e90b6a-2178-495e-b369-322e7928bfa3)
-
-wsgi.py:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/4687d15d-375d-47b6-a7fe-f7be66f89c2e)
-
-In main folder:
-manage.py:
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/cd2f8062-c6c1-4495-92a5-6a04f47d6be9)
-
-# Defects
-- my first defect was revealing the secret code to the github. Currently, the secred code is changed and protected, and the project is safe (occured on 14th of March, fixed on 14th of March)
-- author tag was not displaying correctly (occured on 29th of March, fixed on 29th of March)
-- no redirection after submitting the ad (occured on 29th of March, fixed on 29th of March)
-- no authentications for Team Ad authors (anyone could edit the ad) (occured on 17th of April, fixed on 17th of April)
-- logo for small devices was too wide, so the site wasn't looking good (occured on 31st of May, fixed on 31st of May)
-
-## Defects of Note
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/431bbfed-3330-455e-b5b7-08fbcae1a6bf)
-
-When I encountered this bug, I was seriously afraid.
-After typing only special chars in title of the TeamAd, the whole site crashed, and all I could see was 500 error.
-Changes in gitpod didn't work, I had to remove the fatal post via admin panel and then restrict title to alphanumeric only to prevent this happen again.
-That's why you can see some special chars in old posts, but currently it is blocked.
-Occured on 31st of May, fixed on 2nd of June.
-
-## Outstanding Defects
-- Logo and navbar sometimes behaves weird in the Safari browser (not always, that's why I deceided to fix this bug in the future)
+## Known issues
+- CSRF weirness on mobile. Loads after refresh
+- Warnings in the console relating to cloudinary using http not https. To be fixed in future iterations
+![image](assets/console_warnings.png)
 
 # Technologies Used
 ## Languages
@@ -570,105 +497,46 @@ Occured on 31st of May, fixed on 2nd of June.
 - Balsamiq
 - Coolors.co
 - fontawesome
-- pexels.com
 - gitpod
 - github
 - google fonts
-- https://techsini.com/multi-mockup/index.php - responsiveness
-- table of contents creator
-- markdown table generator
 - Heroku
 - Cloudinary
-- ElephantSQL
+- postgre database
 - Bootstrap
+- Miso 
 
-# Deployment 
-## Fork and Clone the Repository
-To keep the main reposotory for this project clean, please fork the repostiory into your own account. GitHub has [forking directions](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository) but here's what you might do:
-1. login to your own gitHub account
-2. navigate to [my repository](https://github.com/PPindel/esports-teammates)
-3. In the top right corner of the page, click fork 
-
-![image](https://user-images.githubusercontent.com/23039742/213840378-e785eaa0-712b-468c-bcda-64fde56eae44.png)
-
-4. set yourself as the owner
-5. change the name of the repo if you want
-6. add a description if you want
-7. choose what to copy, typicall the main branch only
-8. click the snazy green button
-
-![image](https://user-images.githubusercontent.com/23039742/213840549-5bef12ae-198e-412b-84b6-0cc718b6fa1d.png)
-
-9. To get files to your local environment, you need to clone it: click the code button
-10. Copy the url as needed (here's gitHub instructions)[https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository}
-
-## Development Deployment
-- Install required python packages: `pip3 install -r requirements.txt`
-- Create env.py
-- In env.py:
->  - os.environ["SECRET_KEY"] = "<YOUR_VALUE>"
->  - os.environ["CLOUDINARY_URL"] = "<YOUR_VALUE>"
->  - os.environ["DATABASE_URL"] = "<YOUR_VALUE>"
-- Apply Database Migrations so the database starts up `python3 manage.py migrate`
-- Create a super user so you can add and inspect things via django admin  `python3 manage.py createsuperuser`
-- Start the server `python3 manage.py runserver`
-
-## Production Deployment
+# Deployment
 - create new Heroku app
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/3f4174b5-8e47-445b-a66a-207e2fe84fc6)
+![image](assets/heroku_app.png)
 
 - set app name and select your region
+- Through the code institute website you will have access to a postgre database.
+- copy the URL and paste it into settings of Heroku. 
+- To do this, click on the settings tab and click on Reveal Config Vars
+- Paste in the following settings.
+1. CLOUDINARY_URL - supplied by cloudinary when you signed up
+2. DATABASEURL    - supllied by Code Institute
+3. SECRET_KEY     - In your env.py the secret key you selected
+- Click on the deploy tab.
+- connect your GitHub repo. Simply paste the url in and press connect.
+- Click on  deploy! (remember to watch monitor logs for any deployment issues)
 
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/19841c4c-3ad8-47a1-ab01-310e5d9aaedb)
-
-- login to ElephantSQL, access the dashboard and create a new instance (input a name, select a region), then return to dashboard, copy the database URL
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/3a9ac5d3-14bb-4ef3-87b7-62bcc398fbce)
-
-- login to Cloudinary, access the dashbord and copy your API key
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/c1069f1a-9bdb-41e4-bb35-ad0bc7c6e14f)
-
-- add environmental values (some of variables are identical as in your env.py file)
->  - SECRET_KEY
->  - CLOUDINARY_URL
->  - DATABASE_URL
->  - COLLECT_STATIC
->  - Port
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/a5fa519b-827e-4377-9729-7717880564d5)
-
-- add build packages
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/101d23b5-f300-42a1-abe1-83737b695627)
-
-- connect to github
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/9c005f23-ef9b-4e6d-aefa-f559254d291e)
-
-- deploy! (remember to watch monitor logs for any deployment issues)
-
-![image](https://github.com/PPindel/esports-teammates/assets/114284732/07141992-6ee6-48b5-8332-4b9d7a81c63b)
 
 # Credits
-
-- https://www.geeksforgeeks.org/ - code solutions
 - https://stackoverflow.com/ - code solutions
-- https://www.w3schools.com/ - code solutions
-- https://learndjango.com - code solutions
-- https://github.com/CaraMcAvinchey/stem-and-leaf-blog - some code inspirations
-- https://www.youtube.com/@Codemycom - Create A Simple Django Blog by John Elder
 - https://github.com/Code-Institute-Org/gitpod-full-template - Code Institute Template
-- https://live.browserstack.com - live testing devices
+- Juliia Konovalova my mentor.
+- I think therefore I blog - was the basis of my project. 
+  I borrowed a lot of code and retooled it for my own requirements.
+- GitHub Co Pilot - for when things got hairy.
+- Fontawesome for the fonts
+- Google fonts 
+- Coolors.co 
+
 
 ## Media
 
-- https://pexels.com
-- (users can add their own pictures to Team Ads, so I cannot point the source of all images...)
-
 ## Acknowledgments
 
-Big thanks to Malia Havlicek - Code Institute mentor for her ideas and support in this project! Also, I would like to thank all my friends for live testing the program!
-
-https://pep8ci.herokuapp.com/ - code validation tool
