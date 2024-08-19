@@ -515,6 +515,19 @@ will be fixed in future iteratiions.
 - Miso 
 
 # Deployment
+## Development Deployment
+- Install required python packages: pip3 install -r requirements.txt
+- Create env.py
+- In env.py:
+- os.environ["SECRET_KEY"] = "<YOUR_VALUE>"
+- os.environ["CLOUDINARY_URL"] = "<YOUR_VALUE>"
+- os.environ["DATABASE_URL"] = "<YOUR_VALUE>"
+- Apply Database Migrations so the database starts up python3 manage.py migrate
+- Create a super user so you can add and inspect things via django admin python3 manage.py createsuperuser
+- Start the server python3 manage.py runserver
+
+
+# Production Deployment
 - create new Heroku app
 
 ![image](assets/heroku_app.png)
