@@ -332,7 +332,7 @@ A video of the app being tested:
 10. After checking the data and clicking the enter button the user is brought back to the bird detail page.
 11. The daily data added message is displayed and clicked away.
 12. The daily data is displayed in the accordion element.
-13. The clicks on teh back to bird list button and is taken back to the bird list.
+13. The user clicks on the back to bird list button and is taken back to the bird list.
 14. The user then clicks on the add bird button 
 15. The user is taken to the add bird form
 16. After entering the required information and selecting a photo the form is submitted.
@@ -364,15 +364,15 @@ In the video below I demonstrate some of the defensive programming I have implem
 mainly with form POST requests and cloudinary safeguarding:
 https://github.com/user-attachments/assets/e9c5dd40-7516-4d43-b757-f080e0e86bcb
 
-1. The admin user opens the ad new bird page.
+1. The admin user opens the add new bird page.
 2. The user adds the required information in the form
-3. Instead of selecting an image file the tries to upload a music file.
-4. After submitting the form the a cloudinary exception is raised in the view and the user is informed that an error has occured.
+3. Instead of selecting an image file the user tries to upload a music file.
+4. After submitting the form  a cloudinary exception is raised in the view and the user is informed that an error has occured.
 5. The user selects an appropriate file which is uploaded and displayed.
 6. The user opens the add daily data form.
 7. The user tries to enter large strings and integer values.
 8. Again the user tries to upload a music file.
-9. After submisssion the user is informes of  the incorrect data.
+9. After submisssion the user is informed of  the incorrect data.
 10. The user corrects the errors and the data is added to the table.
 The bird weight, food weight and air temperature integer fields need to be further defined. Another future feature. 
 
