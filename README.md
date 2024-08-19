@@ -157,7 +157,7 @@ Example: Changed the ability to add birds to the table from normal User to Admin
 ## Scope
 The initial plan for the app was increasingly made more complex as desirable features were added.\
 During development a lot of features had to be recalled.\
-All features were added to future features.\
+All features not added were added to future features.\
 The app successfully manages to make all entered data available for review.\
 Out in the field, users can add the required data on mobile devices(Tablets and phones)\
 Admins and users can view and track the data from HQ
@@ -484,6 +484,8 @@ views.py:
 - CSRF weirness on mobile. Loads after refresh
 - Warnings in the console relating to cloudinary using http not https. To be fixed in future iterations
 ![image](assets/console_warnings.png)
+- The Hamburger icon is on the right of the navbar on desktop, while the options pop out on the left. Not great UX - 
+will be fixed in future iteratiions. 
 
 # Technologies Used
 ## Languages
