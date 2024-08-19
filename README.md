@@ -378,17 +378,23 @@ The bird weight, food weight and air temperature integer fields need to be furth
 
 ## Compatibility and Responsive Testing
 
-:
+
 Galaxy S10
-![image]assets/galaxy_s10.png()
+
+![image](assets/galaxy_s10.png)
+
 
 iPhone se
+
 ![image](assets/i_phone_se.png)
 
-i Pad5 
+
+i Pad5
+
 ![image](assets/I_pad5.png)
 
-Linux Desktop :
+Linux Desktop 
+
 ![image](assets/full_desktop.png)
 
 ## Accessibility Testing
@@ -538,7 +544,6 @@ will be fixed in future iteratiions.
 - Coolors.co 
 
 
-## Media
 
-## Acknowledgments
+
 
