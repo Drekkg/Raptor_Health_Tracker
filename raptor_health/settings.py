@@ -14,8 +14,12 @@ from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
 import dj_database_url
-if os.path.isfile('env.py'):
-    import env
+# if os.path.isfile('env.py'):
+#     import env
+    
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 from pathlib import Path
 
@@ -27,14 +31,15 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = "Baroness42"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = [
     '8000-drekkg-raptorhealthtrac-439x53tjdnt.ws.codeinstitute-ide.net',
-    '.herokuapp.com']
+    '.herokuapp.com',
+    '127.0.0.1']
 
 
 # Application definition
@@ -99,8 +104,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'raptor_health.wsgi.application'
 
+# DATABASES = {
+#     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+# }
+
+# DEFAULT_FILE_STORAGE = 'dj3_cloudinary_storage.storage.MediaCloudinaryStorage'
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # Use MySQL or MariaDB
+        'NAME': 'h97690_raptor_tracker',       # Your database name
+        'USER': 'h97690_derek',                # Your database username
+        'PASSWORD': 'andi_bird',               # Your database password
+        'HOST': '127.0.0.1',                   # Use 127.0.0.1 as the host
+        'PORT': '3307',                        # Use 3307 for MySQL 8
+    }
 }
 
 CSRF_TRUSTED_ORIGINS = [
@@ -108,6 +125,12 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.herokuapp.com"
 ]
 
+# Cloudinary configuration
+cloudinary.config(
+    cloud_name='du9ulpbic',
+    api_key = '646116894968451',
+    api_secret='ubQ1C8x4-RRypIWt4sOp3WVhPko'
+)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
