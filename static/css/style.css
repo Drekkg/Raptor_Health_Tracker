@@ -203,7 +203,7 @@ i {
     color: white;
 }
 /* Spinner overlay */
-.spinner-overlay {
+/* .spinner-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -217,33 +217,33 @@ i {
     visibility: visible;
     opacity: 1;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+} */
 
 /* Spinner element */
-.spinner {
+/* .spinner {
     border: 8px solid #f3f3f3;
     border-top: 8px solid #3498db;
     border-radius: 50%;
     width: 50px;
     height: 50px;
     animation: spin 1s linear infinite;
-}
+} */
 
 /* Spinner animation */
-@keyframes spin {
+/* @keyframes spin {
     0% {
         transform: rotate(0deg);
     }
     100% {
         transform: rotate(360deg);
     }
-}
+} */
 
 /* Hide spinner */
-.spinner-overlay.hidden {
+/* .spinner-overlay.hidden {
     visibility: hidden;
     opacity: 0;
-}
+} */
 
 @media (max-width: 340px) {
     .bird-card {
