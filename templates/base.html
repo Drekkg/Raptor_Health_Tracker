@@ -58,6 +58,9 @@
   <body class="d-flex flex-column main-bg flex">
     {% if user.is_authenticated %}
     <!-- Navbar  -->
+  <div id="spinner" class="spinner-overlay">
+      <div class="spinner"></div>
+  </div>
     <div class="nav-fixed">
       <nav class="navbar navbar-light bg-white">
         <div class="container-fluid">
@@ -164,6 +167,19 @@
     ></script>
     <!-- Script for fontawesome icons -->
     <script src="https://kit.fontawesome.com/47ce1b6aad.js" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          const spinner = document.getElementById("spinner");
+  
+          // Show spinner on form submission
+          const forms = document.querySelectorAll("form");
+          forms.forEach(function (form) {
+              form.addEventListener("submit", function () {
+                  spinner.classList.remove("hidden");
+              });
+          });
+      });
+  </script>
     {% block extras %} {% endblock extras%}
   </body>
 </html>
