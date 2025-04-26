@@ -22,7 +22,7 @@ class Bird(models.Model):
     date_of_birth = models.DateField(null=False)
     additional_info = models.CharField(max_length=200, blank=False)
     created_on = models.DateTimeField(auto_now_add=True, null=False)
-    main_image = CloudinaryField('image')
+    main_image = CloudinaryField('image', default='placeholder', format='jpg')
 
     class Meta:
         ordering = ["created_on"]

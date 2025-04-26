@@ -17,6 +17,7 @@ crispy-bootstrap5==0.7
 cryptography==3.4.8
 cupshelpers==1.0
 dbus-python==1.2.18
+decouple==0.0.7
 defer==1.0.6
 defusedxml==0.7.1
 distro==1.7.0
@@ -28,6 +29,7 @@ django-cloudinary-storage==0.3.0
 django-crispy-bootstrap==0.1.1.1
 django-crispy-forms==2.3
 dnspython==2.6.1
+EditorConfig==0.12.2
 email_validator==2.1.1
 Flask==3.0.3
 gauth==1.0.8
@@ -42,6 +44,7 @@ importlib-metadata==4.6.4
 itsdangerous==2.2.0
 jeepney==0.7.1
 Jinja2==3.1.4
+jsbeautifier==1.14.0
 kernelstub==3.1.4
 keyring==23.5.0
 language-selector==0.1
@@ -87,6 +90,7 @@ pypng==0.20220715.0
 pyRFC3339==1.1
 python-apt==2.4.0+ubuntu4
 python-debian==0.1.43+ubuntu1.1
+python-decouple==3.8
 python-gnupg==0.4.8
 python-xlib==0.29
 python3-openid==3.2.0

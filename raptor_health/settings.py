@@ -12,16 +12,18 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+
 from django.contrib.messages import constants as messages
 import dj_database_url
-# if os.path.isfile('env.py'):
-#     import env
-    
+
+
+if os.path.isfile('env.py'):
+    import env
+
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,11 +33,11 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "Baroness42"
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
-DEBUG = True
+
 ALLOWED_HOSTS = [
     '8000-drekkg-raptorhealthtrac-439x53tjdnt.ws.codeinstitute-ide.net',
     '.herokuapp.com',
@@ -111,12 +113,12 @@ WSGI_APPLICATION = 'raptor_health.wsgi.application'
 # DEFAULT_FILE_STORAGE = 'dj3_cloudinary_storage.storage.MediaCloudinaryStorage'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # Use MySQL or MariaDB
-        'NAME': 'h97690_raptor_tracker',       # Your database name
-        'USER': 'h97690_derek',                # Your database username
-        'PASSWORD': 'andi_bird',               # Your database password
-        'HOST': '127.0.0.1',                   # Use 127.0.0.1 as the host
-        'PORT': '3307',                        # Use 3307 for MySQL 8
+        'ENGINE': os.environ.get('DB_ENGINE'),  # Use MySQL or MariaDB
+        'NAME': os.environ.get('DB_NAME'),       # Your database name
+        'USER': os.environ.get('DB_USER'),                # Your database username
+        'PASSWORD': os.environ.get('DB_PASSWORD'),               # Your database password
+        'HOST': os.environ.get('DB_HOST'),                   # Use 127.0.0.1 as the host
+        'PORT': os.environ.get('DB_PORT'),                        # Use 3307 for MySQL 8
     }
 }
 
@@ -126,12 +128,16 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # Cloudinary configuration
+# cloudinary.config(
+#     cloud_name='du9ulpbic',
+#     api_key = '646116894968451',
+#     api_secret='ubQ1C8x4-RRypIWt4sOp3WVhPko'
+# )
 cloudinary.config(
-    cloud_name='du9ulpbic',
-    api_key = '646116894968451',
-    api_secret='ubQ1C8x4-RRypIWt4sOp3WVhPko'
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET')
 )
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
