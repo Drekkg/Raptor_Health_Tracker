@@ -1,5 +1,5 @@
 asgiref==3.8.1
-bcc==0.18.0
+
 black==24.3.0
 blinker==1.8.2
 Brlapi==0.8.3
