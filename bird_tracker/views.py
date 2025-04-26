@@ -187,9 +187,9 @@ def bird_edit(request, id):
             "id": id,
         },
     )
+    
+    
 # view to delete bird
-
-
 def bird_delete(request, id):
     """
     Bird delete View
