@@ -6,7 +6,7 @@ import sys
 env_path = os.path.join(os.path.dirname(__file__), 'env.py')
 if os.path.exists(env_path):
     exec(open(env_path).read())
-    print("SECRET_KEY:", os.environ.get('SECRET_KEY'))
+
 else:
     print("env not found")
 
