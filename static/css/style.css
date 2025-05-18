@@ -172,6 +172,7 @@ i {
 .bird-list-image {
     width: 17rem;
     height: 15rem;
+    object-fit: cover;
     padding-top: 1rem;
 }
 
