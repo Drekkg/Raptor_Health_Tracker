@@ -6,7 +6,7 @@ from cloudinary.models import CloudinaryField
 # Constants to be used in the Bird and DailyData Model
 SEX = ((0, "Female"), (1, "Male"), (2, "Unknown"))
 WEATHER = ((0, "Rainy"), (1, "Sunny"), (2, "Windy"), (3, "Cold"))
-TRAINING = ((0, "Featherplay"), (1, "Faustappel"), (2, "Free Flight"))
+TRAINING = ((0, "No Training"), (1, "Faustappel"), (2, "Free Flight"), (3, "Feather Play"))
 BEHAVIOUR = ((0, "Motivated"), (1, "Lethargic"), (2, "Aggressive"), (3, "Unmotivated"), (4, "Slightly Unmotivated"))
 # aggressive, lethargic, unmotivated, slightly unmotivated,
 # Bird Custom Model
