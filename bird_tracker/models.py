@@ -8,7 +8,7 @@ SEX = ((0, "Female"), (1, "Male"), (2, "Unknown"))
 WEATHER = ((0, "Rainy"), (1, "Sunny"), (2, "Windy"), (3, "Cold"))
 TRAINING = ((0, "Featherplay"), (1, "Faustappel"), (2, "Free Flight"))
 BEHAVIOUR = ((0, "Motivated"), (1, "Lethargic"), (2, "Aggressive"), (3, "Unmotivated"), (4, "Slightly Unmotivated"))
-# ggressive, lethargic, unmotivated, slightly unmotivated,
+# aggressive, lethargic, unmotivated, slightly unmotivated,
 # Bird Custom Model
 
 
@@ -19,7 +19,7 @@ class Bird(models.Model):
     bird_name = models.CharField(max_length=20, unique=True, blank=False)
     type = models.CharField(max_length=20, blank=False)
     sex = models.IntegerField(choices=SEX, default=0, null=False)
-    date_of_birth = models.DateField(null=False)
+    date_of_birth = models.CharField(max_length=20, default="Unknown")
     additional_info = models.CharField(max_length=200, blank=False)
     created_on = models.DateTimeField(auto_now_add=True, null=False)
     main_image = CloudinaryField('image', default='placeholder', format='jpg')
