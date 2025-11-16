@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 # Constants to be used in the Bird and DailyData Model
-SEX = ((0, "Female"), (1, "Male"))
+SEX = ((0, "Female"), (1, "Male"), (2, "Unknown"))
 WEATHER = ((0, "Rainy"), (1, "Sunny"), (2, "Windy"), (3, "Cold"))
 TRAINING = ((0, "Featherplay"), (1, "Faustappel"), (2, "Free Flight"))
-BEHAVIOUR = ((0, "Motivated"), (1, "Reticent"))
-
+BEHAVIOUR = ((0, "Motivated"), (1, "Lethargic"), (2, "Aggressive"), (3, "Unmotivated"), (4, "Slightly Unmotivated"))
+# ggressive, lethargic, unmotivated, slightly unmotivated,
 # Bird Custom Model
 
 

@@ -125,6 +125,7 @@ DATABASES = {
 CSRF_TRUSTED_ORIGINS = [
     "https://*.8000-drekkg-raptorhealthtrac-439x53tjdnt.ws.codeinstitute-ide.net/",
     "https://*.herokuapp.com"
+    "http://127.0.0.1:8000/"
 ]
 
 # Cloudinary configuration
