@@ -47,9 +47,11 @@ class DailyData(models.Model):
     weight = models.PositiveSmallIntegerField(null=False)
     food_type = models.CharField(max_length=12, blank=False)
     food_weight = models.PositiveSmallIntegerField(null=False)
+    food_time =models.CharField(max_length=6,default="15h00", null=False)
     weather = models.IntegerField(choices=WEATHER, default=1, null=False)
     temperature = models.IntegerField(null=False)
     training = models.IntegerField(choices=TRAINING, default=0, null=False)
+    training_time= models.CharField(max_length=6, null=True, blank=True)
     behaviour = models.IntegerField(choices=BEHAVIOUR, default=0, null=False)
     notable_info = models.CharField(
         max_length=200, blank=False, default="None")
