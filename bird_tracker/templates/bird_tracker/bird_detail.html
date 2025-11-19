@@ -1,5 +1,8 @@
 {% extends "base.html" %}{% block bird_detail %} {% load static %} {% load crispy_forms_tags %}
-
+ <head>
+    <link href="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/styles/index.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/index.js" defer></script>
+</head>
 <!-- bird detail.html content starts here -->
 <div class="container-fluid main-item">
   <div class="row">
@@ -54,6 +57,8 @@
     {% endif %}
   </div>
   <hr class="divider" />
+ 
+        <div id="calendar"></div> 
 </div>
 <div class="daily-button">
   <div class="d-grid">
@@ -170,4 +175,34 @@
 </div>
 {% endblock bird_detail %} {% block extras %}
 <script src="{% static 'js/birdData.js' %}"></script>
+<script>
+   
+   document.addEventListener('DOMContentLoaded', () => {
+        const { Calendar } = window.VanillaCalendarPro;
+
+        const calendar = new Calendar('#calendar', {
+            onCreateDateEls(self, dateEl) {
+                const btnEl = dateEl.querySelector('[data-vc-date-btn]');
+                if (!btnEl) return;
+                // console.log(btnEl);
+
+                // Get the full date of the current button
+                const fullDate = dateEl.getAttribute('data-vc-date');
+                console.log(fullDate)
+
+                // Target a specific date (e.g., "2025-11-11")
+                const targetDate = "2025-11-11";
+                if (fullDate === targetDate) {
+                    // Apply custom styles to the specific date
+                    btnEl.style.backgroundColor = 'green'; // Set background color
+                    btnEl.style.color = '#FFFFFF'; // Set text color
+                    btnEl.style.borderRadius = '10%'; // Make it circular
+                    btnEl.style.fontWeight = 'bold'; // Make the text bold
+                }
+            },
+        });
+
+        calendar.init();
+    });
+  </script> 
 {% endblock %}
