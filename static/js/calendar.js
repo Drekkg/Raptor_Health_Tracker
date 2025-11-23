@@ -5,12 +5,9 @@
   let targetDate = [];
 
 
-
-
 //Get the data using the json_script -  selected_bird_json|json_script:"selected_bird_data" 
 document.addEventListener('DOMContentLoaded', () => {
   const fetchedBirdDataStr = document.getElementById('selected_bird_data').textContent;
-  console.log(fetchedBirdDataStr);
 
 //use JSON.parse to turn it into an object for java script
   try {
@@ -20,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
   } catch (error) {
     console.error("JSON Parsing Error:", error.message);
-    console.log("Raw JSON String:", fetchedBirdDataStr);
   }
   
 });
@@ -28,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   if(birdDataGlobal){
   birdDataGlobalParsed = JSON.parse(birdDataGlobal);
-  console.log("birdglobal 1 + 2", birdDataGlobalParsed)
   birdDataGlobalParsed.forEach((trainingData) => {
   if(trainingData.training) {
     targetDate.push(trainingData.date.slice(0, 10));
@@ -41,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // initiate and display the calendar
    document.addEventListener('DOMContentLoaded', () => {
         const { Calendar } = window.VanillaCalendarPro;
+        
 
         const calendar = new Calendar('#calendar', {
             onCreateDateEls(self, dateEl) {
@@ -62,7 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
               })
             },
         });
-
+       
+          
         calendar.init();
     });
 

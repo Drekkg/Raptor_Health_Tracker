@@ -59,6 +59,8 @@
   <hr class="divider" />
   <!--The Calendar injected here -->
 <div id="calendar" data-bird="{{ selected_bird|safe }}" >
+    <!-- Serialize the selected_bird data into a JSON script -->
+    {{ selected_bird_json|json_script:"selected_bird_data" }}
 </div> 
 </div>
 <div class="daily-button">
@@ -71,8 +73,7 @@
     </a>
   </div>
 </div>
-  <!-- Serialize the selected_bird data into a JSON script -->
-  {{ selected_bird_json|json_script:"selected_bird_data" }}
+
 <div class="flex-wrapper">
   <div class="accordion" id="daily_data">
  
@@ -180,4 +181,5 @@
  
 {% endblock bird_detail %} {% block extras %}
 <script src="{% static 'js/calendar.js' %}"></script>
+<script src="{% static 'js/birdData.js' %}"></script>
 {% endblock %}
