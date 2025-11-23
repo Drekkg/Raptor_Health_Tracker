@@ -71,10 +71,11 @@
     </a>
   </div>
 </div>
+  <!-- Serialize the selected_bird data into a JSON script -->
+  {{ selected_bird_json|json_script:"selected_bird_data" }}
 <div class="flex-wrapper">
   <div class="accordion" id="daily_data">
-    <!-- Serialize the selected_bird data into a JSON script -->
-{{ selected_bird_json|json_script:"selected_bird_data" }}
+ 
     {% for data in selected_bird %}
     <div class="accordion-item">
       <h2 class="accordion-header">
@@ -176,7 +177,7 @@
     </div>
   </div>
 </div>
-
+ 
 {% endblock bird_detail %} {% block extras %}
 <script>
   
@@ -186,13 +187,12 @@
   let targetDate = [];
 
 
-//   document.addEventListener('DOMContentLoaded', () => {
-//     const birdDataElement = document.getElementById('calendar');
-// });
+
 
 //Get the data using the json_script -  selected_bird_json|json_script:"selected_bird_data" 
 document.addEventListener('DOMContentLoaded', () => {
   const fetchedBirdDataStr = document.getElementById('selected_bird_data').textContent;
+  console.log(fetchedBirdDataStr);
 
 //use JSON.parse to turn it into an object for java script
   try {

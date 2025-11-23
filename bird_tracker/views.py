@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, permission_required
 from cloudinary.exceptions import Error as CloudinaryError
+from django.shortcuts import redirect
 
 # built in django view
 
@@ -65,8 +66,9 @@ def daily_data_form(request, id):
                 daily_data.selected_bird = bird_detail
                 daily_data.save()
                 messages.success(request, 'Daily Data added successfully.')
-                return render(request, "bird_tracker/bird_detail.html",
-                              {"bird_detail": bird_detail, "selected_bird": selected_bird})  # noqa
+                # return render(request, "bird_tracker/bird_detail.html",
+                #               {"bird_detail": bird_detail, "selected_bird": selected_bird})  # noqa
+                return redirect('bird_detail', id=bird_detail.id)
             except CloudinaryError as e:
                 messages.add_message(
                     request, messages.ERROR,
