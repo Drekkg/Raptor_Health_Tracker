@@ -57,8 +57,9 @@
     {% endif %}
   </div>
   <hr class="divider" />
- 
-        <div id="calendar"></div> 
+  <!--The Calendar injected here -->
+<div id="calendar" data-bird="{{ selected_bird|safe }}" >
+</div> 
 </div>
 <div class="daily-button">
   <div class="d-grid">
@@ -72,6 +73,8 @@
 </div>
 <div class="flex-wrapper">
   <div class="accordion" id="daily_data">
+    <!-- Serialize the selected_bird data into a JSON script -->
+{{ selected_bird_json|json_script:"selected_bird_data" }}
     {% for data in selected_bird %}
     <div class="accordion-item">
       <h2 class="accordion-header">
@@ -173,10 +176,51 @@
     </div>
   </div>
 </div>
+
 {% endblock bird_detail %} {% block extras %}
-<script src="{% static 'js/birdData.js' %}"></script>
 <script>
-   
+  
+//create variables to hold the bird data
+  let birdDataGlobal = null;
+  let birdDataGlobalParsed = null;
+  let targetDate = [];
+
+
+//   document.addEventListener('DOMContentLoaded', () => {
+//     const birdDataElement = document.getElementById('calendar');
+// });
+
+//Get the data using the json_script -  selected_bird_json|json_script:"selected_bird_data" 
+document.addEventListener('DOMContentLoaded', () => {
+  const fetchedBirdDataStr = document.getElementById('selected_bird_data').textContent;
+
+//use JSON.parse to turn it into an object for java script
+  try {
+    const fetchedBirdData = JSON.parse(fetchedBirdDataStr);
+    birdDataGlobal = fetchedBirdData;
+    
+  
+  } catch (error) {
+    console.error("JSON Parsing Error:", error.message);
+    console.log("Raw JSON String:", fetchedBirdDataStr);
+  }
+  
+});
+//add and parse the data again 
+document.addEventListener('DOMContentLoaded', () => {
+  if(birdDataGlobal){
+  birdDataGlobalParsed = JSON.parse(birdDataGlobal);
+  console.log("birdglobal 1 + 2", birdDataGlobalParsed)
+  birdDataGlobalParsed.forEach((trainingData) => {
+  if(trainingData.training) {
+    targetDate.push(trainingData.date.slice(0, 10));
+  }
+
+})
+  }
+})
+
+// initiate and display the calendar
    document.addEventListener('DOMContentLoaded', () => {
         const { Calendar } = window.VanillaCalendarPro;
 
@@ -184,14 +228,12 @@
             onCreateDateEls(self, dateEl) {
                 const btnEl = dateEl.querySelector('[data-vc-date-btn]');
                 if (!btnEl) return;
-                // console.log(btnEl);
-
+            
                 // Get the full date of the current button
                 const fullDate = dateEl.getAttribute('data-vc-date');
-                console.log(fullDate)
-
-                // Target a specific date (e.g., "2025-11-11")
-                const targetDate = "2025-11-11";
+          
+                // Target a specific date (e.g., "2025-11-11" to aplly styles if training has occurred               
+                targetDate.forEach((targetDate) => {
                 if (fullDate === targetDate) {
                     // Apply custom styles to the specific date
                     btnEl.style.backgroundColor = 'green'; // Set background color
@@ -199,6 +241,7 @@
                     btnEl.style.borderRadius = '10%'; // Make it circular
                     btnEl.style.fontWeight = 'bold'; // Make the text bold
                 }
+              })
             },
         });
 
