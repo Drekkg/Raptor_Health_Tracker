@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     targetDate.push(trainingData.date.slice(0, 10));
   } else if 
     (trainingData.food_type && !trainingData.training) {
-      targetDateNoTraining.push(trainingData.date.slice(0, 10));
+    targetDateNoTraining.push(trainingData.date.slice(0, 10));
     }
   
 
