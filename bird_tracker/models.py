@@ -43,7 +43,7 @@ class DailyData(models.Model):
         Bird, on_delete=models.CASCADE, related_name='selected_bird')
     trainer = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='trainer')
-    date = models.DateTimeField(auto_now=True, null=False,)
+    date = models.DateTimeField(auto_now_add=True, null=False,)
     weight = models.PositiveSmallIntegerField(null=False)
     food_type = models.CharField(max_length=12, blank=False)
     food_weight = models.PositiveSmallIntegerField(null=False)
