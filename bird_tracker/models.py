@@ -7,7 +7,7 @@ from cloudinary.models import CloudinaryField
 SEX = ((0, "Female"), (1, "Male"), (2, "Unknown"))
 WEATHER = ((0, "Rainy"), (1, "Sunny"), (2, "Windy"), (3, "Cold"))
 TRAINING = ((0, "No Training"), (1, "Faustappel"), (2, "Free Flight"), (3, "Feather Play"))
-BEHAVIOUR = ((0, "Motivated"), (1, "Lethargic"), (2, "Aggressive"), (3, "Unmotivated"), (4, "Slightly Unmotivated"), (6, "Neutral"))
+BEHAVIOUR = ((0, "Motivated"), (1, "Lethargic"), (2, "Aggressive"), (3, "Unmotivated"), (4, "Slightly Unmotivated"), (5, "Neutral"))
 # aggressive, lethargic, unmotivated, slightly unmotivated,
 # Bird Custom Model
 
@@ -43,7 +43,7 @@ class DailyData(models.Model):
         Bird, on_delete=models.CASCADE, related_name='selected_bird')
     trainer = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='trainer')
-    date = models.DateTimeField(auto_now=True, null=False,)
+    date = models.DateTimeField(auto_now_add=True, null=False,)
     weight = models.PositiveSmallIntegerField(null=False)
     food_type = models.CharField(max_length=12, blank=False)
     food_weight = models.PositiveSmallIntegerField(null=False)

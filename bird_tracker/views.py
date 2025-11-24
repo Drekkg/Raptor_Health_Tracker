@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponse
 import os
+import json
 from django.shortcuts import render
 from django.views import generic
 from .models import Bird, DailyData
@@ -10,6 +11,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, permission_required
 from cloudinary.exceptions import Error as CloudinaryError
+from django.shortcuts import redirect
 
 # built in django view
 
@@ -19,8 +21,6 @@ class BirdList(generic.ListView):
     template_name = "bird_tracker/index.html"
 
 # view to display bird details
-
-
 def bird_detail(request, id):
     """display a list of the birds details
     and all daily data that is required
@@ -29,19 +29,28 @@ def bird_detail(request, id):
     queryset = Bird.objects.all()
     bird_detail = get_object_or_404(queryset, id=id)
     selected_bird = bird_detail.selected_bird.all()
+    
+    selected_bird_json = bird_detail.selected_bird.all().values(
+       "behaviour","date", "food_time", "food_type", "food_weight", "id", "notable_info", "selected_bird", "selected_bird_id", "temperature", "trainer", "trainer_id", "training", "training_time", "weather", "weight"
+    ) 
+      # Convert QuerySet to a list and handle datetime fields
+    selected_bird_list = list(selected_bird_json)
+    for bird in selected_bird_list:
+        if "date" in bird and bird["date"] is not None:
+            bird["date"] = bird["date"].isoformat()  # Convert to ISO 8601 string
+     # Convert the QuerySet to JSON
+    selected_bird_json = json.dumps(selected_bird_list)
 
     return render(
         request,
         "bird_tracker/bird_detail.html",
         {"bird_detail": bird_detail,
          "selected_bird": selected_bird,
-
+         "selected_bird_json": selected_bird_json, 
          },
     )
 
 # View for the daily data form
-
-
 def daily_data_form(request, id):
     """Form handler for adding daily data for a bird.
     Template: bird_tracker/daily_data_form.html"""
@@ -57,8 +66,9 @@ def daily_data_form(request, id):
                 daily_data.selected_bird = bird_detail
                 daily_data.save()
                 messages.success(request, 'Daily Data added successfully.')
-                return render(request, "bird_tracker/bird_detail.html",
-                              {"bird_detail": bird_detail, "selected_bird": selected_bird})  # noqa
+                # return render(request, "bird_tracker/bird_detail.html",
+                #               {"bird_detail": bird_detail, "selected_bird": selected_bird})  # noqa
+                return redirect('bird_detail', id=bird_detail.id)
             except CloudinaryError as e:
                 messages.add_message(
                     request, messages.ERROR,

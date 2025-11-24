@@ -230,6 +230,19 @@ i {
     animation: spin 1s linear infinite;
 } 
 
+
+/* calnedar styles  */
+#calendar {
+    width: 80%;
+    margin: 0 auto; 
+  }
+
+
+#calendar [data-vc-date-btn] {
+    font-size: 1rem;
+    width: 65%;
+  }
+
 /* Spinner animation */
 @keyframes spin {
     0% {

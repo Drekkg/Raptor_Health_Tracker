@@ -30,7 +30,7 @@ class DailyDataForm(forms.ModelForm):
             'food_time': 'Feeding Time: (time of feeding)',
             'temperature': 'Temparature:  (the air temperature in' + deg + ')',
             'training': 'Training  (the type of training that was performed)',
-            'training_time': 'Training Time:  (time of the Training)',
+            'training_time': 'Time of Training:  (time of the Training)',
             'behaviour': 'Behaviour  (the general mood of the bird)',
             'notable_info': 'Notable Information (any extra info - missing feathers,injuries, loss of appetite, moulting etc)',  # noqa
             'notable_image': 'add an image of anything noteworthy',

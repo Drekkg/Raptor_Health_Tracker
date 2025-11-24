@@ -1,5 +1,8 @@
 {% extends "base.html" %}{% block bird_detail %} {% load static %} {% load crispy_forms_tags %}
-
+ <head>
+    <link href="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/styles/index.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/index.js" defer></script>
+</head>
 <!-- bird detail.html content starts here -->
 <div class="container-fluid main-item">
   <div class="row">
@@ -54,6 +57,11 @@
     {% endif %}
   </div>
   <hr class="divider" />
+  <!--The Calendar injected here -->
+<div id="calendar" data-bird="{{ selected_bird|safe }}" >
+    <!-- Serialize the selected_bird data into a JSON script -->
+    {{ selected_bird_json|json_script:"selected_bird_data" }}
+</div> 
 </div>
 <div class="daily-button">
   <div class="d-grid">
@@ -65,8 +73,10 @@
     </a>
   </div>
 </div>
+
 <div class="flex-wrapper">
   <div class="accordion" id="daily_data">
+ 
     {% for data in selected_bird %}
     <div class="accordion-item">
       <h2 class="accordion-header">
@@ -168,6 +178,8 @@
     </div>
   </div>
 </div>
+ 
 {% endblock bird_detail %} {% block extras %}
+<script src="{% static 'js/calendar.js' %}"></script>
 <script src="{% static 'js/birdData.js' %}"></script>
 {% endblock %}

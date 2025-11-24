@@ -22,9 +22,7 @@
                 <form id="DailyDataForm" method="post" enctype="multipart/form-data">
                     {{ daily_data_form | crispy }}
                     {% csrf_token %}
-                    <button class="btn btn-signup btn-lg btn-add-data">Submit</button>
-
-
+                    <button class="btn btn-signup btn-lg btn-add-data" >Submit</button>
                     <div class="modal" id="addDataModal" tabindex="-1" aria-labelledby="addDataModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
