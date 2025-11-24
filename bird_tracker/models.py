@@ -7,7 +7,7 @@ from cloudinary.models import CloudinaryField
 SEX = ((0, "Female"), (1, "Male"), (2, "Unknown"))
 WEATHER = ((0, "Rainy"), (1, "Sunny"), (2, "Windy"), (3, "Cold"))
 TRAINING = ((0, "No Training"), (1, "Faustappel"), (2, "Free Flight"), (3, "Feather Play"))
-BEHAVIOUR = ((0, "Motivated"), (1, "Lethargic"), (2, "Aggressive"), (3, "Unmotivated"), (4, "Slightly Unmotivated"))
+BEHAVIOUR = ((0, "Motivated"), (1, "Lethargic"), (2, "Aggressive"), (3, "Unmotivated"), (4, "Slightly Unmotivated"), (6, "Neutral"))
 # aggressive, lethargic, unmotivated, slightly unmotivated,
 # Bird Custom Model
 
