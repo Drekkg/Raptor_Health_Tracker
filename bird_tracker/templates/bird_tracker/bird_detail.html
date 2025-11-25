@@ -62,7 +62,26 @@
     <!-- Serialize the selected_bird data into a JSON script -->
     {{ selected_bird_json|json_script:"selected_bird_data" }}
 </div> 
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="calendarModalLabel">{{bird_detail.bird_name}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="calendarModalBody">
+        <!-- Content will be dynamically populated -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+
 <div class="daily-button">
   <div class="d-grid">
     <a
