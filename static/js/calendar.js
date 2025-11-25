@@ -34,14 +34,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  
   function displayTrainingCalendar(dateCalendarInfo) {
     birdDataGlobalParsed.forEach((selectedDate) => {
       if (selectedDate.date.slice(0, 10) === dateCalendarInfo) {
+        console.log(birdDataGlobalParsed)
         const modalBody = document.getElementById("calendarModalBody");
       modalBody.innerHTML = `
-        <p><strong>Date:</strong> ${dateCalendarInfo}</p>
-        <p><strong>Training:</strong> ${selectedDate.training ? "Yes" : "No"}</p>
-        <p><strong>Food Type:</strong> ${selectedDate.food_type || "N/A"}</p>
+        <p><strong>Date:</strong>  ${dateCalendarInfo}</p>
+        <p><strong>Weight:</strong>  ${selectedDate.weight}g</p>
+        <p><strong>Training:</strong>  ${traingChoices[selectedDate.training]}</p>
+        <p><strong>Food Type:</strong>  ${selectedDate.food_type }</p>
+        <p><strong>Food Type:</strong>  ${selectedDate.food_weight}g</p>
         <p><strong>Additional Info:</strong> ${selectedDate.notable_info || "None"}</p>
       `;
          // Trigger the Bootstrap modal
