@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <p><strong>Food Weight:</strong> ${selectedDate.food_weight}g</p>
         <p><strong>Weather:</strong> ${weatherChoices[selectedDate.weather]}</p>
         <p><strong>Temperature:</strong> ${selectedDate.temperature}°C</p>
-        <p><strong>Behaviour:</strong> ${behaviourChoices[selectedDate.temperature]}°C</p>
+        <p><strong>Behaviour:</strong> ${behaviourChoices[selectedDate.behaviour]}</p>
         <p><strong>Additional Info:</strong> ${selectedDate.notable_info || "None"}</p>
       `;
     });
