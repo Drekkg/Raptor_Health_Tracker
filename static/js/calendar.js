@@ -5,6 +5,10 @@ let targetDate = [];
 let targetDateNoTraining = [];
 let dateCalendarInfo = null;
 let traingChoices = { 0: "No Training", 1: "Faustappel", 2: "Free Flight", 3: "Feather Play" };
+let weatherChoices = {0: "Rainy", 1: "Sunny", 2: "Windy", 3: "Cold",
+};
+let behaviourChoices = {0: "Motivated", 1: "Lethargic", 2: "Aggressive", 3: "Unmotivated", 4: "Slightly Unmotivated", 5: "Neutral"
+};
 
 //Get the data using the json_script -  selected_bird_json|json_script:"selected_bird_data"
 document.addEventListener("DOMContentLoaded", () => {
@@ -34,33 +38,74 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  
+
+  // function displayTrainingCalendar(dateCalendarInfo) {
+  //   // Filter all matching data for the selected date
+  //   const matchingData = birdDataGlobalParsed.filter(
+  //     (selectedDate) => selectedDate.date.slice(0, 10) === dateCalendarInfo
+  //   );
+
+  //   birdDataGlobalParsed.forEach((selectedDate) => {
+  //     if (selectedDate.date.slice(0, 10) === dateCalendarInfo) {
+       
+  //       const modalBody = document.getElementById("calendarModalBody");
+  //       modalBody.innerHTML = `
+  //       <p><strong>Date:</strong>  ${dateCalendarInfo}</p>
+  //       <p><strong>Weight:</strong>  ${selectedDate.weight}g</p>
+  //       <p><strong>Training:</strong>  ${traingChoices[selectedDate.training]}</p>
+  //       <p><strong>Food Type:</strong>  ${selectedDate.food_type}</p>
+  //       <p><strong>Food Type:</strong>  ${selectedDate.food_weight}g</p>
+  //       <p><strong>Additional Info:</strong> ${selectedDate.notable_info || "None"}</p>
+  //     `;
+  //       // Trigger the Bootstrap modal
+  //       const calendarModal = new bootstrap.Modal(document.getElementById("calendarModal"));
+  //       calendarModal.show();
+  //     }
+  //   });
+  // }
   function displayTrainingCalendar(dateCalendarInfo) {
-    birdDataGlobalParsed.forEach((selectedDate) => {
-      if (selectedDate.date.slice(0, 10) === dateCalendarInfo) {
-        console.log(birdDataGlobalParsed)
-        const modalBody = document.getElementById("calendarModalBody");
-      modalBody.innerHTML = `
-        <p><strong>Date:</strong>  ${dateCalendarInfo}</p>
-        <p><strong>Weight:</strong>  ${selectedDate.weight}g</p>
-        <p><strong>Training:</strong>  ${traingChoices[selectedDate.training]}</p>
-        <p><strong>Food Type:</strong>  ${selectedDate.food_type }</p>
-        <p><strong>Food Type:</strong>  ${selectedDate.food_weight}g</p>
+    const time = null;
+    // Filter all matching data for the selected date
+    const matchingData = birdDataGlobalParsed.filter(
+      (selectedDate) => selectedDate.date.slice(0, 10) === dateCalendarInfo,
+    );
+    
+    // Generate the HTML content for all matching data
+    let modalContent = `<p><strong>Date:</strong> ${dateCalendarInfo}</p>`;
+    matchingData.forEach((selectedDate) => {
+      console.log(selectedDate)
+      modalContent += `
+        <hr>
+        <p><strong>Weight:</strong> ${selectedDate.weight}g</p>
+        <p><strong>Training:</strong> ${traingChoices[selectedDate.training]}</p>
+        <p><strong>Food Type:</strong> ${selectedDate.food_type}</p>
+        <p><strong>Food Weight:</strong> ${selectedDate.food_weight}g</p>
+        <p><strong>Weather:</strong> ${weatherChoices[selectedDate.weather]}</p>
+        <p><strong>Temperature:</strong> ${selectedDate.temperature}°C</p>
+        <p><strong>Behaviour:</strong> ${behaviourChoices[selectedDate.temperature]}°C</p>
         <p><strong>Additional Info:</strong> ${selectedDate.notable_info || "None"}</p>
       `;
-         // Trigger the Bootstrap modal
-      const calendarModal = new bootstrap.Modal(document.getElementById("calendarModal"));
-      calendarModal.show();
-      }
     });
+
+    // Display the content in the modal
+    const modalBody = document.getElementById("calendarModalBody");
+    modalBody.innerHTML = modalContent;
+
+    // Trigger the Bootstrap modal
+    const calendarModal = new bootstrap.Modal(document.getElementById("calendarModal"));
+    calendarModal.show();
   }
   const { Calendar } = window.VanillaCalendarPro;
+  //merge the two arrrays
+  let allDatesWithData = targetDate.concat(targetDateNoTraining);
+  const allDatesWithDataUnique = [...new Set(allDatesWithData)];
+  
   // Calendar options
   const options = {
     selectedTheme: "light",
     onClickDate(self) {
       let clickedDate = self.context.selectedDates;
-      targetDate.forEach((date) => {
+      allDatesWithDataUnique.forEach((date) => {
         if (clickedDate[0] === date) {
           dateCalendarInfo = date;
           displayTrainingCalendar(dateCalendarInfo);

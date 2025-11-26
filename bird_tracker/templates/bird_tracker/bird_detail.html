@@ -57,6 +57,7 @@
     {% endif %}
   </div>
   <hr class="divider" />
+  
   <!--The Calendar injected here -->
 <div id="calendar" data-bird="{{ selected_bird|safe }}" >
     <!-- Serialize the selected_bird data into a JSON script -->
@@ -136,7 +137,7 @@
             <p><b>Weather: </b>{{ data.get_weather_display }}</p>
           </div>
           <div>
-            <p><b>Temperature: </b>{{ data.temperature }} C</p>
+            <p><b>Temperature: </b>{{ data.temperature }}°C</p>
           </div>
           <div>
             <p><b>Type of training:</b> {{ data.get_training_display }}</p>
