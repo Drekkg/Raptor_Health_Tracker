@@ -2,6 +2,9 @@
  <head>
     <link href="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/styles/index.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/index.js" defer></script>
+    <script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
 </head>
 <!-- bird detail.html content starts here -->
 <div class="container-fluid main-item">
@@ -58,13 +61,11 @@
     {% endif %}
   </div>
   <hr class="divider" />
-  
   <!--The Calendar injected here -->
 <div id="calendar" data-bird="{{ selected_bird|safe }}" >
     <!-- Serialize the selected_bird data into a JSON script -->
     {{ selected_bird_json|json_script:"selected_bird_data" }}
 </div> 
-
 <!-- calendar pop up modal -->
 <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -204,4 +205,5 @@
 {% endblock bird_detail %} {% block extras %}
 <script src="{% static 'js/calendar.js' %}"></script>
 <script src="{% static 'js/birdData.js' %}"></script>
+<script src="{% static 'js/graph.js' %}"></script>
 {% endblock %}
