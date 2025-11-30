@@ -36,12 +36,14 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = [
     '8000-drekkg-raptorhealthtrac-439x53tjdnt.ws.codeinstitute-ide.net',
     '.herokuapp.com',
-    '127.0.0.1']
+    '127.0.0.1',
+    'localhost',
+    ]
 
 
 # Application definition
