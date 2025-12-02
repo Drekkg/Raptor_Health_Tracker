@@ -8,6 +8,7 @@ let yValuesEdited = [];
 let startDate = null;
 let endDate = null;
 let setDate = 0;
+let myChartInstance = null;
 
 parsedBirdDataPromise.then((parsedBirdData) => {
   parsedBirdData.forEach((dateArray) => {
@@ -21,14 +22,58 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   yScaleMax.sort((a, b) => b - a);
   yScaleMin.sort((a, b) => a - b);
 
+
   startDate = xValues.length - setDate - 7;
   endDate = xValues.length - setDate;
-  console.log(startDate, endDate)
   xValuesEdited = xValues.slice(startDate, endDate);
   yValuesEdited = yValues.slice(startDate, endDate);
-  
 
-  new Chart("myChart", {
+chart();
+
+  document.getElementById("dateBack").addEventListener("click", () => {
+    if(setDate >= 0){
+      setDate ++;
+      startDate = xValues.length - setDate - 7;
+      endDate = xValues.length - setDate;
+      xValuesEdited = xValues.slice(startDate, endDate);
+      yValuesEdited = yValues.slice(startDate, endDate);
+      if(xValuesEdited.length < 7){
+        alert("No More Data")
+        console.log(setDate)
+        setDate -= 1;
+        console.log(setDate)
+        return
+      }
+     
+      chart();
+     
+    }else {
+      return
+    }
+  });
+  
+  
+  document.getElementById("dateForward").addEventListener("click", () => {
+    if(setDate > 0){
+      setDate --;
+      startDate = xValues.length - setDate - 7;
+      endDate = xValues.length - setDate;
+      xValuesEdited = xValues.slice(startDate, endDate);
+      yValuesEdited = yValues.slice(startDate, endDate);
+      chart();
+     
+    } else {
+      return
+    }
+  });
+
+
+function chart() {
+  if (myChartInstance) {
+    myChartInstance.destroy();
+  }
+
+  myChartInstance =new Chart("myChart", {
     type: "line",
     data: {
       labels: xValuesEdited,
@@ -85,4 +130,5 @@ parsedBirdDataPromise.then((parsedBirdData) => {
       },
     },
   });
+}
 });
