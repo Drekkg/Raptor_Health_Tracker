@@ -246,6 +246,10 @@ margin-bottom: 1rem;
     width: 65%;
   }
 
+#myChart {
+    background-color: antiquewhite;
+}
+
 /* Spinner animation */
 @keyframes spin {
     0% {

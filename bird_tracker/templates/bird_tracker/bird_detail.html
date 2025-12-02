@@ -1,14 +1,18 @@
 {% extends "base.html" %}{% block bird_detail %} {% load static %} {% load crispy_forms_tags %}
- <head>
-    <link href="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/styles/index.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/index.js" defer></script>
+<head>
+  <link
+    href="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/styles/index.css"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/index.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <!-- bird detail.html content starts here -->
 <div class="container-fluid main-item">
   <div class="row">
     <!-- Bird detail starts here -->
     <h3 class="heading-bird-data display-4">Bird Data</h3>
-     <hr class="divider" />
+    <hr class="divider" />
     <div class="col-md-4">
       <div class="image-container">
         {% if "placeholder" in bird_detail.main_image.url %}
@@ -58,29 +62,46 @@
     {% endif %}
   </div>
   <hr class="divider" />
-  <!--The Calendar injected here -->
-<div id="calendar" data-bird="{{ selected_bird|safe }}" >
-    <!-- Serialize the selected_bird data into a JSON script -->
-    {{ selected_bird_json|json_script:"selected_bird_data" }}
-</div> 
-<!-- calendar pop up modal -->
-<div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="calendarModalLabel">{{bird_detail.bird_name}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="container-fluid">
+    <div class="row">
+      <!--The Calendar injected here -->
+      <div class="col-md-6" id="calendar" data-bird="{{ selected_bird|safe }}">
+        <!-- Serialize the selected_bird data into a JSON script -->
+        {{ selected_bird_json|json_script:"selected_bird_data" }}
       </div>
-      <div class="modal-body" id="calendarModalBody">
-        <!-- Content will be dynamically populated -->
-         
+      <div class="col-md-6">
+        <canvas id="myChart" width="400" height="200"></canvas>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+  </div>
+  <!-- calendar pop up modal -->
+  <div
+    class="modal fade"
+    id="calendarModal"
+    tabindex="-1"
+    aria-labelledby="calendarModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="calendarModalLabel">{{bird_detail.bird_name}}</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" id="calendarModalBody">
+          <!-- Content will be dynamically populated -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 
 <div class="daily-button">
@@ -96,7 +117,6 @@
 
 <div class="flex-wrapper">
   <div class="accordion" id="daily_data">
- 
     {% for data in selected_bird %}
     <div class="accordion-item">
       <h2 class="accordion-header">
@@ -130,7 +150,7 @@
             <p><b>Weight of Food: </b>{{ data.food_weight }} grams</p>
           </div>
           <div>
-            <p><b>Time of feeding: </b>{{ data.food_time }} </p>
+            <p><b>Time of feeding: </b>{{ data.food_time }}</p>
           </div>
           <div>
             <p><b>Weather: </b>{{ data.get_weather_display }}</p>
@@ -198,8 +218,9 @@
     </div>
   </div>
 </div>
- 
+
 {% endblock bird_detail %} {% block extras %}
-<script src="{% static 'js/calendar.js' %}"></script>
-<script src="{% static 'js/birdData.js' %}"></script>
+<script type="module" src="{% static 'js/calendar.js' %}"></script>
+<script type="module" src="{% static 'js/birdData.js' %}"></script>
+<script type="module" src="{% static 'js/graph.js' %}"></script>
 {% endblock %}
