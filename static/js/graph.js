@@ -22,113 +22,119 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   yScaleMax.sort((a, b) => b - a);
   yScaleMin.sort((a, b) => a - b);
 
-
   startDate = xValues.length - setDate - 7;
   endDate = xValues.length - setDate;
   xValuesEdited = xValues.slice(startDate, endDate);
   yValuesEdited = yValues.slice(startDate, endDate);
 
-chart();
+  chart();
 
   document.getElementById("dateBack").addEventListener("click", () => {
-    if(setDate >= 0){
-      setDate ++;
+    if (setDate >= 0) {
+      setDate++;
       startDate = xValues.length - setDate - 7;
       endDate = xValues.length - setDate;
       xValuesEdited = xValues.slice(startDate, endDate);
       yValuesEdited = yValues.slice(startDate, endDate);
-      if(xValuesEdited.length < 7){
-        alert("No More Data")
-        console.log(setDate)
+      if (xValuesEdited.length < 7) {
+        if(!document.querySelector(".no-more-data")){
+        const message = document.createElement("div"); 
+        message.textContent = "No More Data";
+        message.classList.add("alert", "alert-warning", "no-more-data");
+        document.getElementById("myChart").parentNode.appendChild(message); 
+        }
         setDate -= 1;
-        console.log(setDate)
-        return
-      }
-     
+        return;
+      } 
       chart();
-     
-    }else {
-      return
+    } else {
+      return;
     }
   });
-  
-  
+
   document.getElementById("dateForward").addEventListener("click", () => {
-    if(setDate > 0){
-      setDate --;
+    if (setDate > 0) {
+        const noMoreDataElement = document.querySelector(".no-more-data");
+        if (noMoreDataElement) {
+          noMoreDataElement.remove(); 
+      }
+      setDate--;
       startDate = xValues.length - setDate - 7;
       endDate = xValues.length - setDate;
       xValuesEdited = xValues.slice(startDate, endDate);
       yValuesEdited = yValues.slice(startDate, endDate);
       chart();
-     
     } else {
-      return
+      return;
     }
   });
 
+  function chart() {
+    if (myChartInstance) {
+      myChartInstance.destroy();
+    }
 
-function chart() {
-  if (myChartInstance) {
-    myChartInstance.destroy();
-  }
-
-  myChartInstance =new Chart("myChart", {
-    type: "line",
-    data: {
-      labels: xValuesEdited,
-      datasets: [
-        {
-          label: "Bird Weight Over Time",
-          backgroundColor: "rgba(0,0,255,0.2)",
-          borderColor: "rgba(0,0,255,1.0)",
-          borderWidth: 2,
-          data: yValuesEdited,
-          // fill: true, // Fill the area under the line
+    myChartInstance = new Chart("myChart", {
+      type: "line",
+      data: {
+        labels: xValuesEdited,
+        datasets: [
+          {
+            label: "Bird Weight Over Time",
+            backgroundColor: "rgba(0,0,255,0.2)",
+            borderColor: "rgba(0,0,255,1.0)",
+            borderWidth: 2,
+            data: yValuesEdited,
+            // fill: true, // Fill the area under the line
+          },
+        ],
+      },
+      options: {
+        // responsive: true, // Make the chart responsive
+        elements :{
+           point:{
+            radius: 10,
+           }
         },
-      ],
-    },
-    options: {
-      responsive: true, // Make the chart responsive
-      plugins: {
-        legend: {
-          display: true, // Show the legend
-          position: "top", // Position the legend at the top
+        plugins: {
+          legend: {
+            display: true, // Show the legend
+            position: "top", // Position the legend at the top
+          },
+          tooltip: {
+            enabled: true, // Enable tooltips
+            callbacks: {
+              label: function (context) {
+                return `Weight: ${context.raw}g`;
+              },
+            },
+          },
         },
-        tooltip: {
-          enabled: true, // Enable tooltips
-          callbacks: {
-            label: function (context) {
-              return `Weight: ${context.raw}g`;
+        scales: {
+          x: {
+            max: 7,
+            title: {
+              display: true,
+              text: "Date of Training",
+            },
+            grid: {
+              display: true, // Show grid lines on the X-axis
+            },
+          },
+          y: {
+            max: yScaleMax[0] + 30,
+            min: yScaleMin[0] - 30,
+            title: {
+              display: true,
+              text: "Weight in grams",
+            },
+            // beginAtZero: true, // Start the Y-axis at 0
+            grid: {
+              display: true, // Show grid lines on the Y-axis
             },
           },
         },
       },
-      scales: {
-        x: {
-          max: 7,
-          title: {
-            display: true,
-            text: "Date of Training",
-          },
-          grid: {
-            display: true, // Show grid lines on the X-axis
-          },
-        },
-        y: {
-          max: yScaleMax[0] + 30,
-          min: yScaleMin[0] - 30,
-          title: {
-            display: true,
-            text: "Weight",
-          },
-          // beginAtZero: true, // Start the Y-axis at 0
-          grid: {
-            display: true, // Show grid lines on the Y-axis
-          },
-        },
-      },
-    },
-  });
-}
+    });
+  }
 });

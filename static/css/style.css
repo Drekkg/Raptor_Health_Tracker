@@ -245,9 +245,17 @@ margin-bottom: 1rem;
     font-size: 1rem;
     width: 65%;
   }
-
+  .chart-container {
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    margin: 1rem  auto;
+    height: 65vh;
+    width: 60vw;
+  }
 #myChart {
-    background-color: antiquewhite;
+  
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
 }
 
 /* Spinner animation */

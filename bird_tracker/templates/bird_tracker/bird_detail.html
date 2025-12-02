@@ -69,10 +69,10 @@
         <!-- Serialize the selected_bird data into a JSON script -->
         {{ selected_bird_json|json_script:"selected_bird_data" }}
       </div>
-      <div class="col-md-6">
-        <button id="dateBack" type="button">Back</button>
-        <button id="dateForward" type="button">Forward</button>
-        <canvas id="myChart" width="400" height="200"></canvas>
+      <div class="chart-container">
+        <button id="dateBack" type="button" class="btn btn-secondary">Back</button>
+        <button id="dateForward" type="button" class="btn btn-secondary">Forward</button>
+        <canvas id="myChart"></canvas>
       </div>
       </div>
   </div>
