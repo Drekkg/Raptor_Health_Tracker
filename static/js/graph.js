@@ -9,6 +9,8 @@ let startDate = null;
 let endDate = null;
 let setDate = 0;
 let myChartInstance = null;
+let pointColor = "green";
+const range = 233;
 
 parsedBirdDataPromise.then((parsedBirdData) => {
   parsedBirdData.forEach((dateArray) => {
@@ -69,11 +71,14 @@ parsedBirdDataPromise.then((parsedBirdData) => {
     }
   });
 
+
+console.log(yValuesEdited)
+
+
   function chart() {
     if (myChartInstance) {
       myChartInstance.destroy();
     }
-
     myChartInstance = new Chart("myChart", {
       type: "line",
       data: {
@@ -81,19 +86,24 @@ parsedBirdDataPromise.then((parsedBirdData) => {
         datasets: [
           {
             label: "Bird Weight Over Time",
-            backgroundColor: "rgba(0,0,255,0.2)",
-            borderColor: "rgba(0,0,255,1.0)",
+            backgroundColor: "rgba(3, 3, 246, 0.2)",
+            borderColor: "rgba(0,0,25,1.0)",
             borderWidth: 2,
             data: yValuesEdited,
+            pointBackgroundColor: function (context) {
+              const value = context.raw; // Get the value of the point
+              return value < range ? "red" : "green"; // Red if under threshold, green if over
+            },
             // fill: true, // Fill the area under the line
           },
         ],
       },
       options: {
-        // responsive: true, // Make the chart responsive
+        responsive: true, // Make the chart responsive
         elements :{
            point:{
             radius: 10,
+            hitRadius: 10,
            }
         },
         plugins: {
@@ -107,34 +117,80 @@ parsedBirdDataPromise.then((parsedBirdData) => {
               label: function (context) {
                 return `Weight: ${context.raw}g`;
               },
+              titleFont: {
+                size: 28, // Font size for the tooltip title
+                weight: "bold", // Font weight for the tooltip title
+                family: "Arial", // Font family for the tooltip title
+              },
+              bodyFont: {
+                size: 22, // Font size for the tooltip body
+                weight: "normal", // Font weight for the tooltip body
+                family: "Verdana", // Font family for the tooltip body
+              },
+              titleColor: "white", // Tooltip title color
+              bodyColor: "yellow",
             },
           },
         },
         scales: {
           x: {
+            grid: {
+              display: true, // Show grid lines on the X-axis
+              color: "rgba(10, 10, 10, 0.5)"
+              
+            },
+          ticks: {
+              color: "rgb(23, 23, 23)", // Change the label color for the X-axis
+              font: {
+              size: 14, // Change the font size of the labels
+              weight: "bold", // Make the labels bold
+              },
+            },
             max: 7,
             title: {
               display: true,
               text: "Date of Training",
+              color: "rgb(61, 58, 130)",
+              backgroundColor: "black",
+              font: {
+                size: 16, // Font size for the Y-axis title
+                weight: "bold", // Font weight for the Y-axis title
+                family: "Arial", // Font family for the Y-axis title
+              },
             },
-            grid: {
-              display: true, // Show grid lines on the X-axis
-            },
+        
           },
           y: {
+            grid: {
+              display: true, // Show grid lines on the X-axis
+              color: "rgba(46, 43, 43, 0.5)"
+              
+            },
+            ticks: {
+              color: "rgb(90, 73, 100)", // Change the label color for the X-axis
+              font: {
+                size: 14, // Change the font size of the labels
+                weight: "bold", // Make the labels bold
+              },
+            },
             max: yScaleMax[0] + 30,
             min: yScaleMin[0] - 30,
             title: {
               display: true,
               text: "Weight in grams",
+              color: "rgb(61, 58, 130)", // Change the color of the Y-axis title
+              font: {
+                size: 16, // Font size for the Y-axis title
+                weight: "bold", // Font weight for the Y-axis title
+                family: "Arial", // Font family for the Y-axis title
+              },
             },
             // beginAtZero: true, // Start the Y-axis at 0
-            grid: {
-              display: true, // Show grid lines on the Y-axis
-            },
+            
           },
         },
       },
     });
   }
+  
 });

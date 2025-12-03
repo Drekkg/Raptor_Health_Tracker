@@ -246,16 +246,22 @@ margin-bottom: 1rem;
     width: 65%;
   }
   .chart-container {
-    background-color: rgb(255, 255, 255);
+   
     position: relative;
     margin: 1rem  auto;
-    height: 65vh;
-    width: 60vw;
+    height: 50vh;
+    width: 100vw;
   }
 #myChart {
-  
+    margin: 0 auto;
     background-color: rgb(255, 255, 255);
-    border-radius: 5px;
+    border-radius: 12px;
+    width: 100%;
+    
+}
+
+.btn-chart {
+    margin-left: 30rem;
 }
 
 /* Spinner animation */

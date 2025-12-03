@@ -70,9 +70,11 @@
         {{ selected_bird_json|json_script:"selected_bird_data" }}
       </div>
       <div class="chart-container">
+        <div class="btn-chart">
         <button id="dateBack" type="button" class="btn btn-secondary">Back</button>
         <button id="dateForward" type="button" class="btn btn-secondary">Forward</button>
-        <canvas id="myChart"></canvas>
+        </div>
+        <canvas id="myChart" width="1000px"></canvas>
       </div>
       </div>
   </div>
