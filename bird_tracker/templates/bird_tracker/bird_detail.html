@@ -69,15 +69,15 @@
         <!-- Serialize the selected_bird data into a JSON script -->
         {{ selected_bird_json|json_script:"selected_bird_data" }}
       </div>
-      <div class="chart-container">
-        <div class="btn-chart">
+      <div class="col-md-6 chart-container">
+        <div class="btn-chart" >
         <button id="dateBack" type="button" class="btn btn-secondary">Back</button>
         <button id="dateForward" type="button" class="btn btn-secondary">Forward</button>
         </div>
         <canvas id="myChart" width="1000px"></canvas>
       </div>
       </div>
-  </div>
+  </div> 
   <!-- calendar pop up modal -->
   <div
     class="modal fade"
@@ -107,7 +107,7 @@
     </div>
   </div>
 </div>
-
+{% if user.is_superuser%}
 <div class="daily-button">
   <div class="d-grid">
     <a
@@ -118,6 +118,16 @@
     </a>
   </div>
 </div>
+{% else %}<div class="daily-button">
+  <div class="d-grid">
+    <p
+      class="btn btn-custom-color btn-lg col-8 mx-auto"
+      >Daily Data for: <br />
+      <b>{{bird_detail.bird_name}}</b>
+  </p>
+  </div>
+</div>
+{% endif %}
 
 <div class="flex-wrapper">
   <div class="accordion" id="daily_data">
