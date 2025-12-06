@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Generate the HTML content for all matching data
     let modalContent = `<p><strong>Date:</strong> ${dateCalendarInfo}</p>`;
     matchingData.forEach((selectedDate) => {
-      console.log(selectedDate)
       modalContent += `
         <hr>
         <p><strong>Weight:</strong> ${selectedDate.weight}g</p>
