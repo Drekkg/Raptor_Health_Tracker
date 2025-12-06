@@ -171,7 +171,6 @@ parsedBirdDataPromise.then((parsedBirdData) => {
               label: function (context) {
                 // Retrieve the pre-calculated percentage from the shared array
                 let weightPercentRounded = weightPercentages[context.dataIndex];
-                console.log(weightPercentRounded);
                 if (weightPercentRounded !== null && !isNaN(weightPercentRounded)) {
                   return `Weight: ${context.raw}g, Percentage: ${weightPercentRounded}%`;
                 } else {
