@@ -70,14 +70,14 @@
         {{ selected_bird_json|json_script:"selected_bird_data" }}
       </div>
       <div class="col-md-6 chart-container">
-        <div class="btn-chart" >
-        <button id="dateBack" type="button" class="btn btn-secondary">Back</button>
-        <button id="dateForward" type="button" class="btn btn-secondary">Forward</button>
+        <div class="btn-chart">
+          <button id="dateBack" type="button" class="btn btn-secondary">Back</button>
+          <button id="dateForward" type="button" class="btn btn-secondary">Forward</button>
         </div>
         <canvas id="myChart" width="1000px"></canvas>
       </div>
-      </div>
-  </div> 
+    </div>
+  </div>
   <!-- calendar pop up modal -->
   <div
     class="modal fade"
@@ -118,13 +118,13 @@
     </a>
   </div>
 </div>
-{% else %}<div class="daily-button">
+{% else %}
+<div class="daily-button">
   <div class="d-grid">
-    <p
-      class="btn btn-custom-color btn-lg col-8 mx-auto"
-      >Daily Data for: <br />
+    <p class="btn btn-custom-color btn-lg col-8 mx-auto">
+      Daily Data for: <br />
       <b>{{bird_detail.bird_name}}</b>
-  </p>
+    </p>
   </div>
 </div>
 {% endif %}
@@ -142,8 +142,11 @@
           aria-expanded="true"
           aria-controls="collapse{{ forloop.counter }}"
         >
-          <span>Date: {{ data.date }} Trainer: {{ data.trainer }}</span>
-          <span class="weight-heading">Weight: {{ data.weight}}g</span>
+          <span class="span-font">Date: {{ data.date }} Trainer: {{ data.trainer }}</span>
+          <span class="weight-heading">Weight: <span class="span-data">{{ data.weight}}g</span> </span>
+          <span class="span-font"
+            >Food Weight:<span class="span-data">{{ data.food_weight }}g</span>
+          </span>
         </button>
       </h2>
     </div>
@@ -187,7 +190,7 @@
           <div class="col-md-3">
             <div class="image-container">
               {% if "placeholder" in data.notable_image.url %}
-              <img class="card-img-top" src="data:," alt="No Image" />
+              <span></span>
               {% else %}
               <img
                 class="card-img-top"

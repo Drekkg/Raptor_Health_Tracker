@@ -89,12 +89,52 @@ margin-bottom: 1rem;
     background-color: #242a30;
 }
 
-.weight-heading {
+/* .weight-heading {
     font-size: 1.5rem;
     margin: auto;
     color: #274c77;
 }
+.span-data {
+    color: #274c77;
+    border:#242a30 solid 1px;
+    padding: 2px;
+    background-color: white;
+    border-radius: 5px;
+    margin-left: 2px;
+} */
+.weight-heading {
+    font-size: 1.5rem;
+    margin: auto;
+    color: #274c77; /* Deep blue */
+    font-weight: bold; /* Make the heading bold */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    letter-spacing: 0.05rem; /* Slightly increase spacing between letters */
+}
 
+.span-data {
+    color: #274c77; /* Deep blue for the data */
+    border: #242a30 solid 1px; /* Dark gray border */
+    padding: 4px 6px; /* Add more padding for better spacing */
+    background-color: #f0f4f8; /* Light gray-blue background */
+    border-radius: 8px; /* Rounded corners */
+    margin-left: 4px; /* Slightly increase spacing from the label */
+    font-weight: bold; /* Make the data bold */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.span-data:hover {
+    background-color: #dbe9f1; /* Slightly darker background on hover */
+    color: #1b3a57; /* Darker blue text on hover */
+    transform: scale(1.05); /* Slightly enlarge the data on hover */
+}
+
+.span-font {
+    font-size: 1.2rem;
+    color: #1b3a57; /* Darker blue for additional text */
+    font-style: italic; /* Add an italic style for a softer look */
+    margin-right: 8px; /* Add spacing between elements */
+}
 .body-404 {
 
     background-image: url('/static/images/blue_sky.jpg');
@@ -307,6 +347,13 @@ margin-bottom: 1rem;
     .chart-container {
         height: 20rem;
         width: 85%;
+      }
+      .weight-heading {
+        font-size: 1.2rem;
+      }
+      .span-font {
+        font-size: .9rem;
+        
       }
 }
 @media only screen and (max-width: 1100px) {

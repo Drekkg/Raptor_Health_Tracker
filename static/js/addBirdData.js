@@ -12,3 +12,11 @@ for(let button of dataButtons) {
    dataModal.show();
  });
 }
+
+document.getElementById("submitButton").addEventListener("click", () => {
+    const submitButton = document.getElementById("submitButton");
+    submitButton.disabled = true; // Disable the button
+    submitButton.innerText = "Submitting..."; // Optional: Change the button text
+     // Ensure the form is submitted
+     document.getElementById("DailyDataForm").submit();
+})
