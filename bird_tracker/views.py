@@ -96,8 +96,6 @@ def daily_data_form(request, id):
                        "selected_bird": selected_bird})
 
 # view for the add new bird form
-
-
 def add_new_bird_form(request):
     """Add new bird form. Adds all required data for a bird instance
     ***Template
