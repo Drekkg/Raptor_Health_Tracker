@@ -4,7 +4,7 @@ let birdDataGlobalParsed = null;
 let targetDate = [];
 let targetDateNoTraining = [];
 let dateCalendarInfo = null;
-let traingChoices = { 0: "No Training", 1: "Faustappel", 2: "Free Flight", 3: "Feather Play" };
+let traingChoices = { 0: "No Training", 1: "Faustappel", 2: "Free Flight", 3: "Lure Flying" };
 let weatherChoices = {0: "Rainy", 1: "Sunny", 2: "Windy", 3: "Cold",
 };
 let behaviourChoices = {0: "Motivated", 1: "Lethargic", 2: "Aggressive", 3: "Unmotivated", 4: "Slightly Unmotivated", 5: "Neutral"
