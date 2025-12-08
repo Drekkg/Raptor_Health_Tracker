@@ -1,58 +1,102 @@
-{% extends "base.html" %}{% block daily_data_form %}
-{% load static %}
-{% load crispy_forms_tags %}
+{% extends "base.html" %}{% block daily_data_form %} {% load static %} {% load crispy_forms_tags %}
 
 <!-- Creating Daily Data -->
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-6 card mb-4 mt-3">
-            <ul>
-                <li class="">
-                    <a class="btn btn-secondary" aria-current="page" href="{% url 'bird_detail' bird_detail.id  %}">Back
-                        to
-                        {{bird_detail.bird_name}}</a>
-                </li>
-            </ul>
-            <div class="card-body">
-                <h3>Please enter the required information for:
-                    <span>{{bird_detail.bird_name}}</span>
-                    {% now "d-m-Y" %}
-                </h3>
-                <p>Trainer: {{ user.username }}</p>
-                <form id="DailyDataForm" method="post" enctype="multipart/form-data">
-                    {{ daily_data_form | crispy }}
-                    {% csrf_token %}
-                    <button class="btn btn-signup btn-lg btn-add-data" >Submit</button>
-                    <div class="modal" id="addDataModal" tabindex="-1" aria-labelledby="addDataModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="addDataModalLabel">Is the Data you entered correct?</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Are you sure you want to add the Data?
-                                </div>
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-6 card mb-4 mt-3">
+      <ul>
+        <li class="">
+          <a id="backToBirdListButton"
+            class="btn btn-secondary"
+            aria-current="page"
+            href="{% url 'bird_detail' bird_detail.id  %}"
+            >Back to {{bird_detail.bird_name}}</a
+          >
+        </li>
+      </ul>
+      <div class="card-body">
+        <h3>
+          Please enter the required information for:
+          <span>{{bird_detail.bird_name}}</span>
+          {% now "d-m-Y" %}
+        </h3>
+        <p>Trainer: {{ user.username }}</p>
+        <form id="DailyDataForm" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <!-- {{ daily_data_form | crispy }} -->
+          <!-- {{ daily_data_form.weight|as_crispy_field }} -->
+          {{ daily_data_form.weight|as_crispy_field }}
+    {{ daily_data_form.food_type|as_crispy_field }}
+    {{ daily_data_form.food_weight|as_crispy_field }}
+    {{ daily_data_form.food_time|as_crispy_field }}
+    {{ daily_data_form.weather|as_crispy_field }}
+    {{ daily_data_form.temperature|as_crispy_field }}
+    {{ daily_data_form.training|as_crispy_field }}
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Cancel</button>
-                                    <button id="submitButton" type="submit" class="btn btn-warning">Enter</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+          <div class="form-group hideForm">
+            <label>Training Motivation (1-10):</label>
+            <div
+              id="trainingMotivationButtons"
+              role="group"
+              aria-label="Training Motivation"
+            >
+              {% for i in motivation_range %}
+              <button
+                type="button"
+                class="btn btn-outline-primary motivation-btn"
+                data-value="{{ i }}"
+              >
+                {{ i }}
+              </button>
+              {% endfor %}
             </div>
-        </div>
+            <input type="hidden" id="trainingMotivationInput" name="training_motivation" value=""/>
+          </div>
+          <div class="hideForm">
+          {{ daily_data_form.training_time|as_crispy_field }}
+          </div>
+          {{ daily_data_form.behaviour|as_crispy_field }}
+          {{ daily_data_form.notable_info|as_crispy_field }}
+          {{ daily_data_form.notable_image|as_crispy_field }}
+        
+          <button class="btn btn-signup btn-lg btn-add-data">Submit</button>
+          <div
+            class="modal"
+            id="addDataModal"
+            tabindex="-1"
+            aria-labelledby="addDataModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addDataModalLabel">
+                    Is the Data you entered correct?
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">Are you sure you want to add the Data?</div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancel
+                  </button>
+                  <button id="submitButton" type="submit" class="btn btn-warning">Enter</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 
-
-
-{% endblock daily_data_form %}
-{% block extras %}
+{% endblock daily_data_form %} {% block extras %}
 <script src="{% static 'js/addBirdData.js' %}"></script>
 {% endblock %}

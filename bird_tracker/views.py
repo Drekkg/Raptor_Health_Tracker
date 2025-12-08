@@ -31,7 +31,7 @@ def bird_detail(request, id):
     selected_bird = bird_detail.selected_bird.all()
     
     selected_bird_json = bird_detail.selected_bird.all().values(
-       "behaviour","date", "food_time", "food_type", "food_weight", "id", "notable_info", "selected_bird", "selected_bird_id", "temperature", "trainer", "trainer_id", "training", "training_time", "weather", "weight"
+       "behaviour","date", "food_time", "food_type", "food_weight", "id", "notable_info", "selected_bird", "selected_bird_id", "temperature", "trainer", "trainer_id", "training", "training_time", "weather", "weight", "training_motivation"
     ) 
       # Convert QuerySet to a list and handle datetime fields
     selected_bird_list = list(selected_bird_json)
@@ -56,7 +56,7 @@ def daily_data_form(request, id):
     Template: bird_tracker/daily_data_form.html"""
     bird_detail = get_object_or_404(Bird, id=id)
     selected_bird = bird_detail.selected_bird.all()
-
+    
     if request.method == "POST":
         form = DailyDataForm(request.POST, request.FILES)
         if form.is_valid():
@@ -78,7 +78,9 @@ def daily_data_form(request, id):
                 return render(request, "bird_tracker/daily_data_form.html",
                               {"daily_data_form": form,
                                "bird_detail": bird_detail,
-                               "selected_bird": selected_bird})
+                               "selected_bird": selected_bird,
+                               "motivation_range": range(1, 11),
+                               })
 
         elif not form.is_valid():
             messages.error(request, 'Please check the entered data.')
@@ -86,14 +88,17 @@ def daily_data_form(request, id):
             return render(request, "bird_tracker/daily_data_form.html",
                           {"daily_data_form": form,
                            "bird_detail": bird_detail,
-                           "selected_bird": selected_bird})
+                           "selected_bird": selected_bird,
+                           "motivation_range": range(1, 11),})
 
     else:
         form = DailyDataForm()
+        
         return render(request, "bird_tracker/daily_data_form.html",
                       {"daily_data_form": form,
                        "bird_detail": bird_detail,
-                       "selected_bird": selected_bird})
+                       "selected_bird": selected_bird,
+                       "motivation_range": range(1, 11)})
 
 # view for the add new bird form
 def add_new_bird_form(request):

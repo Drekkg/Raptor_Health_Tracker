@@ -70,14 +70,14 @@
         {{ selected_bird_json|json_script:"selected_bird_data" }}
       </div>
       <div class="col-md-6 chart-container">
-        <div class="btn-chart" >
-        <button id="dateBack" type="button" class="btn btn-secondary">Back</button>
-        <button id="dateForward" type="button" class="btn btn-secondary">Forward</button>
+        <div class="btn-chart">
+          <button id="dateBack" type="button" class="btn btn-secondary">Back</button>
+          <button id="dateForward" type="button" class="btn btn-secondary">Forward</button>
         </div>
         <canvas id="myChart" width="1000px"></canvas>
       </div>
-      </div>
-  </div> 
+    </div>
+  </div>
   <!-- calendar pop up modal -->
   <div
     class="modal fade"
@@ -110,7 +110,7 @@
 {% if user.is_superuser%}
 <div class="daily-button">
   <div class="d-grid">
-    <a
+    <a id="addDailyDataButton"
       href="{% url 'daily_data_form'  bird_detail.id %}"
       class="btn btn-custom-color-action3 btn-lg col-8 mx-auto"
       >Add Daily Data for: <br />
@@ -118,13 +118,13 @@
     </a>
   </div>
 </div>
-{% else %}<div class="daily-button">
+{% else %}
+<div class="daily-button">
   <div class="d-grid">
-    <p
-      class="btn btn-custom-color btn-lg col-8 mx-auto"
-      >Daily Data for: <br />
+    <p class="btn btn-custom-color btn-lg col-8 mx-auto">
+      Daily Data for: <br />
       <b>{{bird_detail.bird_name}}</b>
-  </p>
+    </p>
   </div>
 </div>
 {% endif %}
@@ -142,8 +142,11 @@
           aria-expanded="true"
           aria-controls="collapse{{ forloop.counter }}"
         >
-          <span>Date: {{ data.date }} Trainer: {{ data.trainer }}</span>
-          <span class="weight-heading">Weight: {{ data.weight}}g</span>
+          <span class="span-font">Date: {{ data.date }} Trainer: {{ data.trainer }}</span>
+          <span class="weight-heading">Weight: <span class="span-data">{{ data.weight}}g</span> </span>
+          <span class="span-font"
+            >Food Weight:<span class="span-data">{{ data.food_weight }}g</span>
+          </span>
         </button>
       </h2>
     </div>
@@ -176,7 +179,10 @@
             <p><b>Type of training:</b> {{ data.get_training_display }}</p>
           </div>
           <div>
-            <p><b>Time of training:</b> {{ data.get_training_time }}</p>
+            <p><b>Motivation during Training:</b> {{ data.training_motivation }}</p>
+          </div>
+          <div>
+            <p><b>Time of training:</b> {{ data.training_time }}</p>
           </div>
           <div>
             <p><b>Behaviour/Mood: </b>{{ data.get_behaviour_display }}</p>
@@ -187,7 +193,7 @@
           <div class="col-md-3">
             <div class="image-container">
               {% if "placeholder" in data.notable_image.url %}
-              <img class="card-img-top" src="data:," alt="No Image" />
+              <span></span>
               {% else %}
               <img
                 class="card-img-top"

@@ -89,41 +89,6 @@ margin-bottom: 1rem;
     background-color: #242a30;
 }
 
-
-.hideForm {
-    display: none;
-}
-
-.showForm {
-    display: block;
-}
-
-#trainingMotivationButtons {
-    display: flex; /* Use flexbox for layout */
-    flex-wrap: wrap; /* Allow buttons to wrap to the next line */
-    gap: 5px; /* Add spacing between buttons */
-    justify-content: flex-start; /* Align buttons to the left */
-}
-
-.motivation-btn {
-    flex-basis: 10% !important;
-    margin: 0 5px 15px 0;
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-    padding: 10px;
-    background-color: #2e8bef;
-    color: white;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-    
-
-
-.motivation-btn.active {
-    background-color: #188181;
-    color: white;
-    border-color: #e7e9eb;
-}
 /* .weight-heading {
     font-size: 1.5rem;
     margin: auto;
@@ -172,7 +137,7 @@ margin-bottom: 1rem;
 }
 .body-404 {
 
-    background-image: url('/static/images/blue_sky.jpg');
+    background-image: url("/static/images/blue_sky.b959e17d4f83.jpg");
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
