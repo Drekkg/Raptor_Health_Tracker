@@ -110,7 +110,7 @@
 {% if user.is_superuser%}
 <div class="daily-button">
   <div class="d-grid">
-    <a
+    <a id="addDailyDataButton"
       href="{% url 'daily_data_form'  bird_detail.id %}"
       class="btn btn-custom-color-action3 btn-lg col-8 mx-auto"
       >Add Daily Data for: <br />

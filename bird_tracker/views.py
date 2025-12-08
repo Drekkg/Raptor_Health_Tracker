@@ -79,7 +79,8 @@ def daily_data_form(request, id):
                               {"daily_data_form": form,
                                "bird_detail": bird_detail,
                                "selected_bird": selected_bird,
-                               "motivation_range": range(1, 11),})
+                               "motivation_range": range(1, 11),
+                               })
 
         elif not form.is_valid():
             messages.error(request, 'Please check the entered data.')

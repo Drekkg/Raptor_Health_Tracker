@@ -6,7 +6,7 @@
     <div class="col-md-6 col-lg-6 card mb-4 mt-3">
       <ul>
         <li class="">
-          <a
+          <a id="backToBirdListButton"
             class="btn btn-secondary"
             aria-current="page"
             href="{% url 'bird_detail' bird_detail.id  %}"
@@ -37,7 +37,6 @@
             <label for="training_motivation">Training Motivation (1-10):</label>
             <div
               id="trainingMotivationButtons"
-              class="btn-group"
               role="group"
               aria-label="Training Motivation"
             >
@@ -53,7 +52,9 @@
             </div>
             <input type="hidden" id="trainingMotivationInput" name="training_motivation" value=""/>
           </div>
+          <div class="hideForm">
           {{ daily_data_form.training_time|as_crispy_field }}
+          </div>
           {{ daily_data_form.behaviour|as_crispy_field }}
           {{ daily_data_form.notable_info|as_crispy_field }}
           {{ daily_data_form.notable_image|as_crispy_field }}

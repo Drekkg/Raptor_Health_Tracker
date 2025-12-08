@@ -98,8 +98,15 @@ margin-bottom: 1rem;
     display: block;
 }
 
+#trainingMotivationButtons {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+    gap: 5px; /* Add spacing between buttons */
+    justify-content: flex-start; /* Align buttons to the left */
+}
 
 .motivation-btn {
+    flex-basis: 10% !important;
     margin: 0 5px 15px 0;
     width: 40px;
     height: 40px;
@@ -111,8 +118,9 @@ margin-bottom: 1rem;
 }
     
 
+
 .motivation-btn.active {
-    background-color: #81828b;
+    background-color: #188181;
     color: white;
     border-color: #e7e9eb;
 }

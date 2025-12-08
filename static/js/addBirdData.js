@@ -2,40 +2,60 @@
 const dataModal = new bootstrap.Modal(document.getElementById("addDataModal"));
 const dataButtons = document.getElementsByClassName("btn-add-data");
 const dataConfirm = document.getElementById("addDataConfirm");
+const buttons = document.querySelectorAll(".motivation-btn");
+const hiddenInput = document.getElementById("trainingMotivationInput");
 
-  const buttons = document.querySelectorAll(".motivation-btn");
-  const hiddenInput = document.getElementById("trainingMotivationInput");
+//clear local storage back to birdlist button click
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      // Remove active class from all buttons
-      buttons.forEach((btn) => btn.classList.remove("active"));
-      // Add active class to the clicked button
-      button.classList.add("active");
-      hiddenInput.value = button.getAttribute("data-value");
-      
-    });
+document.getElementById("backToBirdListButton").addEventListener("click", () => {
+  localStorage.setItem("motivation", "");
+  
+});
+
+// Check if localStorage is available and if "motivation" exists
+if (localStorage) {
+  if (!localStorage.getItem("motivation")) {
+    localStorage.setItem("motivation", "");
+  }
+  hiddenInput.value = localStorage.getItem("motivation");
+}
+
+// motivation buttons
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // Remove active class from all buttons
+    buttons.forEach((btn) => btn.classList.remove("active"));
+    // Add active class to the clicked button
+    button.classList.add("active");
+    hiddenInput.value = button.getAttribute("data-value");
+    localStorage.setItem("motivation", hiddenInput.value);
   });
+});
 
 const trainingField = document.querySelector("[name='training']");
-const trainingMotivationSection = document.querySelector(".hideForm");
+const trainingMotivationSection = document.querySelectorAll(".hideForm");
 
 trainingField.addEventListener("change", () => {
-  if(trainingField.value !== "0" ) {
-  trainingMotivationSection.classList.remove("hideForm");
-  trainingMotivationSection.classList.add("showForm");
+  if (trainingField.value !== "0") {
+    trainingMotivationSection.forEach((section) => {
+      section.classList.remove("hideForm");
+      section.classList.add("showForm");
+    });
   } else {
-  trainingMotivationSection.classList.remove("showForm");
-  trainingMotivationSection.classList.add("hideForm");
-  hiddenInput.value = "";
+    trainingMotivationSection.forEach((section) => {
+      section.classList.remove("showForm");
+      section.classList.add("hideForm");
+      hiddenInput.value = "";
+    });
   }
 });
 
-if(trainingField.value !== "0" ) {
-  trainingMotivationSection.classList.remove("hideForm");
-  trainingMotivationSection.classList.add("showForm");
-};
-
+if (trainingField.value !== "0") {
+  trainingMotivationSection.forEach((section) => {
+    section.classList.remove("hideForm");
+    section.classList.add("showForm");
+  });
+}
 
 //add and wire up the buttons
 for (let button of dataButtons) {
