@@ -53,7 +53,7 @@ class DailyData(models.Model):
     temperature = models.IntegerField(null=False)
     training = models.IntegerField(choices=TRAINING, default=0, null=False)
     training_time= models.CharField(max_length=6, null=True, blank=True)
-    training_motivation = models.IntegerField(null=True, blank=True,  validators = [
+    training_motivation = models.IntegerField(null=True, blank=True, default="", validators = [
         MinValueValidator(1),
         MaxValueValidator(10)
     ])
