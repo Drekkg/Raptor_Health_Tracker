@@ -31,7 +31,7 @@ def bird_detail(request, id):
     selected_bird = bird_detail.selected_bird.all()
     
     selected_bird_json = bird_detail.selected_bird.all().values(
-       "behaviour","date", "food_time", "food_type", "food_weight", "id", "notable_info", "selected_bird", "selected_bird_id", "temperature", "trainer", "trainer_id", "training", "training_time", "weather", "weight", "training_motivation"
+       "behaviour","date", "food_time", "food_type", "food_weight", "id", "notable_info", "selected_bird", "selected_bird_id", "temperature", "trainer", "trainer_id", "training", "training_time", "weather", "weight",
     ) 
       # Convert QuerySet to a list and handle datetime fields
     selected_bird_list = list(selected_bird_json)
