@@ -4,7 +4,7 @@ let birdDataGlobalParsed = null;
 let targetDate = [];
 let targetDateNoTraining = [];
 let dateCalendarInfo = null;
-let traingChoices = { 0: "No Training", 1: "Faustappel", 2: "Free Flight", 3: "Feather Play" };
+let traingChoices = { 0: "No Training", 1: "Faustappel", 2: "Free Flight", 3: "Lure Flying" };
 let weatherChoices = {0: "Rainy", 1: "Sunny", 2: "Windy", 3: "Cold",
 };
 let behaviourChoices = {0: "Motivated", 1: "Lethargic", 2: "Aggressive", 3: "Unmotivated", 4: "Slightly Unmotivated", 5: "Neutral"
@@ -12,6 +12,7 @@ let behaviourChoices = {0: "Motivated", 1: "Lethargic", 2: "Aggressive", 3: "Unm
 
 //Get the data using the json_script -  selected_bird_json|json_script:"selected_bird_data"
 document.addEventListener("DOMContentLoaded", () => {
+  console.log(document.getElementById("selected_bird_data"));
   const fetchedBirdDataStr = document.getElementById("selected_bird_data").textContent;
 
   //use JSON.parse to turn it into an object for java script
@@ -58,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const matchingData = birdDataGlobalParsed.filter(
       (selectedDate) => selectedDate.date.slice(0, 10) === dateCalendarInfo,
     );
-    
+    console.log("Bird Data",birdDataGlobalParsed)
     // Generate the HTML content for all matching data
     let modalContent = `<p><strong>Date:</strong> ${dateCalendarInfo}</p>`;
     matchingData.forEach((selectedDate) => {
@@ -66,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <hr>
         <p><strong>Weight:</strong> ${selectedDate.weight}g</p>
         <p><strong>Training:</strong> ${traingChoices[selectedDate.training]}</p>
+        <p><strong>Motivation during Training:</strong> ${selectedDate.training_motivation}</p>
         <p><strong>Food Type:</strong> ${selectedDate.food_type}</p>
         <p><strong>Food Weight:</strong> ${selectedDate.food_weight}g</p>
         <p><strong>Weather:</strong> ${weatherChoices[selectedDate.weather]}</p>
