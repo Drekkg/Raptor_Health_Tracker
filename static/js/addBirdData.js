@@ -10,16 +10,33 @@ const dataConfirm = document.getElementById("addDataConfirm");
     button.addEventListener("click", () => {
       // Remove active class from all buttons
       buttons.forEach((btn) => btn.classList.remove("active"));
-     
       // Add active class to the clicked button
       button.classList.add("active");
-
       hiddenInput.value = button.getAttribute("data-value");
       
     });
   });
 
-console.log("Reload");
+const trainingField = document.querySelector("[name='training']");
+const trainingMotivationSection = document.querySelector(".hideForm");
+
+trainingField.addEventListener("change", () => {
+  if(trainingField.value !== "0" ) {
+  trainingMotivationSection.classList.remove("hideForm");
+  trainingMotivationSection.classList.add("showForm");
+  } else {
+  trainingMotivationSection.classList.remove("showForm");
+  trainingMotivationSection.classList.add("hideForm");
+  hiddenInput.value = "";
+  }
+});
+
+if(trainingField.value !== "0" ) {
+  trainingMotivationSection.classList.remove("hideForm");
+  trainingMotivationSection.classList.add("showForm");
+};
+
+
 //add and wire up the buttons
 for (let button of dataButtons) {
   button.addEventListener("click", (e) => {

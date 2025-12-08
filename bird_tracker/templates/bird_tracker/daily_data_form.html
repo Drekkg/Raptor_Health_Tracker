@@ -33,8 +33,7 @@
     {{ daily_data_form.temperature|as_crispy_field }}
     {{ daily_data_form.training|as_crispy_field }}
 
-    
-          <div class="form-group">
+          <div class="form-group hideForm">
             <label for="training_motivation">Training Motivation (1-10):</label>
             <div
               id="trainingMotivationButtons"
@@ -52,7 +51,7 @@
               </button>
               {% endfor %}
             </div>
-            <input type="hidden" id="trainingMotivationInput" name="training_motivation" value="" />
+            <input type="hidden" id="trainingMotivationInput" name="training_motivation" value=""/>
           </div>
           {{ daily_data_form.training_time|as_crispy_field }}
           {{ daily_data_form.behaviour|as_crispy_field }}

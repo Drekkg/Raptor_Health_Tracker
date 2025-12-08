@@ -88,6 +88,17 @@ margin-bottom: 1rem;
 .dark-bg {
     background-color: #242a30;
 }
+
+
+.hideForm {
+    display: none;
+}
+
+.showForm {
+    display: block;
+}
+
+
 .motivation-btn {
     margin: 0 5px 15px 0;
     width: 40px;
@@ -101,7 +112,7 @@ margin-bottom: 1rem;
     
 
 .motivation-btn.active {
-    background-color: #449281;
+    background-color: #81828b;
     color: white;
     border-color: #e7e9eb;
 }
