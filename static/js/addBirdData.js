@@ -9,16 +9,7 @@ const hiddenInput = document.getElementById("trainingMotivationInput");
 
 document.getElementById("backToBirdListButton").addEventListener("click", () => {
   localStorage.setItem("motivation", "");
-  
 });
-
-// Check if localStorage is available and if "motivation" exists
-if (localStorage) {
-  if (!localStorage.getItem("motivation")) {
-    localStorage.setItem("motivation", "");
-  }
-  hiddenInput.value = localStorage.getItem("motivation");
-}
 
 // motivation buttons
 buttons.forEach((button) => {
@@ -31,6 +22,23 @@ buttons.forEach((button) => {
     localStorage.setItem("motivation", hiddenInput.value);
   });
 });
+
+// Check if localStorage is available and if "motivation" exists
+if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+  localStorage.setItem("motivation", "");
+}
+
+if (localStorage) {
+  if (!localStorage.getItem("motivation")) {
+    localStorage.setItem("motivation", "");
+  }
+  hiddenInput.value = localStorage.getItem("motivation");
+  let selectedButton = document.querySelector(`[data-value="${hiddenInput.value}"]`);
+
+  if (selectedButton) {
+    selectedButton.classList.add("active");
+  }
+}
 
 const trainingField = document.querySelector("[name='training']");
 const trainingMotivationSection = document.querySelectorAll(".hideForm");
