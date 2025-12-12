@@ -83,7 +83,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-6 mb-lg-0">
-              {% if user.is_superuser %}
+              {% if user.is_superuser or user.is_staff %}
               <li class="nav-item navbar-text">
                 <a class="nav-link" aria-current="page" href="{% url 'add_new_bird_form' %}"
                   ><i class="fa-solid fa-feather" id="add-bird-icon"></i>Add New Bird</a
