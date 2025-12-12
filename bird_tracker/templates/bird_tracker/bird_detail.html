@@ -62,12 +62,12 @@
     {% endif %}
   </div>
   <hr class="divider" />
+ <!-- Serialize the selected_bird data into a JSON script -->
+ {{ selected_bird_json|json_script:"selected_bird_data" }}
   <div class="container-fluid">
     <div class="row">
       <!--The Calendar injected here -->
       <div class="col-md-6" id="calendar" data-bird="{{ selected_bird|safe }}">
-        <!-- Serialize the selected_bird data into a JSON script -->
-        {{ selected_bird_json|json_script:"selected_bird_data" }}
       </div>
       <div class="col-md-6 chart-container">
         <div class="btn-chart">

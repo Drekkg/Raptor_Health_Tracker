@@ -39,7 +39,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true' 
 
 ALLOWED_HOSTS = [
-    '8000-drekkg-raptorhealthtrac-439x53tjdnt.ws.codeinstitute-ide.net',
     '.herokuapp.com',
     '127.0.0.1',
     'localhost',
