@@ -66,7 +66,7 @@
           >
           <span class="navbar-text">
             You are logged in as <b>{{ user }}</b>
-            {% if user.is_superuser %}
+            {% if user.is_superuser or user.is_staff %}
             <em>Admin</em>
             {% endif %}
           </span>
