@@ -11,7 +11,7 @@ let yValuesEdited = [];
 let startDate = null;
 let endDate = null;
 let setDate = 0;
-let myChartInstance = null;
+window.myChartInstance = null;
 let weightPercentages = []; // Shared array to store calculated percentages
 
 // iterate over incoming data and add the applicable data to the array eg weight of bird and date
@@ -42,21 +42,16 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   xValuesEdited = xValues.slice(startDate, endDate);
   yValuesEdited = yValues.slice(startDate, endDate);
 
-  // //getBirdWeightDifference the diff between the prev  weight and todays weight calculated in percantages
-  // let firstVal = yValues[0];
-  // const getBirdWeightDifference = () => {
-  //   yValues.forEach((val) => {
-  //     let valToArray = val - firstVal;
-  //     valToArray = (valToArray / val) * 100;
-  //     rangePercentile.push(Math.round(valToArray));
-  //     firstVal = val;
-  //   });
-  // };
 
-  // getBirdWeightDifference();
+
 
   //call the chart function which calls the Chart method
-  chart();
+  document.getElementById("birdWeightChart").addEventListener("click", () => {
+    chart();
+  })
+  
+  
+  
 
   //set the display date and weight range back by one day
   document.getElementById("dateBack").addEventListener("click", () => {
@@ -105,8 +100,9 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   //function to call the Chart method
   function chart() {
     //check to see if the chart has been created and remove it and re draw it to update it
-    if (myChartInstance) {
-      myChartInstance.destroy();
+
+    if (window.myChartInstance) {
+      window.myChartInstance.destroy();
     }
     myChartInstance = new Chart("myChart", {
       type: "line",
