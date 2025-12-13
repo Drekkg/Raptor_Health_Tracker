@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const matchingData = birdDataGlobalParsed.filter(
       (selectedDate) => selectedDate.date.slice(0, 10) === dateCalendarInfo,
     );
-   
+  
     // Generate the HTML content for all matching data
     let modalContent = `<p><strong>Date:</strong> ${dateCalendarInfo}</p>`;
     matchingData.forEach((selectedDate) => {

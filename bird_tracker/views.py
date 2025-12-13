@@ -12,6 +12,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, permission_required
 from cloudinary.exceptions import Error as CloudinaryError
 from django.shortcuts import redirect
+from django.views.decorators.cache import cache_control
 
 # built in django view
 
@@ -20,7 +21,9 @@ class BirdList(generic.ListView):
     queryset = Bird.objects.all()
     template_name = "bird_tracker/index.html"
 
+
 # view to display bird details
+@cache_control(no_store=True, no_cache=True, must_revalidate=True, max_age=0)
 def bird_detail(request, id):
     """display a list of the birds details
     and all daily data that is required
@@ -40,7 +43,7 @@ def bird_detail(request, id):
             bird["date"] = bird["date"].isoformat()  # Convert to ISO 8601 string
      # Convert the QuerySet to JSON
     selected_bird_json = json.dumps(selected_bird_list)
-    print(selected_bird_list)
+    
 
     return render(
         request,
