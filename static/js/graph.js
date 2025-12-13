@@ -46,10 +46,11 @@ parsedBirdDataPromise.then((parsedBirdData) => {
 
 
   //call the chart function which calls the Chart method
-  document.getElementById("birdWeightChart").addEventListener("click", () => {
-    chart();
-  })
-  
+  // document.getElementById("birdWeightChart").addEventListener("click", () => {
+  //   chart();
+  // })
+
+chart();
   
   
 
@@ -61,7 +62,7 @@ parsedBirdDataPromise.then((parsedBirdData) => {
       endDate = xValues.length - setDate;
       xValuesEdited = xValues.slice(startDate, endDate);
       yValuesEdited = yValues.slice(startDate, endDate);
-      //display an alert if there is no more data ie last day
+      //display an alert if there is no more data on the  last day
       if (xValuesEdited.length < 7) {
         if (!document.querySelector(".no-more-data")) {
           const message = document.createElement("div");
