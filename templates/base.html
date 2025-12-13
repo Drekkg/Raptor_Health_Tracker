@@ -1,5 +1,5 @@
-{% load static %} {% url 'home' as home_url %} {% url 'account_login' as login_url %} {% url
-'account_signup' as signup_url %} {% url 'account_logout' as logout_url %}
+{% load static %} {% url 'home' as home_url %} {% url 'account_login' as login_url %} 
+{% url 'account_signup' as signup_url %} {% url 'account_logout' as logout_url %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -129,9 +129,10 @@
     {% endif %}
 
     <main class="flex-shrink-0 main-bg flex-wrapper">
-      {% block bird %} {% endblock bird %} {% block bird_detail %} {% endblock bird_detail %}
-      {%block daily_data_form %} {% endblock daily_data_form %} {% block content%} {%endblock
-      content%}
+    {% block bird %} {% endblock bird %}
+    {% block bird_detail %} {% endblock bird_detail %}
+    {%block daily_data_form %} {% endblock daily_data_form %} 
+    {% block content%} {%endblock content%}
     </main>
 
     <!-- Footer -->
