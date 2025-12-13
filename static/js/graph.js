@@ -11,7 +11,7 @@ let yValuesEdited = [];
 let startDate = null;
 let endDate = null;
 let setDate = 0;
-let myChartInstance = null;
+window.myChartInstance = null;
 let weightPercentages = []; // Shared array to store calculated percentages
 
 // iterate over incoming data and add the applicable data to the array eg weight of bird and date
@@ -110,8 +110,9 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   chart();
   function chart() {
     //check to see if the chart has been created and remove it and re draw it to update it
-    if (myChartInstance) {
-      myChartInstance.destroy();
+
+    if (window.myChartInstance) {
+      window.myChartInstance.destroy();
     }
     myChartInstance = new Chart("myChart", {
       type: "line",
