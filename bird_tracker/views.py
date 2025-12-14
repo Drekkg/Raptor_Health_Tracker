@@ -12,7 +12,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, permission_required
 from cloudinary.exceptions import Error as CloudinaryError
 from django.shortcuts import redirect
-from django.views.decorators.cache import cache_control
 
 # built in django view
 
@@ -23,7 +22,6 @@ class BirdList(generic.ListView):
 
 
 # view to display bird details
-@cache_control(no_store=True, no_cache=True, must_revalidate=True, max_age=0)
 def bird_detail(request, id):
     """display a list of the birds details
     and all daily data that is required

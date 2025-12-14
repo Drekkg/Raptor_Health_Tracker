@@ -46,7 +46,7 @@
             >Back to Bird List</a
           >
         </li>
-        {% if user.is_superuser %}
+        {% if user.is_superuser or use.is_staff %}
         <li class="li-style d-grid">
           <a class="btn btn-signup" aria-current="page" href="{% url 'bird_edit' bird_detail.id %}"
             >Edit Bird Data</a
