@@ -1,11 +1,10 @@
 import { parsedBirdDataPromise } from "./calendar.js";
+let myMotivationChart;
 
 
-
-console.log("Derek", window.myChartInstance)
 
 document.getElementById("birdMotivationChart").addEventListener("click", () => {
-    chart();
+    motivationChart();
   })
 
 
@@ -19,19 +18,22 @@ document.getElementById("birdMotivationChart").addEventListener("click", () => {
       { year: 2016, count: 28 },
     ];
 
-  function chart() {
-    if (window.myChartInstance) {
-        window.myChartInstance.destroy();
+  function motivationChart() {
+    if (myMotivationChart) {
+      myMotivationChart.destroy();
       }
-      myChartInstance = new Chart("myChart",
+      myMotivationChart = new Chart("motivationChart",
       {
-        type: 'bar',
+        type: 'line',
         data: {
           labels: data.map(row => row.year),
           datasets: [
             {
-              label: 'Acquisitions by year',
-              data: data.map(row => row.count)
+             
+              data: data.map(row => row.count),
+              backgroundColor: 'rgba(3, 3, 246, 0.2)', // Blue with 20% opacity
+                    borderColor: 'rgba(3, 3, 246, 0.8)', // Blue with 80% opacity
+                    borderWidth: 2
             }
           ]
         }
