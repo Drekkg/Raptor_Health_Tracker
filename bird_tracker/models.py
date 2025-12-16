@@ -39,7 +39,7 @@ class DailyData(models.Model):
     """
     Stores a single instance of required
      daily data :model: `selected_bird.Bird`
-                                                    :model: `trainer.User`
+    :model: `trainer.User`
     """
     selected_bird = models.ForeignKey(
         Bird, on_delete=models.CASCADE, related_name='selected_bird')
