@@ -1,8 +1,10 @@
 from .models import DailyData
+from django.forms import DateTimeInput
 from .models import Bird
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field
+from django.forms import TimeInput
 
 
 # unicode for degree celsius
@@ -22,11 +24,11 @@ class AddNewBirdForm(forms.ModelForm):
 class DailyDataForm(forms.ModelForm):
     class Meta:
         model = DailyData
-        fields = ('weight', 'food_type', 'food_weight', 'food_time',
+        fields = ('date','weight', 'food_type', 'food_weight', 'food_time',
                   'weather', 'temperature', 'training', 'training_motivation', 'training_time', 'behaviour',
                   'notable_info', 'notable_image')
         labels = {
-            'weight': 'Weight:  (please enter the bird\'s weight in grams)',
+            'date': 'Date: (please enter the time and date)', 'weight': 'Weight:  (please enter the bird\'s weight in grams)',
             'food_type': 'Food Type:  (mouse, chicken, etc)',
             'food_weight': 'Food Weight:  (food weight in grams)',
             'food_time': 'Feeding Time: (time of feeding)',
@@ -39,6 +41,9 @@ class DailyDataForm(forms.ModelForm):
         }
         widgets = {
             'training_motivation': forms.HiddenInput(),
+            'date': DateTimeInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
+            'training_time': TimeInput(attrs={'type': 'time'}),
+            'food_time': TimeInput(attrs={'type': 'time'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -58,3 +63,4 @@ class DailyDataForm(forms.ModelForm):
             'notable_info',
             'notable_image',
         )
+        self.fields['date'].input_formats = ['%Y-%m-%dT%H:%M']
