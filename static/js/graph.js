@@ -30,36 +30,29 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   //we use sort to arrange the arrays: high => low and low => high. the scale is set in the Y scale options of the create Chart method
   yScaleMax.sort((a, b) => b - a);
   yScaleMin.sort((a, b) => a - b);
-
-  // For the x axis we only want to display 7 dates, we slice the arrays accordingly
+  // For the x axis we only want to display 7 dates, we slice the arrays accordingly and the arrays
   //setDate is initially set to zero
+
   //startDate is set to the index of the last 7 elements of the date array
   startDate = xValues.length - setDate - 7;
- 
   //endDate is set to the index of the last element of the array
   endDate = xValues.length - setDate;
 
   //we slice the arrays x for the date and y for the corresponding weight
+  xValuesEdited = xValues.slice(startDate, endDate);
+  yValuesEdited = yValues.slice(startDate, endDate);
 
-  if (xValues.length > 7) {
-    xValuesEdited = xValues.slice(startDate, endDate);
-  }else {
-    xValuesEdited = xValues
-  }
+
+
+
+  //call the chart function which calls the Chart method
+  // document.getElementById("birdWeightChart").addEventListener("click", () => {
+  //   chart();
+  // })
+
+chart();
   
-  if (yValues.length > 7) {
-    yValuesEdited = yValues.slice(startDate, endDate);
-  } else {
-    yValuesEdited = yValues;
-  }
-
-
-
-  // console.log("frodo")
-  //   document.getElementById("birdWeightChart").addEventListener("click", () => {
-  //     chart();
-  //     console.log("chart")
-  //   })
+  
 
   //set the display date and weight range back by one day
   document.getElementById("dateBack").addEventListener("click", () => {
@@ -69,8 +62,7 @@ parsedBirdDataPromise.then((parsedBirdData) => {
       endDate = xValues.length - setDate;
       xValuesEdited = xValues.slice(startDate, endDate);
       yValuesEdited = yValues.slice(startDate, endDate);
-
-      //display an alert if there is no more data for the last day
+      //display an alert if there is no more data on the  last day
       if (xValuesEdited.length < 7) {
         if (!document.querySelector(".no-more-data")) {
           const message = document.createElement("div");
@@ -89,12 +81,12 @@ parsedBirdDataPromise.then((parsedBirdData) => {
 
   //set the display date and weight range forward by one day
   document.getElementById("dateForward").addEventListener("click", () => {
-    const noMoreDataElement = document.querySelector(".no-more-data");
-    if (noMoreDataElement) {
-      noMoreDataElement.remove();
-    }
     //check to see if the no more data alert is visible/created and remove it from the dom if it is
     if (setDate > 0) {
+      const noMoreDataElement = document.querySelector(".no-more-data");
+      if (noMoreDataElement) {
+        noMoreDataElement.remove();
+      }
       setDate--;
       startDate = xValues.length - setDate - 7;
       endDate = xValues.length - setDate;
@@ -107,7 +99,6 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   });
 
   //function to call the Chart method
-  chart();
   function chart() {
     //check to see if the chart has been created and remove it and re draw it to update it
 
