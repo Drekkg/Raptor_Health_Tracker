@@ -11,8 +11,9 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, permission_required
 from cloudinary.exceptions import Error as CloudinaryError
+from django.utils.timezone import now
 from django.shortcuts import redirect
-
+from django.forms import TimeInput
 
 # built in django view
 
@@ -32,7 +33,7 @@ def bird_detail(request, id):
     queryset = Bird.objects.all()
     bird_detail = get_object_or_404(queryset, id=id)
     selected_bird = bird_detail.selected_bird.all()
-    
+    from django.utils.timezone import now
     selected_bird_json = bird_detail.selected_bird.all().values(
        "behaviour","date", "food_time", "food_type", "food_weight", "id", "notable_info", "selected_bird", "selected_bird_id", "temperature", "trainer", "trainer_id", "training", "training_time", "weather", "weight", "training_motivation", 
     ) 
@@ -40,7 +41,11 @@ def bird_detail(request, id):
     selected_bird_list = list(selected_bird_json)
     for bird in selected_bird_list:
         if "date" in bird and bird["date"] is not None:
-            bird["date"] = bird["date"].isoformat()  # Convert to ISO 8601 string
+            bird["date"] = bird["date"].isoformat()
+        if bird["training_time"]:
+           bird["training_time"] = bird["training_time"].strftime('%H:%M:%S')
+        if bird["food_time"]:
+           bird["food_time"] = bird["food_time"].strftime('%H:%M:%S')
      # Convert the QuerySet to JSON
     selected_bird_json = json.dumps(selected_bird_list)
     
@@ -96,13 +101,14 @@ def daily_data_form(request, id):
                            "motivation_range": range(1, 11),})
 
     else:
-        form = DailyDataForm()
+        form = DailyDataForm(initial={'date': now()})
         
-        return render(request, "bird_tracker/daily_data_form.html",
+    return render(request, "bird_tracker/daily_data_form.html",
                       {"daily_data_form": form,
                        "bird_detail": bird_detail,
                        "selected_bird": selected_bird,
                        "motivation_range": range(1, 11)})
+    
 
 # view for the add new bird form
 def add_new_bird_form(request):
@@ -161,9 +167,8 @@ def add_new_bird_form(request):
             },
         )
 
+
 # view to edit bird form
-
-
 def bird_edit(request, id):
     """
     View to edit bird information.

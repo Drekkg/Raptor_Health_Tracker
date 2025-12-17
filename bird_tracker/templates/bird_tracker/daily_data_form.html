@@ -18,11 +18,12 @@
         <h3>
           Please enter the required information for:
           <span>{{bird_detail.bird_name}}</span>
-          {% now "d-m-Y" %}
+          
         </h3>
         <p>Trainer: {{ user.username }}</p>
         <form id="DailyDataForm" method="post" enctype="multipart/form-data">
           {% csrf_token %}
+          {{ daily_data_form.date|as_crispy_field }}
           <!-- {{ daily_data_form | crispy }} -->
           <!-- {{ daily_data_form.weight|as_crispy_field }} -->
           {{ daily_data_form.weight|as_crispy_field }}

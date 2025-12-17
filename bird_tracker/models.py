@@ -3,6 +3,7 @@ from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils.timezone import now
 
 # Constants to be used in the Bird and DailyData Model
 SEX = ((0, "Female"), (1, "Male"), (2, "Unknown"))
@@ -38,21 +39,24 @@ class DailyData(models.Model):
     """
     Stores a single instance of required
      daily data :model: `selected_bird.Bird`
-                                                    :model: `trainer.User`
+    :model: `trainer.User`
     """
     selected_bird = models.ForeignKey(
         Bird, on_delete=models.CASCADE, related_name='selected_bird')
     trainer = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='trainer')
-    date = models.DateTimeField(auto_now_add=True, null=False,)
+    date = models.DateTimeField(default=now, null=False) 
     weight = models.PositiveSmallIntegerField(null=False)
     food_type = models.CharField(max_length=12, blank=False)
     food_weight = models.PositiveSmallIntegerField(null=False)
-    food_time =models.CharField(max_length=6,default="15h00", null=False)
+    food_time = models.TimeField(null=True, blank=True)
     weather = models.IntegerField(choices=WEATHER, default=1, null=False)
-    temperature = models.IntegerField(null=False)
+    temperature = models.IntegerField(null=False,  validators=[
+            MinValueValidator(-50), 
+            MaxValueValidator(50)   
+        ])
     training = models.IntegerField(choices=TRAINING, default=0, null=False)
-    training_time= models.CharField(max_length=6, null=True, blank=True)
+    training_time = models.TimeField(null=True, blank=True)
     training_motivation = models.IntegerField(null=True, blank=True, validators = [
         MinValueValidator(1),
         MaxValueValidator(10)
