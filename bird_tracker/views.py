@@ -43,9 +43,17 @@ def bird_detail(request, id):
         if "date" in bird and bird["date"] is not None:
             bird["date"] = bird["date"].isoformat()
         if bird["training_time"]:
-           bird["training_time"] = bird["training_time"].strftime('%H:%M:%S')
+            if isinstance(bird["training_time"], str):
+                pass
+            else:
+                bird["training_time"] = bird["training_time"].strftime('%H:%M:%S')
+                
         if bird["food_time"]:
-           bird["food_time"] = bird["food_time"].strftime('%H:%M:%S')
+            if isinstance(bird["food_time"], str):
+                pass
+            else:
+                bird["food_time"] = bird["food_time"].strftime('%H:%M:%S')
+      
      # Convert the QuerySet to JSON
     selected_bird_json = json.dumps(selected_bird_list)
     
