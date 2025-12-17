@@ -1,9 +1,8 @@
 import { parsedBirdDataPromise } from "./calendar.js";
 let myMotivationChart;
 
-// document.getElementById("birdMotivationChart").addEventListener("click", () => {
-//     chart();
-//   })
+
+
 
 
     const data = [
