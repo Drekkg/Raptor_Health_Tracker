@@ -3,9 +3,6 @@ let myMotivationChart;
 
 
 
-document.getElementById("birdMotivationChart").addEventListener("click", () => {
-    motivationChart();
-  })
 
 
     const data = [
