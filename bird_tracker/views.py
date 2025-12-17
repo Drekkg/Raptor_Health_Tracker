@@ -24,6 +24,7 @@ class BirdList(generic.ListView):
 
 
 # view to display bird details
+
 def bird_detail(request, id):
     """display a list of the birds details
     and all daily data that is required
