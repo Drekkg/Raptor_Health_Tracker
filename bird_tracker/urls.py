@@ -9,5 +9,6 @@ urlpatterns = [
     path('bird_detail/<int:id>/', views.bird_detail, name='bird_detail'),
     path('<int:id>/edit_bird/', views.bird_edit, name='bird_edit'),   # noqa
     path('bird_detail/<int:id>/delete_bird/', views.bird_delete, name='bird_delete'),   # noqa
+    path('<int:id>/daily_data_edit/', views.daily_data_edit, name='daily_data_edit'),   # noqa
 
 ]

@@ -34,7 +34,12 @@
           </div>
           <p class="lead"><b>Type: </b>{{bird_detail.type }}</p>
           <p class="lead"><b>Gender: </b>{{bird_detail.get_sex_display }}</p>
-          <p class="lead"><b>Date of Birth:</b> {{bird_detail.date_of_birth }}</p>
+          <p class="lead"><b>Date of Birth:</b> {{bird_detail.date_of_birth}}</p>
+          {% if bird_detail.target_weight > 0  %}
+          <p class="lead"><b>Target Weight:</b> {{bird_detail.target_weight}}g</p>
+          {% else %}
+          <p class="lead"><b>Target Weight:</b> None given</p>
+          {% endif %}
           <p class="lead"><b>Additional Info: </b>{{bird_detail.additional_info }}</p>
         </div>
       </div>
@@ -163,6 +168,16 @@
     >
       <div class="accordion-body">
         <div class="accordion-text col-md-4">
+          {% if user.is_superuser or user.is_staff %}
+          <!-- <li class="li-style d-grid">
+            <a class="btn btn-signup" aria-current="page" href="{% url 'daily_data_edit'  data.id %}"
+              >Edit Daily Data</a
+            >
+          </li> -->
+          
+        </ul>
+      </div>
+      {% endif %}
           <div>
             <p><b>Bird Weight: </b>{{ data.weight }} grams</p>
           </div>
