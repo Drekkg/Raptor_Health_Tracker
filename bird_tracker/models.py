@@ -22,6 +22,10 @@ class Bird(models.Model):
     type = models.CharField(max_length=20, blank=False)
     sex = models.IntegerField(choices=SEX, default=0, null=False)
     date_of_birth = models.CharField(max_length=20, default="Unknown")
+    target_weight = models.PositiveSmallIntegerField(null=True, blank=True, validators=[
+            MinValueValidator(0), 
+            MaxValueValidator(20000)   
+        ])
     additional_info = models.CharField(max_length=200, blank=False)
     created_on = models.DateTimeField(auto_now_add=True, null=False)
     main_image = CloudinaryField('image', default='placeholder', format='jpg')

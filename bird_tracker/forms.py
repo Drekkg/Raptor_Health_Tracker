@@ -14,10 +14,11 @@ deg = '\u00B0C'
 class AddNewBirdForm(forms.ModelForm):
     class Meta:
         model = Bird
-        fields = ('bird_name', 'type', 'sex', 'date_of_birth',
+        fields = ('bird_name', 'type', 'sex', 'date_of_birth', 'target_weight',
                   'additional_info', 'main_image')
         labels = {
-            'date_of_birth': 'Date of Birth:      format: YYYY-MM-DD'
+            'date_of_birth': 'Date of Birth:      format: YYYY-MM-DD',
+            'target_weight': 'Target Weight in Grams'
         }
 
 
