@@ -33,9 +33,8 @@ def bird_detail(request, id):
     queryset = Bird.objects.all()
     bird_detail = get_object_or_404(queryset, id=id)
     selected_bird = bird_detail.selected_bird.all()
-    from django.utils.timezone import now
     selected_bird_json = bird_detail.selected_bird.all().values(
-       "behaviour","date", "food_time", "food_type", "food_weight", "id", "notable_info", "selected_bird", "selected_bird_id", "temperature", "trainer", "trainer_id", "training", "training_time", "weather", "weight", "training_motivation", 
+       "behaviour","date", "food_time", "food_type", "food_weight", "id", "notable_info", "selected_bird", "selected_bird_id", "temperature", "trainer", "trainer_id", "training", "training_time", "weather", "weight", "training_motivation",
     ) 
       # Convert QuerySet to a list and handle datetime fields
     selected_bird_list = list(selected_bird_json)

@@ -145,6 +145,9 @@ margin-bottom: 1rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
     letter-spacing: 0.05rem; /* Slightly increase spacing between letters */
 }
+.calendarTagetWeight {
+    margin-left: 7rem;
+}
 
 .span-data {
     color: #274c77; /* Deep blue for the data */
