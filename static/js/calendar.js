@@ -12,6 +12,7 @@ let behaviourChoices = {0: "Motivated", 1: "Lethargic", 2: "Aggressive", 3: "Unm
 
 //Get the data using the json_script -  selected_bird_json|json_script:"selected_bird_data"
 document.addEventListener("DOMContentLoaded", () => {
+ 
   const fetchedBirdDataStr = document.getElementById("selected_bird_data").textContent;
 
   //use JSON.parse to turn it into an object for java script
@@ -53,7 +54,6 @@ export const parsedBirdDataPromise = new Promise((resolve, reject) => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-
   function displayTrainingCalendar(dateCalendarInfo) {
     const time = null;
     // Filter all matching data for the selected date

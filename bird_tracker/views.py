@@ -24,7 +24,6 @@ class BirdList(generic.ListView):
 
 
 # view to display bird details
-
 def bird_detail(request, id):
     """display a list of the birds details
     and all daily data that is required
@@ -36,6 +35,8 @@ def bird_detail(request, id):
     selected_bird_json = bird_detail.selected_bird.all().values(
        "behaviour","date", "food_time", "food_type", "food_weight", "id", "notable_info", "selected_bird", "selected_bird_id", "temperature", "trainer", "trainer_id", "training", "training_time", "weather", "weight", "training_motivation",
     ) 
+    for data in selected_bird_json:
+        data["target_weight"] = bird_detail.target_weight
       # Convert QuerySet to a list and handle datetime fields
     selected_bird_list = list(selected_bird_json)
     for bird in selected_bird_list:
@@ -62,9 +63,12 @@ def bird_detail(request, id):
         "bird_tracker/bird_detail.html",
         {"bird_detail": bird_detail,
          "selected_bird": selected_bird,
-         "selected_bird_json": selected_bird_json, 
+         "selected_bird_json": selected_bird_json,
+         "target_weight": bird_detail.target_weight, 
          },
     )
+    
+    
 # View for the daily data form
 def daily_data_form(request, id):
     """Form handler for adding daily data for a bird.
@@ -113,7 +117,10 @@ def daily_data_form(request, id):
                       {"daily_data_form": form,
                        "bird_detail": bird_detail,
                        "selected_bird": selected_bird,
-                       "motivation_range": range(1, 11)})
+                       "motivation_range": range(1, 11),
+                       }
+                      
+                      )
     
 
 # view for the add new bird form
