@@ -1,9 +1,11 @@
 // import the converted data from calendar.js
 import { parsedBirdDataPromise } from "./calendar.js";
 
+const birdInfoElement = document.getElementById("bird-info");
+const targetWeight = parseInt(birdInfoElement.dataset.targetWeight);
 // create arrays to hold the data for the chart axes
-const yScaleMin = [];
-const yScaleMax = [];
+const yScaleMin = [targetWeight - (targetWeight * 1.10 - targetWeight)];
+const yScaleMax = [targetWeight * 1.10 ];
 const xValues = [];
 const yValues = [];
 let xValuesEdited = [];
@@ -13,7 +15,7 @@ let endDate = null;
 let setDate = 0;
 let myWeightChartInstance;
 let weightPercentages = [];
-let targetWeight; // Shared array to store calculated percentages
+ // Shared array to store calculated percentages
 
 // iterate over incoming data and add the applicable data to the array eg weight of bird and date
 parsedBirdDataPromise.then((parsedBirdData) => {
@@ -47,8 +49,7 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   let targetWeightElement = document.getElementById("bird-info");
   const targetWeight = targetWeightElement.dataset.targetWeight; 
  
-  let targetWeightInt = parseInt(targetWeight);
-console.log(typeof(targetWeightInt),targetWeightInt)
+
 
   chart();
   
@@ -101,8 +102,7 @@ console.log(typeof(targetWeightInt),targetWeightInt)
 const targetWeightLinePlugin = {
   id: "targetWeightLine",
   beforeDraw: (chart) => {
-      const birdInfoElement = document.getElementById("bird-info");
-      const targetWeight = parseInt(birdInfoElement.dataset.targetWeight);
+      
 
       // Check if targetWeight is valid
       if (isNaN(targetWeight)) {
@@ -133,12 +133,12 @@ const targetWeightLinePlugin = {
       ctx.fillText(`Target Weight: ${targetWeight}g`, xScale.right - 150, yValue - 5);
   },
 };
+
 Chart.register(targetWeightLinePlugin);
 
   //function to call the Chart method
   function chart() {
     //check to see if the chart has been created and remove it and re draw it to update it
-
     if (myWeightChartInstance) {
       myWeightChartInstance.destroy();
     }
