@@ -5,7 +5,7 @@ const birdInfoElement = document.getElementById("bird-info");
 const targetWeight = parseInt(birdInfoElement.dataset.targetWeight);
 // create arrays to hold the data for the chart axes
 const yScaleMin = [targetWeight - (targetWeight * 1.10 - targetWeight)];
-const yScaleMax = [targetWeight * 1.10 ];
+const yScaleMax = [Math.round(targetWeight * 1.10)];
 const xValues = [];
 const yValues = [];
 let xValuesEdited = [];
@@ -258,7 +258,7 @@ Chart.register(targetWeightLinePlugin);
             //yScaleMax is the highest yScaleMin the lowest + 30g
 
             max: yScaleMax[0] + 30,
-            min: yScaleMin[0] - 30,
+            min: yScaleMin[0] - 30 > 0 ? yScaleMin[0] - 30 : 0,
             title: {
               display: true,
               text: "Weight in grams",
