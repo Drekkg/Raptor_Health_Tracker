@@ -5,16 +5,20 @@ let targetDate = [];
 let targetDateNoTraining = [];
 let dateCalendarInfo = null;
 let traingChoices = { 0: "No Training", 1: "Faustappel", 2: "Free Flight", 3: "Lure Flying" };
-let weatherChoices = {0: "Rainy", 1: "Sunny", 2: "Windy", 3: "Cold",
-};
-let behaviourChoices = {0: "Motivated", 1: "Lethargic", 2: "Aggressive", 3: "Unmotivated", 4: "Slightly Unmotivated", 5: "Neutral"
+let weatherChoices = { 0: "Rainy", 1: "Sunny", 2: "Windy", 3: "Cold" };
+let behaviourChoices = {
+  0: "Motivated",
+  1: "Lethargic",
+  2: "Aggressive",
+  3: "Unmotivated",
+  4: "Slightly Unmotivated",
+  5: "Neutral",
 };
 
 //Get the data using the json_script -  selected_bird_json|json_script:"selected_bird_data"
 document.addEventListener("DOMContentLoaded", () => {
  
   const fetchedBirdDataStr = document.getElementById("selected_bird_data").textContent;
-
   //use JSON.parse to turn it into an object for java script
   try {
     const fetchedBirdData = JSON.parse(fetchedBirdDataStr);
@@ -36,9 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-  
 });
-
 
 export const parsedBirdDataPromise = new Promise((resolve, reject) => {
   document.addEventListener("DOMContentLoaded", () => {
@@ -52,18 +54,23 @@ export const parsedBirdDataPromise = new Promise((resolve, reject) => {
   });
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
   function displayTrainingCalendar(dateCalendarInfo) {
     const time = null;
     // Filter all matching data for the selected date
     const matchingData = birdDataGlobalParsed.filter(
-      (selectedDate) => selectedDate.date.slice(0, 10) === dateCalendarInfo,
+      (selectedDate) => selectedDate.date.slice(0, 10) === dateCalendarInfo
     );
-  
+    console.log(matchingData);
+
     // Generate the HTML content for all matching data
     let modalContent = `<p><strong>Date:</strong> ${dateCalendarInfo}</p>`;
     matchingData.forEach((selectedDate) => {
+      const imagePlaceholder = "http://res.cloudinary.com/du9ulpbic/image/upload/placeholder"
+      const selectedDateNotableImage = selectedDate.notable_image === imagePlaceholder ? "No Image" :`<img src="${selectedDate.notable_image}"
+      class="card-img-top"
+      alt="Notable Image">`;
+
       modalContent += `
         <hr>
         <p><strong>Weight:</strong> ${selectedDate.weight}g</p>
@@ -75,6 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <p><strong>Temperature:</strong> ${selectedDate.temperature}°C</p>
         <p><strong>Behaviour:</strong> ${behaviourChoices[selectedDate.behaviour]}</p>
         <p><strong>Additional Info:</strong> ${selectedDate.notable_info || "None"}</p>
+        <p>${selectedDateNotableImage}</p>
+        
       `;
     });
 
@@ -90,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //merge the two arrrays
   let allDatesWithData = targetDate.concat(targetDateNoTraining);
   const allDatesWithDataUnique = [...new Set(allDatesWithData)];
-  
+
   // Calendar options
   const options = {
     selectedTheme: "light",

@@ -231,9 +231,10 @@
               {% else %}
               <img
                 class="card-img-top"
-                src=" {{data.notable_image.url  }}"
+                src="{{ data.notable_image.url }}"
                 alt="{{ bird.bird_name }}"
               />
+            
               {% endif %}
             </div>
           </div>
@@ -241,6 +242,7 @@
       </div>
     </div>
     {% endfor %}
+    
   </div>
   <!-- Delete confirmation modal -->
   <div
