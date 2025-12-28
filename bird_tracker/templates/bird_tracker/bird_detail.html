@@ -22,7 +22,10 @@
           class="card-img-top"
           src=" {{ bird_detail.main_image.url }}"
           alt="{{ bird_detail.bird_name }}"
+          id="main-img"
         />
+           
+       
         {% endif %}
       </div>
     </div>
@@ -44,6 +47,7 @@
         </div>
       </div>
     </div>
+    
     <div class="col-md-4 button-card">
       <ul>
         <li class="li-style d-grid">
@@ -65,6 +69,12 @@
       </ul>
     </div>
     {% endif %}
+  </div>
+   <!-- The main image Modal -->
+  <div id="myModal" class="modal-img">
+    <span class="close">×</span>  
+    <img class="modal-content" id="modal-img">
+    <div id="caption"></div>
   </div>
   <hr class="divider" />
  <!-- Serialize the selected_bird data into a JSON script -->
@@ -273,8 +283,7 @@
       </div>
     </div>
   </div>
-  <div id="bird-info" data-target-weight="{{ bird_detail.target_weight|default:'' }}">
-   
+  <div id="bird-info" data-target-weight="{{ bird_detail.target_weight|default:'' }}">  
 </div>
 </div>
 

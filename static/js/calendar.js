@@ -17,7 +17,6 @@ let behaviourChoices = {
 
 //Get the data using the json_script -  selected_bird_json|json_script:"selected_bird_data"
 document.addEventListener("DOMContentLoaded", () => {
- 
   const fetchedBirdDataStr = document.getElementById("selected_bird_data").textContent;
   //use JSON.parse to turn it into an object for java script
   try {
@@ -61,15 +60,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const matchingData = birdDataGlobalParsed.filter(
       (selectedDate) => selectedDate.date.slice(0, 10) === dateCalendarInfo
     );
-    console.log(matchingData);
 
     // Generate the HTML content for all matching data
     let modalContent = `<p><strong>Date:</strong> ${dateCalendarInfo}</p>`;
     matchingData.forEach((selectedDate) => {
-      const imagePlaceholder = "http://res.cloudinary.com/du9ulpbic/image/upload/placeholder"
-      const selectedDateNotableImage = selectedDate.notable_image === imagePlaceholder ? "No Image" :`<img src="${selectedDate.notable_image}"
+      const imagePlaceholder = "http://res.cloudinary.com/du9ulpbic/image/upload/placeholder";
+      const selectedDateNotableImage =
+        selectedDate.notable_image === imagePlaceholder
+          ? "No Image"
+          : `<img src="${selectedDate.notable_image}"
       class="card-img-top"
-      alt="Notable Image">`;
+      alt="Notable Image"
+      id="notableImage">`;
 
       modalContent += `
         <hr>
@@ -83,6 +85,13 @@ document.addEventListener("DOMContentLoaded", () => {
         <p><strong>Behaviour:</strong> ${behaviourChoices[selectedDate.behaviour]}</p>
         <p><strong>Additional Info:</strong> ${selectedDate.notable_info || "None"}</p>
         <p>${selectedDateNotableImage}</p>
+
+        
+         <div id="notableModal" class="modal-img">
+            <span class="close" id="close">×</span>  
+            <img class="modal-content" id="notable-modal-img">
+            <div id="caption"></div>
+          </div>
         
       `;
     });
@@ -94,7 +103,28 @@ document.addEventListener("DOMContentLoaded", () => {
     // Trigger the Bootstrap modal
     const calendarModal = new bootstrap.Modal(document.getElementById("calendarModal"));
     calendarModal.show();
+
+    const modal = document.getElementById("notableModal");
+    const notableModalImg = document.getElementById("notable-modal-img");
+    const closeBtn = document.getElementById("close");
+
+    // add event listeners to img elements to display in a modal
+  
+    const notableImage = document.getElementById("notableImage");
+    if(notableImage){
+    notableImage.addEventListener("click", function (e) {
+      if (e.target === notableImage) {
+        modal.style.display = "block";
+        notableModalImg.src = this.src;
+        notableModalImg.alt = this.alt;
+      }
+    });
+    closeBtn.addEventListener("click", function () {
+      modal.style.display = "none";
+    });
   }
+  }
+
   const { Calendar } = window.VanillaCalendarPro;
   //merge the two arrrays
   let allDatesWithData = targetDate.concat(targetDateNoTraining);
