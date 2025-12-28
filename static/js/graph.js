@@ -83,11 +83,11 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   //set the display date and weight range forward by one day
   document.getElementById("dateForward").addEventListener("click", () => {
     //check to see if the no more data alert is visible/created and remove it from the dom if it is
+    const noMoreDataElement = document.querySelector(".no-more-data");
+    if (noMoreDataElement) {
+      noMoreDataElement.remove();
+    }
     if (setDate > 0) {
-      const noMoreDataElement = document.querySelector(".no-more-data");
-      if (noMoreDataElement) {
-        noMoreDataElement.remove();
-      }
       setDate--;
       startDate = xValues.length - setDate - 7;
       endDate = xValues.length - setDate;
