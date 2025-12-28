@@ -460,12 +460,18 @@ margin-bottom: 1rem;
   .modal-content {
     width: 100%;
   }
+  .btn-chart {
+    margin-left: 5vw;
+}
 }
 
 @media only screen and (max-width: 500px){
   .responsive {
     width: 100%;
   }
+  .btn-chart {
+    font-family: .5rem;
+}
 }
 
 /* Clear Floats */
@@ -509,4 +515,5 @@ margin-bottom: 1rem;
     .bird-card {
         margin-left: 0rem;
     }
+   
 }
