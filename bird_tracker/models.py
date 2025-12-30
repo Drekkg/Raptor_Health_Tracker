@@ -5,6 +5,7 @@ from cloudinary.models import CloudinaryField
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.timezone import now
 
+
 # Constants to be used in the Bird and DailyData Model
 SEX = ((0, "Female"), (1, "Male"), (2, "Unknown"))
 WEATHER = ((0, "Rainy"), (1, "Sunny"), (2, "Windy"), (3, "Cold"))

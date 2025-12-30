@@ -129,12 +129,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000/"
 ]
 
-# Cloudinary configuration
-# cloudinary.config(
-#     cloud_name='du9ulpbic',
-#     api_key = '646116894968451',
-#     api_secret='ubQ1C8x4-RRypIWt4sOp3WVhPko'
-# )
+
 cloudinary.config(
     cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
     api_key=os.environ.get('CLOUDINARY_API_KEY'),
@@ -156,6 +151,20 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# DEFAULT_FROM_EMAIL = 'noreply@yourdomain.com'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Replace with your email provider's SMTP server
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
+
+
+
 
 
 LANGUAGE_CODE = 'en-us'
