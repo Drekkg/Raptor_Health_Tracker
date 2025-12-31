@@ -24,8 +24,6 @@
           alt="{{ bird_detail.bird_name }}"
           id="main-img"
         />
-           
-       
         {% endif %}
       </div>
     </div>
@@ -38,7 +36,7 @@
           <p class="lead"><b>Type: </b>{{bird_detail.type }}</p>
           <p class="lead"><b>Gender: </b>{{bird_detail.get_sex_display }}</p>
           <p class="lead"><b>Date of Birth:</b> {{bird_detail.date_of_birth}}</p>
-          {% if bird_detail.target_weight > 0  %}
+          {% if bird_detail.target_weight > 0 %}
           <p class="lead"><b>Target Weight:</b> {{bird_detail.target_weight}}g</p>
           {% else %}
           <p class="lead"><b>Target Weight:</b> None given</p>
@@ -47,7 +45,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-md-4 button-card">
       <ul>
         <li class="li-style d-grid">
@@ -70,26 +68,27 @@
     </div>
     {% endif %}
   </div>
-   <!-- The main image Modal -->
+  <!-- The main image Modal -->
   <div id="myModal" class="modal-img">
-    <span class="close">×</span>  
-    <img class="modal-content" id="modal-img">
+    <span class="close">×</span>
+    <img class="modal-content" id="modal-img" />
     <div id="caption"></div>
   </div>
   <hr class="divider" />
- <!-- Serialize the selected_bird data into a JSON script -->
- {{ selected_bird_json|json_script:"selected_bird_data" }}
+  <!-- Serialize the selected_bird data into a JSON script -->
+  {{ selected_bird_json|json_script:"selected_bird_data" }}
   <div class="container-fluid">
     <div class="row">
       <!--The Calendar injected here -->
-      <div class="col-md-6" id="calendar" data-bird="{{ selected_bird|safe }}">
-      </div>
+      <div class="col-md-6" id="calendar" data-bird="{{ selected_bird|safe }}"></div>
       <div class="col-md-6 chart-container">
         <div class="btn-chart">
           <button id="dateBack" type="button" class="btn btn-secondary">Back</button>
           <button id="dateForward" type="button" class="btn btn-secondary">Forward</button>
-          {% if bird_detail.target_weight > 0  %}
-          <button id="birdWeightChart" type="button" class="btn btn-secondary"><b>Target Weight: {{bird_detail.target_weight}}g</b></button>
+          {% if bird_detail.target_weight > 0 %}
+          <button id="birdWeightChart" type="button" class="btn btn-secondary">
+            <b>Target Weight: {{bird_detail.target_weight}}g</b>
+          </button>
           {% endif %}
           <!-- <button id="birdWeightChart" type="button" class="btn btn-secondary">Bird Weight</button> -->
           <!-- <button id="birdMotivationChart" type="button" class="btn btn-secondary">Motivation</button> -->
@@ -114,7 +113,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="calendarModalLabel">{{bird_detail.bird_name}}</h5>
-          <span class="modal-title calendarTagetWeight"><b>Target Weight:</b> {{ bird_detail.target_weight}} grams</span>
+          <span class="modal-title calendarTagetWeight"
+            ><b>Target Weight:</b> {{ bird_detail.target_weight}} grams</span
+          >
           <button
             type="button"
             class="btn-close"
@@ -135,7 +136,8 @@
 {% if user.is_superuser or user.is_staff %}
 <div class="daily-button">
   <div class="d-grid">
-    <a id="addDailyDataButton"
+    <a
+      id="addDailyDataButton"
       href="{% url 'daily_data_form'  bird_detail.id %}"
       class="btn btn-custom-color-action3 btn-lg col-8 mx-auto"
       >Add Daily Data for: <br />
@@ -162,13 +164,16 @@
         <button
           class="accordion-button"
           type="button"
-          data-bs-toggle="collapse"
+          data-bs-toggle="collapse"accordion-text col-md-4">
+          <div>
           data-bs-target="#collapse{{ forloop.counter }}"
           aria-expanded="true"
           aria-controls="collapse{{ forloop.counter }}"
         >
           <span class="span-font">Date: {{ data.date }} Trainer: {{ data.trainer }}</span>
-          <span class="weight-heading">Weight: <span class="span-data">{{ data.weight}}g</span> </span>
+          <span class="weight-heading"
+            >Weight: <span class="span-data">{{ data.weight}}g</span>
+          </span>
           <span class="span-font"
             >Food Weight:<span class="span-data">{{ data.food_weight }}g</span>
           </span>
@@ -182,17 +187,17 @@
     >
       <div class="accordion-body">
         <div class="accordion-text col-md-4">
-          <div>
+          <div> 
             <p>{{bird_detail}}</p>
             <p><b>Bird Weight: </b>{{ data.weight }} grams</p>
           </div>
-            {% if bird_detail.target_weight > 0 %}
-            <div>
+          {% if bird_detail.target_weight > 0 %}
+          <div>
             <p><b>Target Weight: </b>{{ bird_detail.target_weight }} grams</p>
           </div>
           {% else %}
           <div>
-          <p><b>Target Weight: </b>None Given</p>
+            <p><b>Target Weight: </b>None Given</p>
           </div>
           {% endif %}
           <div>
@@ -240,50 +245,45 @@
           </div>
           {% if user.is_superuser or user.is_staff %}
           <li class="li-style d-grid">
-            <a class="btn btn-edit-data" aria-current="page" href="{% url 'daily_data_edit'  data.id %}"
+            <a
+              class="btn btn-edit-data"
+              aria-current="page"
+              href="{% url 'daily_data_edit'  data.id %}"
               >Edit Daily Data</a
             >
           </li>
-      </div>
-      {% endif %}
         </div>
-      </div>
-    </div>
-    {% endfor %}
-    
-  </div>
-  <!-- Delete confirmation modal -->
-  <div
-    class="modal fade"
-    id="deleteModal"
-    tabindex="-1"
-    aria-labelledby="deleteModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">Delete Bird?</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          Are you sure you want to delete the Bird? This action cannot be undone.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
-        </div>
+        {% endif %}
       </div>
     </div>
   </div>
-  <div id="bird-info" data-target-weight="{{ bird_detail.target_weight|default:'' }}">  
+  {% endfor %}
 </div>
+<!-- Delete confirmation modal -->
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  aria-labelledby="deleteModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete Bird?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete the Bird? This action cannot be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+      </div>
+    </div>
+  </div>
 </div>
+<div id="bird-info" data-target-weight="{{ bird_detail.target_weight|default:'' }}"></div> 
 
 {% endblock bird_detail %} {% block extras %}
 <script type="module" src="{% static 'js/calendar.js' %}"></script>
