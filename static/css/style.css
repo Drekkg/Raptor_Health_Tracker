@@ -75,6 +75,11 @@ margin-bottom: 1rem;
     background-color: #188181;
     color: #fff;
 }
+.btn-edit-data {
+    background-color: #444f4f;
+    color: #fff;
+    font-size: 0.8rem;
+}
 
 .btn-delete {
     color: #fff;
