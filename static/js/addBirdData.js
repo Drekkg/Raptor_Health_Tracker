@@ -67,7 +67,7 @@ if (trainingField.value !== "0") {
 
 //add and wire up the buttons
 for (let button of dataButtons) {
-  button.addEventListener("click", (e) => {
+  button.addEventListener("click", (event) => {
     event.preventDefault();
     dataModal.show();
   });
