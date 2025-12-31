@@ -15,6 +15,7 @@
         </li>
       </ul>
       <div class="card-body">
+        {% if view == 'add' %}
         <h3>
           Please enter the required information for:
           <span>{{bird_detail.bird_name}}</span>
@@ -61,6 +62,23 @@
           {{ daily_data_form.notable_image|as_crispy_field }}
         
           <button class="btn btn-signup btn-lg btn-add-data">Submit</button>
+
+          {% elif view == "edit" %}
+          <div class="container">
+            <h2>Edit Daily Data</h2>
+          
+            <!-- Display bird details -->
+            <div class="card mb-4">
+            <!-- Display the form -->
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ edit_daily_data_form|crispy }}
+              <button class="btn btn-signup btn-secondary btn-add-data">Save Changes</button>
+              <a href="{% url 'bird_detail' bird_detail.id %}" class="btn btn-secondary">Cancel</a>
+            </form>
+          </div>
+          {% endif %}
+
           <div
             class="modal"
             id="addDataModal"

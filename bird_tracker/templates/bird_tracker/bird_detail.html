@@ -183,17 +183,18 @@
       <div class="accordion-body">
         <div class="accordion-text col-md-4">
           {% if user.is_superuser or user.is_staff %}
-          <!-- <li class="li-style d-grid">
+          <li class="li-style d-grid">
             <a class="btn btn-signup" aria-current="page" href="{% url 'daily_data_edit'  data.id %}"
               >Edit Daily Data</a
             >
-          </li> -->
-          
-        </ul>
+          </li>
       </div>
       {% endif %}
           <div>
             <p><b>Bird Weight: </b>{{ data.weight }} grams</p>
+            <p>Data: {{ data }}</p>
+            <p>Data ID: {{ data.id }}</p>
+            <p>Bird Detail: {{bird_detail}}</p>
           </div>
             {% if bird_detail.target_weight > 0 %}
             <div>

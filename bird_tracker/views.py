@@ -98,6 +98,7 @@ def daily_data_form(request, id):
                                "bird_detail": bird_detail,
                                "selected_bird": selected_bird,
                                "motivation_range": range(1, 11),
+                               "view": "add",
                                })
 
         elif not form.is_valid():
@@ -107,7 +108,11 @@ def daily_data_form(request, id):
                           {"daily_data_form": form,
                            "bird_detail": bird_detail,
                            "selected_bird": selected_bird,
-                           "motivation_range": range(1, 11),})
+                           "motivation_range": range(1, 11),
+                           "view": "add",})
+            
+            
+            
 
     else:
         form = DailyDataForm(initial={'date': now()})
@@ -117,6 +122,7 @@ def daily_data_form(request, id):
                        "bird_detail": bird_detail,
                        "selected_bird": selected_bird,
                        "motivation_range": range(1, 11),
+                       "view": "add",
                        }
                       
                       )
@@ -151,7 +157,7 @@ def add_new_bird_form(request):
                         "view": "add",
                         "add_new_bird_form": add_new_bird_form,
                     },
-                )
+                ) 
         else:
             messages.add_message(
                 request, messages.ERROR,
@@ -282,8 +288,7 @@ def bird_edit(request, id):
     
  # view to edit the daily data 
 
-def daily_data_edit(request, id):
-    
+def daily_data_edit(request, id):   
     """
     View to edit daily data .
     Template: "bird_tracker/daily_data_form.html"
@@ -291,11 +296,10 @@ def daily_data_edit(request, id):
   
 
     queryset = DailyData.objects.all()
-    daily_data = get_object_or_404(queryset, id=id)
-    print(vars(daily_data))
-    
-    # bird_detail = get_object_or_404(Bird, id=id)
-    # selected_bird = bird_detail.selected_bird.all()
+    daily_data = get_object_or_404(queryset, id=id)    
+    bird_data_to_edit = Bird.objects.all()
+    bird_detail = get_object_or_404(bird_data_to_edit, id=daily_data.selected_bird_id)
+  
     context = {"view": "daily_data_edit"}
 
     if request.method == "POST":
@@ -305,7 +309,7 @@ def daily_data_edit(request, id):
             try:
                 edit_daily_data_form.save()
                 messages.success(request, 'Daily Data Updated!')
-                return HttpResponseRedirect(reverse('add_new_bird_form'))
+                return redirect('bird_detail', id=bird_detail.id)
 
             except CloudinaryError as e:
                 messages.add_message(
@@ -319,6 +323,8 @@ def daily_data_edit(request, id):
     else:
 
         edit_daily_data_form = DailyDataForm(instance=daily_data)
+          # Debugging: Print the fields in the form
+    print("Form fields:", edit_daily_data_form.fields.keys())
 
     return render(
         request,
@@ -327,6 +333,7 @@ def daily_data_edit(request, id):
             "view": "edit",
             "edit_daily_data_form": edit_daily_data_form,
             "id": id,
+            "bird_detail": bird_detail,
         },
     )
     

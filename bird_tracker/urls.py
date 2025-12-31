@@ -5,10 +5,10 @@ from django.urls import path, include
 urlpatterns = [
     path('', views.BirdList.as_view(), name='home'),
     path('daily_data_forms/<int:id>', views.daily_data_form, name='daily_data_form'),  # noqa
+    path('daily_data_edit/<int:id>', views.daily_data_edit, name='daily_data_edit'),   # noqa
     path('add_new_bird_form/', views.add_new_bird_form, name='add_new_bird_form'),  # noqa
     path('bird_detail/<int:id>/', views.bird_detail, name='bird_detail'),
     path('<int:id>/edit_bird/', views.bird_edit, name='bird_edit'),   # noqa
     path('bird_detail/<int:id>/delete_bird/', views.bird_delete, name='bird_delete'),   # noqa
-    path('<int:id>/daily_data_edit/', views.daily_data_edit, name='daily_data_edit'),   # noqa
 
 ]
