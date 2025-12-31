@@ -236,7 +236,6 @@ def daily_data_edit(request, id):
     Template: "bird_tracker/daily_data_form.html"
     """
   
-
     queryset = DailyData.objects.all()
     daily_data = get_object_or_404(queryset, id=id)    
     bird_data_to_edit = Bird.objects.all()
@@ -265,9 +264,6 @@ def daily_data_edit(request, id):
     else:
 
         edit_daily_data_form = DailyDataForm(instance=daily_data)
-          # Debugging: Print the fields in the form
-    print("Form fields:", edit_daily_data_form.fields.keys())
-
     return render(
         request,
         "bird_tracker/daily_data_form.html",
@@ -280,11 +276,6 @@ def daily_data_edit(request, id):
     )
     
 
- 
- 
- 
- 
-    
 # view to delete bird
 def bird_delete(request, id):
     """
