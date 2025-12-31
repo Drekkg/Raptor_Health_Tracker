@@ -186,64 +186,6 @@ def add_new_bird_form(request):
         )
     
 
-# view for the add new bird form
-def add_new_bird_form(request):
-    """Add new bird form. Adds all required data for a bird instance
-    ***Template
-    # bird_tracker/add_new_bird_form"""
-    if request.method == "POST":
-        add_new_bird_form = AddNewBirdForm(request.POST, request.FILES)
-        if add_new_bird_form.is_valid():
-            try:
-                new_bird = add_new_bird_form.save()
-                messages.add_message(
-                    request, messages.SUCCESS,
-                    'New Bird added'
-                )
-                return HttpResponseRedirect(reverse('home'))
-
-            except CloudinaryError as e:
-                messages.add_message(
-                    request, messages.ERROR,
-                    f'Error uploading image: {str(e)}'
-                )
-
-                return render(
-                    request,
-                    "bird_tracker/add_new_bird_form.html",
-                    {
-                        "view": "add",
-                        "add_new_bird_form": add_new_bird_form,
-                    }
-                )
-        else:
-            messages.add_message(
-                request, messages.ERROR,
-                'Please check the entered Data'
-            )
-
-            add_new_bird_form = AddNewBirdForm(request.POST, request.FILES)
-            return render(
-                request,
-                "bird_tracker/add_new_bird_form.html",
-                {
-                    "view": "add",
-                    "add_new_bird_form": add_new_bird_form,
-                },
-            )
-
-    else:
-        add_new_bird_form = AddNewBirdForm()
-        return render(
-            request,
-            "bird_tracker/add_new_bird_form.html",
-            {
-                "view": "add",
-                "add_new_bird_form": add_new_bird_form,
-            },
-        )
-
-
 # view to edit bird form
 def bird_edit(request, id):
     """
