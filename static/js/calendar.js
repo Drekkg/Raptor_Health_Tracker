@@ -14,6 +14,9 @@ let behaviourChoices = {
   4: "Slightly Unmotivated",
   5: "Neutral",
 };
+//get the user permissions
+const userPermissions = document.getElementById("edit-permission");
+const userPermissionsData = userPermissions.getAttribute("data-user-permission");
 
 //Get the data using the json_script -  selected_bird_json|json_script:"selected_bird_data"
 document.addEventListener("DOMContentLoaded", () => {
@@ -61,6 +64,26 @@ document.addEventListener("DOMContentLoaded", () => {
       (selectedDate) => selectedDate.date.slice(0, 10) === dateCalendarInfo
     );
 
+    let editDailyDataUrl = "";
+    let editButtonHTML = "";
+
+    if (userPermissionsData === "true") {
+      const editDataButton = document.getElementById("edit-data-button-bird-detail");
+      editDailyDataUrl = editDataButton.getAttribute("data-edit-url");
+      editButtonHTML = `
+           <li class="li-style d-grid">
+              <a
+                class="btn btn-edit-data"
+                aria-current="page"
+                href="${editDailyDataUrl}"
+                >Edit Daily Data</a
+              >
+            </li>
+        `;
+    } else {
+      editButtonHTML = ``;
+    }
+
     // Generate the HTML content for all matching data
     let modalContent = `<p><strong>Date:</strong> ${dateCalendarInfo}</p>`;
     matchingData.forEach((selectedDate) => {
@@ -85,14 +108,15 @@ document.addEventListener("DOMContentLoaded", () => {
         <p><strong>Behaviour:</strong> ${behaviourChoices[selectedDate.behaviour]}</p>
         <p><strong>Additional Info:</strong> ${selectedDate.notable_info || "None"}</p>
         <p>${selectedDateNotableImage}</p>
-
-        
          <div id="notableModal" class="modal-img">
             <span class="close" id="close">×</span>  
             <img class="modal-content" id="notable-modal-img">
             <div id="caption"></div>
           </div>
+          <p>${editButtonHTML}</p>
+          
         
+
       `;
     });
 
@@ -101,7 +125,9 @@ document.addEventListener("DOMContentLoaded", () => {
     modalBody.innerHTML = modalContent;
 
     // Trigger the Bootstrap modal
-    const calendarModal = new bootstrap.Modal(document.getElementById("calendarModal"));
+    const calendarModal = new bootstrap.Modal(document.getElementById("calendarModal"), {
+      backdrop: false,
+    });
     calendarModal.show();
 
     const modal = document.getElementById("notableModal");
@@ -109,20 +135,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeBtn = document.getElementById("close");
 
     // add event listeners to img elements to display in a modal
-  
+
     const notableImage = document.getElementById("notableImage");
-    if(notableImage){
-    notableImage.addEventListener("click", function (e) {
-      if (e.target === notableImage) {
-        modal.style.display = "block";
-        notableModalImg.src = this.src;
-        notableModalImg.alt = this.alt;
-      }
-    });
-    closeBtn.addEventListener("click", function () {
-      modal.style.display = "none";
-    });
-  }
+    if (notableImage) {
+      notableImage.addEventListener("click", function (e) {
+        if (e.target === notableImage) {
+          modal.style.display = "block";
+          notableModalImg.src = this.src;
+          notableModalImg.alt = this.alt;
+        }
+      });
+      closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+    }
   }
 
   const { Calendar } = window.VanillaCalendarPro;
