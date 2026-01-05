@@ -232,10 +232,6 @@ parsedBirdDataPromise.then((parsedBirdData) => {
                   weightPercentRounded !== null && !isNaN(weightPercentRounded)
                     ? `${weightPercentRounded}`
                     : " -- ";
-                // return [`Weight: ${birdWeight}g`, `Percentage: ${percentageText}%`,
-                //   `Motivation: ${trainingMotivationToolTip} `,
-                // ];
-                console.log(trainerInfo);
 
                 if (context.dataset.label === "Bird Weight Over Time") {
                   return [`Weight: ${context.raw}g`, `Percentage: ${percentageText}%`];
