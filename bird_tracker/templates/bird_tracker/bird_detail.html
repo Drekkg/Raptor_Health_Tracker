@@ -16,7 +16,12 @@
     <div class="col-md-4">
       <div class="image-container">
         {% if "placeholder" in bird_detail.main_image.url %}
-        <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image" />
+        <img
+          id="main-img"
+          class="card-img-top"
+          src="{% static 'images/default.jpg' %}"
+          alt="placeholder image"
+        />
         {% else %}
         <img
           class="card-img-top"
@@ -80,36 +85,36 @@
 
   <div class="container-fluid">
     <!-- calendar pop up modal -->
-  <div
-  class="modal fade"
-  id="calendarModal"
-  tabindex="-1"
-  aria-labelledby="calendarModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="calendarModalLabel">{{bird_detail.bird_name}}</h5>
-        <span class="modal-title calendarTagetWeight"
-          ><b>Target Weight:</b> {{ bird_detail.target_weight}} grams</span
-        >
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body" id="calendarModalBody">
-        <!-- Content will be dynamically populated -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <div
+      class="modal fade"
+      id="calendarModal"
+      tabindex="-1"
+      aria-labelledby="calendarModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="calendarModalLabel">{{bird_detail.bird_name}}</h5>
+            <span class="modal-title calendarTagetWeight"
+              ><b>Target Weight:</b> {{ bird_detail.target_weight}} grams</span
+            >
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="calendarModalBody">
+            <!-- Content will be dynamically populated -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
     <div class="row">
       <!--The Calendar injected here -->
       <div class="col-md-6" id="calendar" data-bird="{{ selected_bird|safe }}"></div>
@@ -133,7 +138,6 @@
       </div> -->
     </div>
   </div>
-  
 </div>
 {% if user.is_superuser or user.is_staff %}
 <div class="daily-button">
@@ -292,9 +296,7 @@
 {% else %}
 <div id="edit-permission" data-user-permission="false"></div>
 
-{% endif %}
-
-{% endblock bird_detail %} {% block extras %}
+{% endif %} {% endblock bird_detail %} {% block extras %}
 <script type="module" src="{% static 'js/calendar.js' %}"></script>
 <script type="module" src="{% static 'js/birdData.js' %}"></script>
 <script type="module" src="{% static 'js/graph.js' %}"></script>
