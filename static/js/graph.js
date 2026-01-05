@@ -3,9 +3,13 @@ import { parsedBirdDataPromise } from "./calendar.js";
 
 const birdInfoElement = document.getElementById("bird-info");
 const targetWeight = parseInt(birdInfoElement.dataset.targetWeight);
+
+const trainerInfoElement = document.getElementById("trainer-info");
+const trainerInfo = trainerInfoElement.dataset.trainerInfo;
+
 // create arrays to hold the data for the chart axes
-const yScaleMin = [targetWeight - (targetWeight * 1.10 - targetWeight)];
-const yScaleMax = [Math.round(targetWeight * 1.10)];
+const yScaleMin = [targetWeight - (targetWeight * 1.1 - targetWeight)];
+const yScaleMax = [Math.round(targetWeight * 1.1)];
 const xValues = [];
 const yValues = [];
 let xValuesEdited = [];
@@ -15,7 +19,11 @@ let endDate = null;
 let setDate = 0;
 let myWeightChartInstance;
 let weightPercentages = [];
- // Shared array to store calculated percentages
+let trainingMotivation = [];
+let trainingMotivationEdited = [];
+
+
+// Shared array to store calculated percentages
 
 // iterate over incoming data and add the applicable data to the array eg weight of bird and date
 parsedBirdDataPromise.then((parsedBirdData) => {
@@ -25,14 +33,17 @@ parsedBirdDataPromise.then((parsedBirdData) => {
     //add the weight to arrays
     yScaleMax.push(dateArray.weight);
     yScaleMin.push(dateArray.weight);
+    trainingMotivation.push(dateArray.training_motivation);
   });
   xValues.reverse();
   yValues.reverse();
+  trainingMotivation.reverse();
 
   // for the y scale we want the range 30g over and 30g under the highest and lowest data point(weight)
   //we use sort to arrange the arrays: high => low and low => high. the scale is set in the Y scale options of the create Chart method
   yScaleMax.sort((a, b) => b - a);
   yScaleMin.sort((a, b) => a - b);
+
   // For the x axis we only want to display 7 dates, we slice the arrays accordingly and the arrays
   //setDate is initially set to zero
 
@@ -44,16 +55,12 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   //we slice the arrays x for the date and y for the corresponding weight
   xValuesEdited = xValues.slice(startDate, endDate);
   yValuesEdited = yValues.slice(startDate, endDate);
+  trainingMotivationEdited = trainingMotivation.slice(startDate, endDate);
 
-  
   let targetWeightElement = document.getElementById("bird-info");
-  const targetWeight = targetWeightElement.dataset.targetWeight; 
- 
-
+  const targetWeight = targetWeightElement.dataset.targetWeight;
 
   chart();
-  
-  
 
   //set the display date and weight range back by one day
   document.getElementById("dateBack").addEventListener("click", () => {
@@ -63,6 +70,7 @@ parsedBirdDataPromise.then((parsedBirdData) => {
       endDate = xValues.length - setDate;
       xValuesEdited = xValues.slice(startDate, endDate);
       yValuesEdited = yValues.slice(startDate, endDate);
+      trainingMotivationEdited = trainingMotivation.slice(startDate, endDate);
       //display an alert if there is no more data on the  last day
       if (xValuesEdited.length < 7) {
         if (!document.querySelector(".no-more-data")) {
@@ -70,6 +78,7 @@ parsedBirdDataPromise.then((parsedBirdData) => {
           message.textContent = "End of Data";
           message.classList.add("alert", "alert-warning", "no-more-data");
           document.getElementById("myChart").parentNode.appendChild(message);
+          yValuesEdited = yValues.slice(0, 7);
         }
         setDate -= 1;
         return;
@@ -93,21 +102,21 @@ parsedBirdDataPromise.then((parsedBirdData) => {
       endDate = xValues.length - setDate;
       xValuesEdited = xValues.slice(startDate, endDate);
       yValuesEdited = yValues.slice(startDate, endDate);
+      trainingMotivationEdited = trainingMotivation.slice(startDate, endDate);
       chart();
     } else {
       return;
     }
   });
-  // Plugin to draw a horizontal line for the target weight
-const targetWeightLinePlugin = {
-  id: "targetWeightLine",
-  beforeDraw: (chart) => {
-      
 
+  // Plugin to draw a horizontal line for the target weight
+  const targetWeightLinePlugin = {
+    id: "targetWeightLine",
+    beforeDraw: (chart) => {
       // Check if targetWeight is valid
       if (isNaN(targetWeight)) {
-          console.error("Invalid target weight");
-          return;
+        console.error("Invalid target weight");
+        return;
       }
 
       const ctx = chart.ctx;
@@ -131,10 +140,10 @@ const targetWeightLinePlugin = {
       ctx.fillStyle = "black";
       ctx.font = "12px Arial";
       ctx.fillText(`Target Weight: ${targetWeight}g`, xScale.right - 150, yValue - 5);
-  },
-};
+    },
+  };
 
-Chart.register(targetWeightLinePlugin);
+  Chart.register(targetWeightLinePlugin);
 
   //function to call the Chart method
   function chart() {
@@ -172,6 +181,18 @@ Chart.register(targetWeightLinePlugin);
             },
             fill: true, // Fill the area under the line
           },
+          {
+            label: "Motivation during Training",
+            backgroundColor: "rgba(42, 36, 212, 0.5)",
+            pointBackgroundColor: "rgb(42, 36, 212)",
+            borderColor: "rgb(58, 52, 246)", // Line color
+            pointRadius: 4,
+            borderWidth: 1.2,
+            data: trainingMotivationEdited, // Motivation data
+            fill: false,
+            tension: 0.3, // Smooth the line
+            yAxisID: "yMotivation", // Use a separate Y-axis for motivation
+          },
         ],
       },
       options: {
@@ -204,11 +225,20 @@ Chart.register(targetWeightLinePlugin);
             callbacks: {
               label: function (context) {
                 // Retrieve the pre-calculated percentage from the shared array
-                let weightPercentRounded = weightPercentages[context.dataIndex];
-                if (weightPercentRounded !== null && !isNaN(weightPercentRounded)) {
-                  return `Weight: ${context.raw}g, Percentage: ${weightPercentRounded}%`;
+                const weightPercentRounded = weightPercentages[context.dataIndex];
+                const trainingMotivationToolTip = trainingMotivationEdited[context.dataIndex];
+                const birdWeight = yValuesEdited[context.dataIndex];
+                const percentageText =
+                  weightPercentRounded !== null && !isNaN(weightPercentRounded)
+                    ? `${weightPercentRounded}`
+                    : " -- ";
+
+                if (context.dataset.label === "Bird Weight Over Time") {
+                  return [`Weight: ${context.raw}g`, `Percentage: ${percentageText}%`];
+                } else if (context.dataset.label === "Motivation during Training") {
+                  return [`Motivation: ${trainingMotivationToolTip}`, `Trainer: ${trainerInfo}`];
                 } else {
-                  return `Weight: ${context.raw}g, Percentage: -- %`;
+                  return `Value: ${context.raw}`;
                 }
               },
             },
@@ -270,6 +300,15 @@ Chart.register(targetWeightLinePlugin);
               },
             },
             // beginAtZero: true, // Start the Y-axis at 0
+          },
+          yMotivation: {
+            position: "right", // Position the motivation Y-axis on the right
+            title: {
+              display: true,
+              text: "Motivation",
+            },
+            min: 0,
+            max: 10, // Adjust based on your motivation scale
           },
         },
       },

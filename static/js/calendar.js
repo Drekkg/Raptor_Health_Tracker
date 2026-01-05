@@ -18,6 +18,9 @@ let behaviourChoices = {
 const userPermissions = document.getElementById("edit-permission");
 const userPermissionsData = userPermissions.getAttribute("data-user-permission");
 
+const trainerInfoElement = document.getElementById("trainer-info");
+const trainerInfo = trainerInfoElement.dataset.trainerInfo;
+
 //Get the data using the json_script -  selected_bird_json|json_script:"selected_bird_data"
 document.addEventListener("DOMContentLoaded", () => {
   const fetchedBirdDataStr = document.getElementById("selected_bird_data").textContent;
@@ -98,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       modalContent += `
         <hr>
+        <p><strong>Trainer:</strong> ${trainerInfo}</p>
         <p><strong>Weight:</strong> ${selectedDate.weight}g</p>
         <p><strong>Training:</strong> ${traingChoices[selectedDate.training]}</p>
         <p><strong>Motivation during Training:</strong> ${selectedDate.training_motivation}</p>

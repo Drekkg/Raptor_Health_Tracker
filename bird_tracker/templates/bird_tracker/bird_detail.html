@@ -165,6 +165,7 @@
 <div class="flex-wrapper">
   <div class="accordion" id="daily_data">
     {% for data in selected_bird %}
+    <div id="trainer-info" data-trainer-info="{{ data.trainer|default:'' }}"></div>
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button
