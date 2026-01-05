@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponse
 import os
 import json
@@ -15,9 +15,8 @@ from django.utils.timezone import now
 from django.shortcuts import redirect
 from django.forms import TimeInput
 
+
 # built in django view
-
-
 class BirdList(generic.ListView):
     queryset = Bird.objects.all()
     template_name = "bird_tracker/index.html"

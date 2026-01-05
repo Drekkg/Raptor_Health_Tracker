@@ -5,6 +5,11 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field
 from django.forms import TimeInput
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from allauth.account.forms import SignupForm
+
 
 
 # unicode for degree celsius
