@@ -266,19 +266,19 @@ parsedBirdDataPromise.then((parsedBirdData) => {
               color: "rgb(61, 58, 130)",
               backgroundColor: "black",
               font: {
-                size: 16, // Font size for the Y-axis title
-                weight: "bold", // Font weight for the Y-axis title
-                family: "Arial", // Font family for the Y-axis title
+                size: 16, // Font size for the x-axis title
+                weight: "bold", // Font weight for the x-axis title
+                family: "Arial", // Font family for the x-axis title
               },
             },
           },
           y: {
             grid: {
-              display: true, // Show grid lines on the X-axis
+              display: true, // Show grid lines on the y-axis
               color: "rgba(46, 43, 43, 0.5)",
             },
             ticks: {
-              color: "rgb(90, 73, 100)", // Change the label color for the X-axis
+              color: "rgb(90, 73, 100)", // Change the label color for the y-axis
               font: {
                 size: 14, // Change the font size of the labels
                 weight: "bold", // Make the labels bold
