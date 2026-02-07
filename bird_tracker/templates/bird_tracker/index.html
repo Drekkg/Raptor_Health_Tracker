@@ -23,8 +23,11 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card mb-5">
                         <div class="bird-card">
-                            <a href="{% url 'bird_detail' bird.id %}" class="bird-link">
+                            <a href="{% url 'bird_detail' bird.id %}" class="bird-link" class="bird-link" onclick="showSpinner('{{ bird.id }}')">
+
+                               
                             <div class="image-container">
+                                
                                 {% if "placeholder" in bird.main_image.url %}
                                 <img class="bird-list-image img-fluid" src="{% static 'images/default.jpg' %}"
                                     alt="placeholder image">
@@ -32,6 +35,13 @@
                                 <img class="bird-list-image img-fluid" src="{{ bird.main_image.url }}"
                                     alt="{{ bird.bird_name }}">
                                 {% endif %}
+                                 <!-- Spinner -->
+                                 <div id="spinner-{{ bird.id }}"
+                                 class="spinner-select">
+                                     <div class="spinner-border text-primary" role="status">
+                                     <span class="visually-hidden">Loading...</span>
+                                     </div>
+                                 </div>
                                 <div class="image-flash">
                                     <p class="bird-type">{{ bird.type | safe }}</p>
                                 </div>
@@ -73,7 +83,36 @@
 <!-- index.html content ends here -->
 {% endblock %}
 {% block extras %}
+<script>
 
+const allSpinners = document.querySelectorAll(".spinner-select");
+allSpinners.forEach((spinner) => 
+{
+    spinner.style.display="none";
+});
+
+    function showSpinner(birdId) {
+  // Show the spinner
+  const removeSpinner = document.querySelectorAll(".spinner-select");
+  removeSpinner.forEach((spinner) => {
+    spinner.style.display = "none";
+  });
+
+  const spinner = document.getElementById(`spinner-${birdId}`);
+  spinner.style.display = "block";
+}
+window.addEventListener("pageshow", (event) => 
+{
+    const allSpinners = document.querySelectorAll(".spinner-select");
+allSpinners.forEach((spinner) => 
+{
+    spinner.style.display="none";
+});
+})
+
+
+
+</script>
      
 <!-- <script src="{% static 'js/calendar.js' %}"></script> -->
 {% endblock %}
