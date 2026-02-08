@@ -287,3 +287,7 @@ def bird_delete(request, id):
     messages.add_message(request, messages.SUCCESS, 'Bird deleted')
 
     return HttpResponseRedirect(reverse('home'))
+# view to display QR code for URL link
+
+def qr_code_show(request):
+    return render (request, "bird_tracker/qr-code.html") 
