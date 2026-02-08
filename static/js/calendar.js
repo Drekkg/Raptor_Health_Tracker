@@ -60,6 +60,8 @@ export const parsedBirdDataPromise = new Promise((resolve, reject) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  
   function displayTrainingCalendar(dateCalendarInfo) {
     const time = null;
     // Filter all matching data for the selected date
