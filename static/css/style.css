@@ -366,7 +366,18 @@ margin-bottom: 1rem;
 .btn-chart {
     margin-left: 30vw;
 }
+.qr-heading {
+    text-align: center;
+}
+.qr-code {
+    max-width: 30rem;
+    max-height: 30rem;
+    height: auto;
+    display: block;
+    margin: auto;
+    padding: auto;
 
+}
 /* Spinner animation */
 @keyframes spin {
     0% {
