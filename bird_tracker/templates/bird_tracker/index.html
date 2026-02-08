@@ -1,118 +1,117 @@
-{% extends "base.html" %}{% block bird %}
-{% load static %}
-
-
-{% if user.is_authenticated %}
+{% extends "base.html" %}{% block bird %} {% load static %} {% if user.is_authenticated %}
 <!-- index.html content starts here -->
 <!-- <head>
     <link href="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/styles/index.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/index.js" defer></script>
 </head>
         <div id="calendar"></div> -->
-     
-    
 
 <!-- <body class="bg"> -->
-<h1 class="mt-4 display-2 text-center">Raptor Health Tracker </h1>
+<h1 class="mt-4 display-2 text-center">Raptor Health Tracker</h1>
 <div class="container-fluid main-item">
-    <div class="">
-        <!-- Bird List Column -->
-        <div class="col-12 mt-3 ">
-            <div class="row justify-content-start d-flex flex-wrap offset-lg-1">
-                {% for bird in bird_list %}
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="card mb-5">
-                        <div class="bird-card">
-                            <a href="{% url 'bird_detail' bird.id %}" class="bird-link" class="bird-link" onclick="showSpinner('{{ bird.id }}')">
-
-                               
-                            <div class="image-container">
-                                
-                                {% if "placeholder" in bird.main_image.url %}
-                                <img class="bird-list-image img-fluid" src="{% static 'images/default.jpg' %}"
-                                    alt="placeholder image">
-                                {% else %}
-                                <img class="bird-list-image img-fluid" src="{{ bird.main_image.url }}"
-                                    alt="{{ bird.bird_name }}">
-                                {% endif %}
-                                 <!-- Spinner -->
-                                 <div id="spinner-{{ bird.id }}"
-                                 class="spinner-select">
-                                     <div class="spinner-border text-primary" role="status">
-                                     <span class="visually-hidden">Loading...</span>
-                                     </div>
-                                 </div>
-                                <div class="image-flash">
-                                    <p class="bird-type">{{ bird.type | safe }}</p>
-                                </div>
-                               
-                                    <h2>{{ bird.bird_name | safe }}</h2>
-                                </a>
-                            </div>
-                        </div>
+  <div class="">
+    <!-- Bird List Column -->
+    <div class="col-12 mt-3">
+      <div class="row justify-content-start d-flex flex-wrap offset-lg-1">
+        {% for bird in bird_list %}
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+          <div class="card mb-5">
+            <div class="bird-card">
+              <a
+                href="{% url 'bird_detail' bird.id %}"
+                class="bird-link"
+                class="bird-link"
+                onclick="showSpinner('{{ bird.id }}')"
+              >
+                <div class="image-container">
+                  {% if "placeholder" in bird.main_image.url %}
+                  <img
+                    class="bird-list-image img-fluid"
+                    src="{% static 'images/default.jpg' %}"
+                    alt="placeholder image"
+                  />
+                  {% else %}
+                  <img
+                    class="bird-list-image img-fluid"
+                    src="{{ bird.main_image.url }}"
+                    alt="{{ bird.bird_name }}"
+                  />
+                  {% endif %}
+                  <!-- Spinner -->
+                  <div id="spinner-{{ bird.id }}" class="spinner-select">
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="visually-hidden">Loading...</span>
                     </div>
+                  </div>
+                  <div class="image-flash">
+                    <p class="bird-type">{{ bird.type | safe }}</p>
+                  </div>
+
+                  <h2>{{ bird.bird_name | safe }}</h2>
                 </div>
-                {% endfor %}
+              </a>
             </div>
-   
-    <!-- or -->
-    <!-- <input type="text" id="calendar-input"> -->
-       </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- or -->
+      <!-- <input type="text" id="calendar-input"> -->
     </div>
+  </div>
 </div>
 {% else %}
 <div class="flex-wrapper-login">
-    <div class="col-md-6 mt-3 offset-md-2">
-        <h2 class="login">Welcome to the Raptor Tracking App. Please Log in or Register</h2>
-        <ul>
-            <li class="li-style d-grid gap-2">
-                <a class="btn btn-custom-color-action1" aria-current="page"
-                    href="{% url 'account_signup' %}">Register</a>
-            </li>
-            <li class="li-style d-grid gap-2">
-                <a class="btn btn-custom-color-action2" aria-current="page" href="{% url 'account_login' %}">Login</a>
-            </li>
-            <li class="li-style d-grid gap-2">
-                <a href="/admin/" class="btn btn-primary">Admin Login</a>
-            </li>
-        </ul>
-    </div>
+  <div class="col-md-6 mt-3 offset-md-2">
+    <h2 class="login">Welcome to the Raptor Tracking App. Please Log in or Register</h2>
+    <ul>
+      <li class="li-style d-grid gap-2">
+        <a
+          class="btn btn-custom-color-action1"
+          aria-current="page"
+          href="{% url 'account_signup' %}"
+          >Register</a
+        >
+      </li>
+      <li class="li-style d-grid gap-2">
+        <a class="btn btn-custom-color-action2" aria-current="page" href="{% url 'account_login' %}"
+          >Login</a
+        >
+      </li>
+      <li class="li-style d-grid gap-2">
+        <a href="/admin/" class="btn btn-primary">Admin Login</a>
+      </li>
+    </ul>
+  </div>
 </div>
 {% endif %}
 <!-- </body> -->
 <!-- index.html content ends here -->
-{% endblock %}
-{% block extras %}
+{% endblock %} {% block extras %}
 <script>
-
-const allSpinners = document.querySelectorAll(".spinner-select");
-allSpinners.forEach((spinner) => 
-{
-    spinner.style.display="none";
-});
-
-    function showSpinner(birdId) {
-  // Show the spinner
-  const removeSpinner = document.querySelectorAll(".spinner-select");
-  removeSpinner.forEach((spinner) => {
+  const allSpinners = document.querySelectorAll(".spinner-select");
+  allSpinners.forEach((spinner) => {
     spinner.style.display = "none";
   });
 
-  const spinner = document.getElementById(`spinner-${birdId}`);
-  spinner.style.display = "block";
-}
-window.addEventListener("pageshow", (event) => 
-{
+  function showSpinner(birdId) {
+    // Show the spinner
+    const removeSpinner = document.querySelectorAll(".spinner-select");
+    removeSpinner.forEach((spinner) => {
+      spinner.style.display = "none";
+    });
+
+    const spinner = document.getElementById(`spinner-${birdId}`);
+    spinner.style.display = "block";
+  }
+  window.addEventListener("pageshow", (event) => {
     const allSpinners = document.querySelectorAll(".spinner-select");
-allSpinners.forEach((spinner) => 
-{
-    spinner.style.display="none";
-});
-})
-
-
-
+    allSpinners.forEach((spinner) => {
+      spinner.style.display = "none";
+    });
+  });
 </script>
-     
+
 <!-- <script src="{% static 'js/calendar.js' %}"></script> -->
 {% endblock %}
