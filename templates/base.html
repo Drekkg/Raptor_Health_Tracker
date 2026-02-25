@@ -91,6 +91,11 @@
                   ><i class="fa-solid fa-lock"></i>Admin Dashboard</a
                 >
               </li>
+              <li class="nav-item navbar-text">
+                <a class="nav-link" aria-current="page" href="{% url 'qr_code' %}"
+                  ><i class="fa-solid fa-lock"></i>Show QR Code</a
+                >
+              </li>
               {% endif %}
               <li class="nav-item navbar-text">
                 <a class="nav-link" aria-current="page" href="{% url 'account_logout' %}"
@@ -129,10 +134,9 @@
     {% endif %}
 
     <main class="flex-shrink-0 main-bg flex-wrapper">
-    {% block bird %} {% endblock bird %}
-    {% block bird_detail %} {% endblock bird_detail %}
-    {%block daily_data_form %} {% endblock daily_data_form %} 
-    {% block content%} {%endblock content%}
+      {% block content %} {% endblock content %} {% block bird %} {% endblock bird %}
+      {% block bird_detail %} {% endblock bird_detail %} {% block daily_data_form %}
+      {% endblock daily_data_form %} {% block qr_code %} {% endblock qr_code %}
     </main>
 
     <!-- Footer -->

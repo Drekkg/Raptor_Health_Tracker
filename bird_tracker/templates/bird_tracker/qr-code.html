@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block qr_code %}
+<div>
+    <h1 class="qr-heading">Scan the QR-Code to connect a mobile device </h1>
+    <img src="{% static 'images/qr_code.png' %}" alt="default QR Code" class="qr-code"/>
+    
+    <a class="btn btn-secondary btn-block" aria-current="page" href="{% url 'home' %}"
+    >Back to Bird List</a
+  >
+</div>
+
+{% endblock qr_code %}
