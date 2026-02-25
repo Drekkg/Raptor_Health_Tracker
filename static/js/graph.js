@@ -192,6 +192,8 @@ parsedBirdDataPromise.then((parsedBirdData) => {
             fill: false,
             tension: 0.3, // Smooth the line
             yAxisID: "yMotivation", // Use a separate Y-axis for motivation
+            spanGaps: true,
+
           },
         ],
       },
