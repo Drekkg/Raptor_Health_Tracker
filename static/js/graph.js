@@ -56,6 +56,7 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   xValuesEdited = xValues.slice(startDate, endDate);
   yValuesEdited = yValues.slice(startDate, endDate);
   trainingMotivationEdited = trainingMotivation.slice(startDate, endDate);
+  
 
   let targetWeightElement = document.getElementById("bird-info");
   const targetWeight = targetWeightElement.dataset.targetWeight;
