@@ -18,25 +18,26 @@ let behaviourChoices = {
 const userPermissions = document.getElementById("edit-permission");
 const userPermissionsData = userPermissions.getAttribute("data-user-permission");
 
-const trainerInfoElement = document.getElementById("trainer-info");
-const trainerInfo = trainerInfoElement.dataset.trainerInfo;
+
 
 //Get the data using the json_script -  selected_bird_json|json_script:"selected_bird_data"
 document.addEventListener("DOMContentLoaded", () => {
   const fetchedBirdDataStr = document.getElementById("selected_bird_data").textContent;
+
   //use JSON.parse to turn it into an object for java script
   try {
     const fetchedBirdData = JSON.parse(fetchedBirdDataStr);
-    birdDataGlobal = fetchedBirdData;
+    birdDataGlobal = fetchedBirdData
   } catch (error) {
     console.error("JSON Parsing Error:", error.message);
   }
 });
+
+
 //add and parse the data again
 document.addEventListener("DOMContentLoaded", () => {
   if (birdDataGlobal) {
     birdDataGlobalParsed = JSON.parse(birdDataGlobal);
-
     birdDataGlobalParsed.forEach((trainingData) => {
       if (trainingData.training) {
         targetDate.push(trainingData.date.slice(0, 10));
@@ -46,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 export const parsedBirdDataPromise = new Promise((resolve, reject) => {
   document.addEventListener("DOMContentLoaded", () => {
@@ -59,9 +61,8 @@ export const parsedBirdDataPromise = new Promise((resolve, reject) => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
 
-  
+document.addEventListener("DOMContentLoaded", () => {
   function displayTrainingCalendar(dateCalendarInfo) {
     const time = null;
     // Filter all matching data for the selected date
@@ -92,6 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Generate the HTML content for all matching data
     let modalContent = `<p><strong>Date:</strong> ${dateCalendarInfo}</p>`;
     matchingData.forEach((selectedDate) => {
+
+      const trainerInfoElement = document.getElementById(`trainer-info${selectedDate.id}`);
+      const trainerInfo = trainerInfoElement.dataset.trainerInfo;
+
       const imagePlaceholder = "http://res.cloudinary.com/du9ulpbic/image/upload/placeholder";
       const selectedDateNotableImage =
         selectedDate.notable_image === imagePlaceholder

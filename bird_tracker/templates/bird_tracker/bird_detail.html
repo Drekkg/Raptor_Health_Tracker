@@ -149,6 +149,7 @@
       >Add Daily Data for: <br />
       <b>{{bird_detail.bird_name}}</b>
     </a>
+    <button id="exportExcel">Export to Excel</button>
   </div>
 </div>
 {% else %}
@@ -165,7 +166,7 @@
 <div class="flex-wrapper">
   <div class="accordion" id="daily_data">
     {% for data in selected_bird %}
-    <div id="trainer-info" data-trainer-info="{{ data.trainer|default:'' }}"></div>
+    <div id="trainer-info{{ data.id }}" data-trainer-info="{{ data.trainer|default:'' }}"></div>
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button
@@ -176,7 +177,7 @@
           aria-expanded="true"
           aria-controls="collapse{{ forloop.counter }}"
         >
-          <span class="span-font">Date: {{ data.date }} Trainer: {{ data.trainer }}</span>
+          <span class="span-font">Date: {{ data.date }} Trainer: {{ data.trainer }}{{ data.id }}</span>
           <span class="weight-heading"
             >Weight: <span class="span-data">{{ data.weight}}g</span>
           </span>
@@ -301,5 +302,5 @@
 <script type="module" src="{% static 'js/calendar.js' %}"></script>
 <script type="module" src="{% static 'js/birdData.js' %}"></script>
 <script type="module" src="{% static 'js/graph.js' %}"></script>
-<script type="module" src="{% static 'js/motivationGraph.js' %}"></script>
+<script type="module" src="{% static 'js/exportToExcel.js' %}"></script>
 {% endblock %}

@@ -32,7 +32,7 @@ def bird_detail(request, id):
     bird_detail = get_object_or_404(queryset, id=id)
     selected_bird = bird_detail.selected_bird.all()
     selected_bird_json = bird_detail.selected_bird.all().values(
-       "behaviour","date", "food_time", "food_type", "food_weight", "id", "notable_info", "selected_bird", "selected_bird_id", "temperature", "trainer", "trainer_id", "training", "training_time", "weather", "weight", "training_motivation", "notable_info", "notable_image",
+       "behaviour", "date", "food_time", "food_type", "food_weight", "id", "notable_info", "selected_bird", "selected_bird_id", "temperature", "trainer", "trainer_id", "training", "training_time", "weather", "weight", "training_motivation", "notable_info", "notable_image",
     ) 
     for data in selected_bird_json:
         data["target_weight"] = bird_detail.target_weight

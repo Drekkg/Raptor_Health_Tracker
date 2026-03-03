@@ -8,8 +8,8 @@ from django.utils.timezone import now
 
 # Constants to be used in the Bird and DailyData Model
 SEX = ((0, "Female"), (1, "Male"), (2, "Unknown"))
-WEATHER = ((0, "Rainy"), (1, "Sunny"), (2, "Windy"), (3, "Cold"))
-TRAINING = ((0, "No Training"), (1, "Faustappel"), (2, "Free Flight"), (3, "Lure Flying"))
+WEATHER = ((0, "Rainy"), (1, "Sunny"), (2, "Windy"), (3, "Cold"), (4, "--"))
+TRAINING = ((0, "No Training"), (1, "Faustappel"), (2, "Free Flight"), (3, "Lure Flying"), (4, "Hunting"))
 BEHAVIOUR = ((0, "Motivated"), (1, "Lethargic"), (2, "Aggressive"), (3, "Unmotivated"), (4, "Slightly Unmotivated"), (5, "Neutral"))
 # aggressive, lethargic, unmotivated, slightly unmotivated,
 # Bird Custom Model
@@ -53,20 +53,20 @@ class DailyData(models.Model):
     date = models.DateTimeField(default=now, null=False) 
     weight = models.PositiveSmallIntegerField(null=False)
     food_type = models.CharField(max_length=12, blank=False)
-    food_weight = models.PositiveSmallIntegerField(null=False)
+    food_weight = models.PositiveSmallIntegerField(null=True, blank=True, default=None)
     food_time = models.TimeField(null=True, blank=True)
-    weather = models.IntegerField(choices=WEATHER, default=1, null=False)
-    temperature = models.IntegerField(null=False,  validators=[
+    weather = models.IntegerField(choices=WEATHER, default=4, null=True)
+    temperature = models.IntegerField(blank=True, null=True, default=None,  validators=[
             MinValueValidator(-50), 
             MaxValueValidator(50)   
         ])
-    training = models.IntegerField(choices=TRAINING, default=0, null=False)
+    training = models.IntegerField(choices=TRAINING, default=0, null=True)
     training_time = models.TimeField(null=True, blank=True)
     training_motivation = models.IntegerField(null=True, blank=True, validators = [
         MinValueValidator(1),
         MaxValueValidator(10)
     ])
-    behaviour = models.IntegerField(choices=BEHAVIOUR, default=0, null=False)
+    behaviour = models.IntegerField(choices=BEHAVIOUR, default=0, null=True)
     notable_info = models.CharField(
         max_length=200, blank=False, default="None")
     notable_image = CloudinaryField('image', default='placeholder')
