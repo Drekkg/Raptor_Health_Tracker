@@ -14,10 +14,9 @@ let behaviourChoices = {
   5: "Neutral",
 };
 
-let trainingChoices = { 0: "No Training", 1: "Faustappel", 2: "Free Flight", 3: "Lure Flying" };
+let trainingChoices = { 0: "No Training", 1: "Faustappel", 2: "Free Flight", 3: "Lure Flying", 4: "Hunting" };
 
-let weatherChoices = { 0: "Rainy", 1: "Sunny", 2: "Windy", 3: "Cold" };
-console.log(parsedBirdDataPromise);
+let weatherChoices = { 0: "Rainy", 1: "Sunny", 2: "Windy", 3: "Cold", 4: "--" };
 // Wait for the promise to resolve and export the data
 parsedBirdDataPromise.then((data) => {
   // Map the data to include readable labels for training, weather, and motivation

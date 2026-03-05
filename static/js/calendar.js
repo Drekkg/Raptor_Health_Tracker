@@ -4,8 +4,8 @@ let birdDataGlobalParsed = null;
 let targetDate = [];
 let targetDateNoTraining = [];
 let dateCalendarInfo = null;
-let traingChoices = { 0: "No Training", 1: "Faustappel", 2: "Free Flight", 3: "Lure Flying" };
-let weatherChoices = { 0: "Rainy", 1: "Sunny", 2: "Windy", 3: "Cold" };
+let traingChoices = { 0: "No Training", 1: "Faustappel", 2: "Free Flight", 3: "Lure Flying", 4: "Hunting"};
+let weatherChoices = { 0: "Rainy", 1: "Sunny", 2: "Windy", 3: "Cold", 4: "--", };
 let behaviourChoices = {
   0: "Motivated",
   1: "Lethargic",
@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+  
 });
 
 
@@ -65,6 +66,7 @@ export const parsedBirdDataPromise = new Promise((resolve, reject) => {
 document.addEventListener("DOMContentLoaded", () => {
   function displayTrainingCalendar(dateCalendarInfo) {
     const time = null;
+   
     // Filter all matching data for the selected date
     const matchingData = birdDataGlobalParsed.filter(
       (selectedDate) => selectedDate.date.slice(0, 10) === dateCalendarInfo

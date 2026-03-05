@@ -38,8 +38,6 @@ class Bird(models.Model):
         return (f"{self.bird_name} | {self.type}")
 
 # Daily data custom model
-
-
 class DailyData(models.Model):
     """
     Stores a single instance of required
