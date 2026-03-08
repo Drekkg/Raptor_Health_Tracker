@@ -318,7 +318,8 @@ margin-bottom: 1rem;
 .spinner-border {
     height: 8rem;
     width: 8rem;
-   border: .4rem solid #0d6efd;
+    color: transparent;
+   border: .4rem solid #bdc0c6;
    border-right-color: transparent;
 } 
 
