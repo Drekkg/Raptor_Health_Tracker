@@ -41,6 +41,11 @@ margin-bottom: 1rem;
     margin: 1rem 0 2rem 0;
 }
 
+.excel-button {
+    background-color: #6096ba;
+    color: white;
+}
+
 .btn-custom-color-action1 {
     background-color: #6096ba;
     color: white;
@@ -276,6 +281,11 @@ margin-bottom: 1rem;
     bottom: 5%;
     width: 17rem;
     background-color: #6096ba;
+}
+.target-weight {
+    
+    background-color: #6096ba;
+
 }
 
 .scale {

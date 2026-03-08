@@ -37,10 +37,17 @@
         <div class="card-body">
           <div>
             <p class="lead"><b>Bird Name:</b> {{ bird_detail.bird_name }}</p>
+            <div id="bird-name" data-bird-name="{{ bird_detail.bird_name|default:'' }}"></div>
           </div>
           <p class="lead"><b>Type: </b>{{bird_detail.type }}</p>
+          <div id="bird-type" data-bird-type="{{ bird_detail.type|default:'' }}"></div>
+
           <p class="lead"><b>Gender: </b>{{bird_detail.get_sex_display }}</p>
+          <div id="bird-sex" data-bird-sex="{{ bird_detail.get_sex_display|default:'' }}"></div>
+
           <p class="lead"><b>Date of Birth:</b> {{bird_detail.date_of_birth}}</p>
+          <div id="bird-birth-date" data-bird-date="{{ bird_detail.date_of_birth|default:'' }}"></div>
+          
           {% if bird_detail.target_weight > 0 %}
           <p class="lead"><b>Target Weight:</b> {{bird_detail.target_weight}}g</p>
           {% else %}
@@ -53,6 +60,9 @@
 
     <div class="col-md-4 button-card">
       <ul>
+        <li class="li-style d-grid">
+        <span id="exportExcel" type="button" class="btn btn-primary excel-button">Export Daily Data to Excel</span>
+        </li>
         <li class="li-style d-grid">
           <a class="btn btn-secondary btn-block" aria-current="page" href="{% url 'home' %}"
             >Back to Bird List</a
@@ -123,19 +133,15 @@
           <button id="dateBack" type="button" class="btn btn-secondary">Back</button>
           <button id="dateForward" type="button" class="btn btn-secondary">Forward</button>
           {% if bird_detail.target_weight > 0 %}
-          <button id="birdWeightChart" type="button" class="btn btn-secondary">
+          <button id="birdWeightChart" type="button" class="btn btn-secondary target-weight">
             <b>Target Weight: {{bird_detail.target_weight}}g</b>
           </button>
           {% endif %}
-          <!-- <button id="birdWeightChart" type="button" class="btn btn-secondary">Bird Weight</button> -->
-          <!-- <button id="birdMotivationChart" type="button" class="btn btn-secondary">Motivation</button> -->
+         
         </div>
         <!-- chart injected here-->
         <canvas id="myChart"></canvas>
       </div>
-      <!-- <div class="col-md-6 chart-container">
-      <canvas id="motivationChart" width="1000px"></canvas> 
-      </div> -->
     </div>
   </div>
 </div>
@@ -149,7 +155,6 @@
       >Add Daily Data for: <br />
       <b>{{bird_detail.bird_name}}</b>
     </a>
-    <button id="exportExcel">Export to Excel</button>
   </div>
 </div>
 {% else %}
