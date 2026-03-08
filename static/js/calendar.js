@@ -16,7 +16,7 @@ let trainingChoices = {
 let weatherChoices = { 0: "Rainy", 1: "Sunny", 2: "Windy", 3: "Cold", 4: "--" };
 let behaviourChoices = {
   0: "Motivated",
-  1: "Lethargic",
+  1: "Lethargic",    
   2: "Aggressive",
   3: "Unmotivated",
   4: "Slightly Unmotivated",
@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
   } catch (error) {
     console.error("JSON Parsing Error:", error.message);
   }
-
   if (birdDataGlobal) {
     birdDataGlobal.forEach((trainingData) => {
       if (trainingData.training) {
@@ -45,11 +44,29 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (trainingData.food_type && !trainingData.training) {
         targetDateNoTraining.push(trainingData.date.slice(0, 10));
       }
+      const trainerInfoElement = document.getElementById(`trainer-info${trainingData.id}`);
+      trainingData.trainer = trainerInfoElement?.dataset.trainerInfo || "Unknown Trainer";
+
+      const birdName = document.getElementById("bird-name");
+      trainingData.name = birdName?.dataset.birdName || "__";
+
+      const birdType = document.getElementById("bird-type");
+      trainingData.type = birdType?.dataset.birdType || "__";
+
+      const birdSex = document.getElementById("bird-type");
+      trainingData.gender = birdSex?.dataset.birdSex || "__";
+
+
+      const birdDate = document.getElementById("bird-birth-date");
+      trainingData.birthDate = birdDate?.dataset.birdDate || "__";
+
+
     });
   }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  birdDataGlobal.forEach((trainer) => {});
   birdDataDailyMapped = birdDataGlobal.map((selectedDailyData) => {
     return {
       ...selectedDailyData,
@@ -59,18 +76,20 @@ document.addEventListener("DOMContentLoaded", () => {
       date: selectedDailyData.date.slice(0, 10) || "--",
     };
   });
+  console.log(birdDataDailyMapped);
 });
 
 export const parsedBirdDataPromise = new Promise((resolve, reject) => {
   document.addEventListener("DOMContentLoaded", () => {
     try {
       // Resolve the promise with the parsed data
-      resolve(birdDataGlobal);
+      resolve(birdDataDailyMapped);
     } catch (error) {
       // Reject the promise if an error occurs
       reject(error);
     }
   });
+  
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -102,10 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         editButtonHTML = ``;
       }
-
-      const trainerInfoElement = document.getElementById(`trainer-info${selectedDate.id}`);
-      const trainerInfo = trainerInfoElement.dataset.trainerInfo;
-
       const imagePlaceholder = "http://res.cloudinary.com/du9ulpbic/image/upload/placeholder";
       const selectedDateNotableImage =
         selectedDate.notable_image === imagePlaceholder
@@ -117,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       modalContent += `
         <hr>
-        <p><strong>Trainer:</strong> ${trainerInfo}</p>
+        <p><strong>Trainer:</strong> ${selectedDate.trainer}</p>
         <p><strong>Weight:</strong> ${selectedDate.weight}g</p>
         <p><strong>Training:</strong> ${trainingChoices[selectedDate.training]}</p>
         <p><strong>Motivation during Training:</strong> ${selectedDate.training_motivation}</p>
