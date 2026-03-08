@@ -4,9 +4,6 @@ import { parsedBirdDataPromise } from "./calendar.js";
 const birdInfoElement = document.getElementById("bird-info");
 const targetWeight = parseInt(birdInfoElement.dataset.targetWeight);
 
-const trainerInfoElement = document.getElementById("trainer-info");
-const trainerInfo = trainerInfoElement.dataset.trainerInfo;
-
 // create arrays to hold the data for the chart axes
 const yScaleMin = [targetWeight - (targetWeight * 1.1 - targetWeight)];
 const yScaleMax = [Math.round(targetWeight * 1.1)];
@@ -21,13 +18,18 @@ let myWeightChartInstance;
 let weightPercentages = [];
 let trainingMotivation = [];
 let trainingMotivationEdited = [];
-
+let trainerInfo = [];
+let trainerInfoEdited = [];
 
 // Shared array to store calculated percentages
 
 // iterate over incoming data and add the applicable data to the array eg weight of bird and date
 parsedBirdDataPromise.then((parsedBirdData) => {
   parsedBirdData.forEach((dateArray) => {
+    const trainerInfoElement = document.getElementById(`trainer-info${dateArray.id}`);
+    trainerInfo.push(trainerInfoElement.dataset.trainerInfo);
+    
+
     xValues.push(dateArray.date.slice(0, 10));
     yValues.push(dateArray.weight);
     //add the weight to arrays
@@ -38,6 +40,8 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   xValues.reverse();
   yValues.reverse();
   trainingMotivation.reverse();
+  trainerInfo.reverse();
+ 
 
   // for the y scale we want the range 30g over and 30g under the highest and lowest data point(weight)
   //we use sort to arrange the arrays: high => low and low => high. the scale is set in the Y scale options of the create Chart method
@@ -56,6 +60,7 @@ parsedBirdDataPromise.then((parsedBirdData) => {
   xValuesEdited = xValues.slice(startDate, endDate);
   yValuesEdited = yValues.slice(startDate, endDate);
   trainingMotivationEdited = trainingMotivation.slice(startDate, endDate);
+  trainerInfoEdited = trainerInfo.slice(startDate, endDate);
 
   let targetWeightElement = document.getElementById("bird-info");
   const targetWeight = targetWeightElement.dataset.targetWeight;
@@ -193,7 +198,6 @@ parsedBirdDataPromise.then((parsedBirdData) => {
             tension: 0.3, // Smooth the line
             yAxisID: "yMotivation", // Use a separate Y-axis for motivation
             spanGaps: true,
-
           },
         ],
       },
@@ -229,18 +233,19 @@ parsedBirdDataPromise.then((parsedBirdData) => {
                 // Retrieve the pre-calculated percentage from the shared array
                 const weightPercentRounded = weightPercentages[context.dataIndex];
                 const trainingMotivationToolTip = trainingMotivationEdited[context.dataIndex];
+                const trainerName = trainerInfoEdited[context.dataIndex];
                 const birdWeight = yValuesEdited[context.dataIndex];
                 const percentageText =
                   weightPercentRounded !== null && !isNaN(weightPercentRounded)
                     ? `${weightPercentRounded}`
                     : " -- ";
-
+        
                 if (context.dataset.label === "Bird Weight Over Time") {
-                  return [`Weight: ${context.raw}g`, `Percentage: ${percentageText}%`];
+                  return [`Weight: ${context.raw || "--"}g`, `Percentage: ${percentageText || "--"}%`];
                 } else if (context.dataset.label === "Motivation during Training") {
-                  return [`Motivation: ${trainingMotivationToolTip}`, `Trainer: ${trainerInfo}`];
+                  return [`Motivation: ${trainingMotivationToolTip || "--"}`, `Trainer: ${trainerName || "--"}`];
                 } else {
-                  return `Value: ${context.raw}`;
+                  return `Value: ${context.raw || "No Data"}`;
                 }
               },
             },
