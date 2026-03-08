@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-  
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -83,29 +82,27 @@ document.addEventListener("DOMContentLoaded", () => {
       (selectedDate) => selectedDate.date.slice(0, 10) === dateCalendarInfo
     );
 
-    let editDailyDataUrl = "";
-    let editButtonHTML = "";
-
-    if (userPermissionsData === "true") {
-      const editDataButton = document.getElementById("edit-data-button-bird-detail");
-      editDailyDataUrl = editDataButton.getAttribute("data-edit-url");
-      editButtonHTML = `
-           <li class="li-style d-grid">
-              <a
-                class="btn btn-edit-data"
-                aria-current="page"
-                href="${editDailyDataUrl}"
-                >Edit Daily Data</a
-              >
-            </li>
-        `;
-    } else {
-      editButtonHTML = ``;
-    }
-
     // Generate the HTML content for all matching data
     let modalContent = `<p><strong>Date:</strong> ${dateCalendarInfo}</p>`;
     matchingData.forEach((selectedDate) => {
+      let editDailyDataUrl = "";
+      let editButtonHTML = "";
+
+      if (userPermissionsData === "true") {
+        editButtonHTML = `
+             <li class="li-style d-grid">
+                <a
+                  class="btn btn-edit-data"
+                  aria-current="page"
+                  href="/daily_data_edit/${selectedDate.id}"
+                  >Edit Daily Data</a
+                >
+              </li>
+          `;
+      } else {
+        editButtonHTML = ``;
+      }
+
       const trainerInfoElement = document.getElementById(`trainer-info${selectedDate.id}`);
       const trainerInfo = trainerInfoElement.dataset.trainerInfo;
 
