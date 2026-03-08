@@ -53,8 +53,8 @@ def bird_detail(request, id):
            bird["notable_image"] = bird["notable_image"].url  # Include the Cloudinary image URL
 
      # Convert the QuerySet to JSON
-    selected_bird_json = json.dumps(selected_bird_list)
-    
+    # selected_bird_json = json.dumps(selected_bird_list)
+        selected_bird_json = selected_bird_list
 
     return render(
         request,

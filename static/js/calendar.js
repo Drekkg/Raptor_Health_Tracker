@@ -1,11 +1,19 @@
 //create variables to hold the bird data
 let birdDataGlobal = null;
-let birdDataGlobalParsed = null;
+let birdDataDailyMapped = [];
 let targetDate = [];
 let targetDateNoTraining = [];
 let dateCalendarInfo = null;
-let traingChoices = { 0: "No Training", 1: "Faustappel", 2: "Free Flight", 3: "Lure Flying", 4: "Hunting"};
-let weatherChoices = { 0: "Rainy", 1: "Sunny", 2: "Windy", 3: "Cold", 4: "--", };
+
+//create map tables to convert the integers stored in the DB into strings
+let trainingChoices = {
+  0: "No Training",
+  1: "Faustappel",
+  2: "Free Flight",
+  3: "Lure Flying",
+  4: "Hunting",
+};
+let weatherChoices = { 0: "Rainy", 1: "Sunny", 2: "Windy", 3: "Cold", 4: "--" };
 let behaviourChoices = {
   0: "Motivated",
   1: "Lethargic",
@@ -18,8 +26,6 @@ let behaviourChoices = {
 const userPermissions = document.getElementById("edit-permission");
 const userPermissionsData = userPermissions.getAttribute("data-user-permission");
 
-
-
 //Get the data using the json_script -  selected_bird_json|json_script:"selected_bird_data"
 document.addEventListener("DOMContentLoaded", () => {
   const fetchedBirdDataStr = document.getElementById("selected_bird_data").textContent;
@@ -27,18 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
   //use JSON.parse to turn it into an object for java script
   try {
     const fetchedBirdData = JSON.parse(fetchedBirdDataStr);
-    birdDataGlobal = fetchedBirdData
+    birdDataGlobal = fetchedBirdData;
   } catch (error) {
     console.error("JSON Parsing Error:", error.message);
   }
-});
 
-
-//add and parse the data again
-document.addEventListener("DOMContentLoaded", () => {
   if (birdDataGlobal) {
-    birdDataGlobalParsed = JSON.parse(birdDataGlobal);
-    birdDataGlobalParsed.forEach((trainingData) => {
+    birdDataGlobal.forEach((trainingData) => {
       if (trainingData.training) {
         targetDate.push(trainingData.date.slice(0, 10));
       } else if (trainingData.food_type && !trainingData.training) {
@@ -49,12 +50,23 @@ document.addEventListener("DOMContentLoaded", () => {
   
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  birdDataDailyMapped = birdDataGlobal.map((selectedDailyData) => {
+    return {
+      ...selectedDailyData,
+      behaviour: behaviourChoices[selectedDailyData.behaviour] || "--",
+      weather: weatherChoices[selectedDailyData.weather] || "--",
+      training: trainingChoices[selectedDailyData.training] || "--",
+      date: selectedDailyData.date.slice(0, 10) || "--",
+    };
+  });
+});
 
 export const parsedBirdDataPromise = new Promise((resolve, reject) => {
   document.addEventListener("DOMContentLoaded", () => {
     try {
       // Resolve the promise with the parsed data
-      resolve(birdDataGlobalParsed);
+      resolve(birdDataGlobal);
     } catch (error) {
       // Reject the promise if an error occurs
       reject(error);
@@ -62,13 +74,12 @@ export const parsedBirdDataPromise = new Promise((resolve, reject) => {
   });
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
   function displayTrainingCalendar(dateCalendarInfo) {
     const time = null;
-   
+
     // Filter all matching data for the selected date
-    const matchingData = birdDataGlobalParsed.filter(
+    const matchingData = birdDataGlobal.filter(
       (selectedDate) => selectedDate.date.slice(0, 10) === dateCalendarInfo
     );
 
@@ -95,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Generate the HTML content for all matching data
     let modalContent = `<p><strong>Date:</strong> ${dateCalendarInfo}</p>`;
     matchingData.forEach((selectedDate) => {
-
       const trainerInfoElement = document.getElementById(`trainer-info${selectedDate.id}`);
       const trainerInfo = trainerInfoElement.dataset.trainerInfo;
 
@@ -112,14 +122,14 @@ document.addEventListener("DOMContentLoaded", () => {
         <hr>
         <p><strong>Trainer:</strong> ${trainerInfo}</p>
         <p><strong>Weight:</strong> ${selectedDate.weight}g</p>
-        <p><strong>Training:</strong> ${traingChoices[selectedDate.training]}</p>
+        <p><strong>Training:</strong> ${trainingChoices[selectedDate.training]}</p>
         <p><strong>Motivation during Training:</strong> ${selectedDate.training_motivation}</p>
         <p><strong>Food Type:</strong> ${selectedDate.food_type}</p>
         <p><strong>Food Weight:</strong> ${selectedDate.food_weight}g</p>
         <p><strong>Weather:</strong> ${weatherChoices[selectedDate.weather]}</p>
         <p><strong>Temperature:</strong> ${selectedDate.temperature}°C</p>
         <p><strong>Behaviour:</strong> ${behaviourChoices[selectedDate.behaviour]}</p>
-        <p><strong>Additional Info:</strong> ${selectedDate.notable_info || "None"}</p>
+        <p><strong>Additional Info:</strong>${selectedDate.notable_info || "--"}</p>
         <p>${selectedDateNotableImage}</p>
          <div id="notableModal" class="modal-img">
             <span class="close" id="close">×</span>  
@@ -127,9 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <div id="caption"></div>
           </div>
           <p>${editButtonHTML}</p>
-          
-        
-
       `;
     });
 
