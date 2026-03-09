@@ -1,5 +1,6 @@
 // import the converted data from calendar.js
 import { parsedBirdDataPromise } from "./calendar.js";
+console.log(parsedBirdDataPromise);
 let dataToExcel = parsedBirdDataPromise;
 parsedBirdDataPromise.then((data) => {
   // const trainerInfoElement = document.getElementById(`trainer-info${data.id}`);
@@ -7,20 +8,20 @@ parsedBirdDataPromise.then((data) => {
   // Map the data to include readable labels for training, weather, and motivation
   const formattedData = data.map((entry) => ({
     Date: entry.date.slice(0, 10),
-    Trainer: entry.trainer || "unknown",
+    Trainer: entry.trainer || "--",
     Name: entry.name || "--",
     Type: entry.type || "--",
     Birth_Date: entry.birthDate || "--", 
-    Gender: entry.sex || "Unknown",
-    Target_weight: entry.target_weight || "unknown",
-    Bird_Weight: entry.weight || "unknown",
-    Food_Type: entry.food_type || "unknown",
-    Food_Weight: entry.food_weight || "unknown",
-    Food_Time: entry.food_time || "unknown",
-    Training: entry.training || "Unknown",
+    Gender: entry.gender || "--",
+    Target_weight: entry.target_weight || "--",
+    Bird_Weight: entry.weight || "--",
+    Food_Type: entry.food_type || "--",
+    Food_Weight: entry.food_weight || "--",
+    Food_Time: entry.food_time || "--",
+    Training: entry.training || "--",
     Training_Motivation: entry.training_motivation || "--",
-    Weather: entry.weather || "Unknown",
-    Behaviour: entry.behaviour || "Unknown",
+    Weather: entry.weather || "--",
+    Behaviour: entry.behaviour || "--",
     Training_time: entry.training_time || "--",
     Weather: entry.weather || "--",
     Temperature: entry.temperature || "--",

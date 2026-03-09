@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const birdType = document.getElementById("bird-type");
       trainingData.type = birdType?.dataset.birdType || "__";
 
-      const birdSex = document.getElementById("bird-type");
+      const birdSex = document.getElementById("bird-sex");
       trainingData.gender = birdSex?.dataset.birdSex || "__";
 
 
