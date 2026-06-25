@@ -30,13 +30,38 @@ def bird_detail(request, id):
     bird_tracker/bird_detail.html"""
     queryset = Bird.objects.all()
     bird_detail = get_object_or_404(queryset, id=id)
-    selected_bird = bird_detail.selected_bird.all()
-    selected_bird_json = bird_detail.selected_bird.all().values(
-       "behaviour", "date", "food_time", "food_type", "food_weight", "id", "notable_info", "selected_bird", "selected_bird_id", "temperature", "trainer", "trainer_id", "training", "training_time", "weather", "weight", "training_motivation", "notable_info", "notable_image",
-    ) 
+    # Convert the QuerySet to JSON
+    #    selected_bird_json = json.dumps(selected_bird_list)
+    # selected_bird_json = selected_bird_list
+    # selected_bird_json = list(selected_bird_list.values())
+    # selected_bird_list = bird_detail.selected_bird.all()
+    # selected_bird_json = list(selected_bird_list.values())
+    selected_bird_list = bird_detail.selected_bird.all()
+    selected_bird_json = list(
+        selected_bird_list.values(
+            "behaviour",
+            "date",
+            "food_time",
+            "food_type",
+            "food_weight",
+            "id",
+            "notable_info",
+            "selected_bird",
+            "selected_bird_id",
+            "temperature",
+            "trainer",
+            "trainer_id",
+            "training",
+            "training_time",
+            "weather",
+            "weight",
+            "training_motivation",
+            "notable_image",
+        )
+    )
     for data in selected_bird_json:
         data["target_weight"] = bird_detail.target_weight
-      # Convert QuerySet to a list and handle datetime fields
+    # Convert QuerySet to a list and handle datetime fields
     selected_bird_list = list(selected_bird_json)
     for bird in selected_bird_list:
         if "date" in bird and bird["date"] is not None:
@@ -45,35 +70,34 @@ def bird_detail(request, id):
             if isinstance(bird["training_time"], str):
                 pass
             else:
-                bird["training_time"] = bird["training_time"].strftime('%H:%M:%S')
-                
-        if bird["food_time"]:
-           bird["food_time"] = bird["food_time"].strftime('%H:%M:%S')
-        if bird["notable_image"]:
-           bird["notable_image"] = bird["notable_image"].url  # Include the Cloudinary image URL
+                bird["training_time"] = bird["training_time"].strftime("%H:%M:%S")
 
-     # Convert the QuerySet to JSON
-    # selected_bird_json = json.dumps(selected_bird_list)
-        selected_bird_json = selected_bird_list
+        if bird["food_time"]:
+            bird["food_time"] = bird["food_time"].strftime("%H:%M:%S")
+        if bird["notable_image"]:
+            bird["notable_image"] = str(
+                bird["notable_image"].url
+            )  # Include the Cloudinary image URL
 
     return render(
         request,
         "bird_tracker/bird_detail.html",
-        {"bird_detail": bird_detail,
-         "selected_bird": selected_bird,
-         "selected_bird_json": selected_bird_json,
-         "target_weight": bird_detail.target_weight, 
-         },
+        {
+            "bird_detail": bird_detail,
+            "selected_bird": selected_bird_json,
+            "selected_bird_json": selected_bird_json,
+            "target_weight": bird_detail.target_weight,
+        },
     )
-    
-    
+
+
 # View for the daily data form
 def daily_data_form(request, id):
     """Form handler for adding daily data for a bird.
     Template: bird_tracker/daily_data_form.html"""
     bird_detail = get_object_or_404(Bird, id=id)
     selected_bird = bird_detail.selected_bird.all()
-    
+
     if request.method == "POST":
         form = DailyDataForm(request.POST, request.FILES)
         if form.is_valid():
@@ -82,50 +106,57 @@ def daily_data_form(request, id):
                 daily_data.trainer = request.user
                 daily_data.selected_bird = bird_detail
                 daily_data.save()
-                messages.success(request, 'Daily Data added successfully.')
+                messages.success(request, "Daily Data added successfully.")
                 # return render(request, "bird_tracker/bird_detail.html",
                 #               {"bird_detail": bird_detail, "selected_bird": selected_bird})  # noqa
-                return redirect('bird_detail', id=bird_detail.id)
+                return redirect("bird_detail", id=bird_detail.id)
             except CloudinaryError as e:
                 messages.add_message(
-                    request, messages.ERROR,
-                    f'Error uploading image: {str(e)}'
+                    request, messages.ERROR, f"Error uploading image: {str(e)}"
                 )
                 form = DailyDataForm(request.POST)
-                return render(request, "bird_tracker/daily_data_form.html",
-                              {"daily_data_form": form,
-                               "bird_detail": bird_detail,
-                               "selected_bird": selected_bird,
-                               "motivation_range": range(1, 11),
-                               "view": "add",
-                               })
+                return render(
+                    request,
+                    "bird_tracker/daily_data_form.html",
+                    {
+                        "daily_data_form": form,
+                        "bird_detail": bird_detail,
+                        "selected_bird": selected_bird,
+                        "motivation_range": range(1, 11),
+                        "view": "add",
+                    },
+                )
 
         elif not form.is_valid():
-            messages.error(request, 'Please check the entered data.')
+            messages.error(request, "Please check the entered data.")
             form = DailyDataForm(request.POST)
-            return render(request, "bird_tracker/daily_data_form.html",
-                          {"daily_data_form": form,
-                           "bird_detail": bird_detail,
-                           "selected_bird": selected_bird,
-                           "motivation_range": range(1, 11),
-                           "view": "add",})
-            
-            
-            
+            return render(
+                request,
+                "bird_tracker/daily_data_form.html",
+                {
+                    "daily_data_form": form,
+                    "bird_detail": bird_detail,
+                    "selected_bird": selected_bird,
+                    "motivation_range": range(1, 11),
+                    "view": "add",
+                },
+            )
 
     else:
-        form = DailyDataForm(initial={'date': now()})
-        
-    return render(request, "bird_tracker/daily_data_form.html",
-                      {"daily_data_form": form,
-                       "bird_detail": bird_detail,
-                       "selected_bird": selected_bird,
-                       "motivation_range": range(1, 11),
-                       "view": "add",
-                       }
-                      
-                      )
-    
+        form = DailyDataForm(initial={"date": now()})
+
+    return render(
+        request,
+        "bird_tracker/daily_data_form.html",
+        {
+            "daily_data_form": form,
+            "bird_detail": bird_detail,
+            "selected_bird": selected_bird,
+            "motivation_range": range(1, 11),
+            "view": "add",
+        },
+    )
+
 
 # view for the add new bird form
 def add_new_bird_form(request):
@@ -137,16 +168,12 @@ def add_new_bird_form(request):
         if add_new_bird_form.is_valid():
             try:
                 new_bird = add_new_bird_form.save()
-                messages.add_message(
-                    request, messages.SUCCESS,
-                    'New Bird added'
-                )
-                return HttpResponseRedirect(reverse('home'))
+                messages.add_message(request, messages.SUCCESS, "New Bird added")
+                return HttpResponseRedirect(reverse("home"))
 
             except CloudinaryError as e:
                 messages.add_message(
-                    request, messages.ERROR,
-                    f'Error uploading image: {str(e)}'
+                    request, messages.ERROR, f"Error uploading image: {str(e)}"
                 )
 
                 return render(
@@ -156,11 +183,10 @@ def add_new_bird_form(request):
                         "view": "add",
                         "add_new_bird_form": add_new_bird_form,
                     },
-                ) 
+                )
         else:
             messages.add_message(
-                request, messages.ERROR,
-                'Please check the entered Data'
+                request, messages.ERROR, "Please check the entered Data"
             )
 
             add_new_bird_form = AddNewBirdForm(request.POST, request.FILES)
@@ -183,7 +209,7 @@ def add_new_bird_form(request):
                 "add_new_bird_form": add_new_bird_form,
             },
         )
-    
+
 
 # view to edit bird form
 def bird_edit(request, id):
@@ -196,22 +222,20 @@ def bird_edit(request, id):
     context = {"view": "edit_bird"}
 
     if request.method == "POST":
-        edit_bird_form = AddNewBirdForm(
-            request.POST, request.FILES, instance=bird)
+        edit_bird_form = AddNewBirdForm(request.POST, request.FILES, instance=bird)
         if edit_bird_form.is_valid():
             try:
                 edit_bird_form.save()
-                messages.success(request, 'Bird Updated!')
-                return HttpResponseRedirect(reverse('bird_detail', args=[id]))
+                messages.success(request, "Bird Updated!")
+                return HttpResponseRedirect(reverse("bird_detail", args=[id]))
 
             except CloudinaryError as e:
                 messages.add_message(
-                    request, messages.ERROR,
-                    f'Error uploading image: {str(e)}'
+                    request, messages.ERROR, f"Error uploading image: {str(e)}"
                 )
 
         else:
-            messages.error(request, 'Error updating bird!')
+            messages.error(request, "Error updating bird!")
 
     else:
 
@@ -226,39 +250,41 @@ def bird_edit(request, id):
             "id": id,
         },
     )
-    
- # view to edit the daily data 
 
-def daily_data_edit(request, id):   
+
+# view to edit the daily data
+
+
+def daily_data_edit(request, id):
     """
     View to edit daily data .
     Template: "bird_tracker/daily_data_form.html"
     """
-  
+
     queryset = DailyData.objects.all()
-    daily_data = get_object_or_404(queryset, id=id)    
+    daily_data = get_object_or_404(queryset, id=id)
     bird_data_to_edit = Bird.objects.all()
     bird_detail = get_object_or_404(bird_data_to_edit, id=daily_data.selected_bird_id)
-  
+
     context = {"view": "daily_data_edit"}
 
     if request.method == "POST":
         edit_daily_data_form = DailyDataForm(
-            request.POST, request.FILES, instance=daily_data)
+            request.POST, request.FILES, instance=daily_data
+        )
         if edit_daily_data_form.is_valid():
             try:
                 edit_daily_data_form.save()
-                messages.success(request, 'Daily Data Updated!')
-                return redirect('bird_detail', id=bird_detail.id)
+                messages.success(request, "Daily Data Updated!")
+                return redirect("bird_detail", id=bird_detail.id)
 
             except CloudinaryError as e:
                 messages.add_message(
-                    request, messages.ERROR,
-                    f'Error uploading image: {str(e)}'
+                    request, messages.ERROR, f"Error uploading image: {str(e)}"
                 )
 
         else:
-            messages.error(request, 'Error updating Daily Data!')
+            messages.error(request, "Error updating Daily Data!")
 
     else:
 
@@ -273,7 +299,7 @@ def daily_data_edit(request, id):
             "bird_detail": bird_detail,
         },
     )
-    
+
 
 # view to delete bird
 def bird_delete(request, id):
@@ -284,10 +310,13 @@ def bird_delete(request, id):
     bird = get_object_or_404(queryset, id=id)
     # comment = get_object_or_404(Comment, pk=comment_id)
     bird.delete()
-    messages.add_message(request, messages.SUCCESS, 'Bird deleted')
+    messages.add_message(request, messages.SUCCESS, "Bird deleted")
 
-    return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse("home"))
+
+
 # view to display QR code for URL link
 
+
 def qr_code_show(request):
-    return render (request, "bird_tracker/qr-code.html") 
+    return render(request, "bird_tracker/qr-code.html")

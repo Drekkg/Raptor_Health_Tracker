@@ -1,5 +1,6 @@
 // import the converted data from calendar.js
 import { parsedBirdDataPromise } from "./calendar.js";
+console.log("sdsd" + parsedBirdDataPromise);
 
 const birdInfoElement = document.getElementById("bird-info");
 const targetWeight = parseInt(birdInfoElement.dataset.targetWeight);
