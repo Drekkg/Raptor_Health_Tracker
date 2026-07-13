@@ -1,7 +1,5 @@
 // import the converted data from calendar.js
 import { parsedBirdDataPromise } from "./calendar.js";
-console.log("sdsd" + parsedBirdDataPromise);
-
 const birdInfoElement = document.getElementById("bird-info");
 const targetWeight = parseInt(birdInfoElement.dataset.targetWeight);
 
@@ -121,7 +119,6 @@ parsedBirdDataPromise.then((parsedBirdData) => {
     beforeDraw: (chart) => {
       // Check if targetWeight is valid
       if (isNaN(targetWeight)) {
-        console.error("Invalid target weight");
         return;
       }
 

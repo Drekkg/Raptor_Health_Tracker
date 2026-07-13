@@ -30,6 +30,7 @@ def bird_detail(request, id):
     bird_tracker/bird_detail.html"""
     queryset = Bird.objects.all()
     bird_detail = get_object_or_404(queryset, id=id)
+    selected_bird = bird_detail.selected_bird.all()
     # Convert the QuerySet to JSON
     #    selected_bird_json = json.dumps(selected_bird_list)
     # selected_bird_json = selected_bird_list
@@ -84,10 +85,12 @@ def bird_detail(request, id):
         "bird_tracker/bird_detail.html",
         {
             "bird_detail": bird_detail,
-            "selected_bird": selected_bird_json,
+            "selected_bird": selected_bird,
             "selected_bird_json": selected_bird_json,
             "target_weight": bird_detail.target_weight,
+            
         },
+        
     )
 
 

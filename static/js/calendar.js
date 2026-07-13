@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const fetchedBirdData = JSON.parse(fetchedBirdDataStr);
     birdDataGlobal = fetchedBirdData;
   } catch (error) {
-    console.error("JSON Parsing Error:", error.message);
   }
   if (birdDataGlobal) {
     birdDataGlobal.forEach((trainingData) => {
@@ -76,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
       date: selectedDailyData.date.slice(0, 10) || "--",
     };
   });
-  console.log(birdDataDailyMapped);
 });
 
 export const parsedBirdDataPromise = new Promise((resolve, reject) => {

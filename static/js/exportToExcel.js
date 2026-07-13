@@ -1,6 +1,5 @@
 // import the converted data from calendar.js
 import { parsedBirdDataPromise } from "./calendar.js";
-console.log(parsedBirdDataPromise);
 let dataToExcel = parsedBirdDataPromise;
 parsedBirdDataPromise.then((data) => {
   // const trainerInfoElement = document.getElementById(`trainer-info${data.id}`);
