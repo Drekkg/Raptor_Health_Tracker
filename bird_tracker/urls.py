@@ -11,5 +11,7 @@ urlpatterns = [
     path('<int:id>/edit_bird/', views.bird_edit, name='bird_edit'),   # noqa
     path('bird_detail/<int:id>/delete_bird/', views.bird_delete, name='bird_delete'),   # noqa
     path('qr_code/', views.qr_code_show, name='qr_code'),
-
+    path('toggle_bird_status/<int:id>/', views.toggle_bird_status, name='toggle_bird_status'),
 ]
+
+

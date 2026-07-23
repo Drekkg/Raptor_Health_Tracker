@@ -14,6 +14,8 @@ from cloudinary.exceptions import Error as CloudinaryError
 from django.utils.timezone import now
 from django.shortcuts import redirect
 from django.forms import TimeInput
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
 
 
 # built in django view
@@ -319,7 +321,26 @@ def bird_delete(request, id):
 
 
 # view to display QR code for URL link
-
-
 def qr_code_show(request):
     return render(request, "bird_tracker/qr-code.html")
+
+
+# view to toggle bird is active for archiving
+@require_POST # Ensures this view only accepts POST requests for safety
+def toggle_bird_status(request, id):
+    try:
+        # Find the bird object by its ID
+        bird = Bird.objects.get(pk=id)
+        
+        # Toggle the boolean field
+        # If it's True, make it False. If it's False, make it True.
+        bird.is_active = not bird.is_active 
+        bird.save()
+        
+        # Return a success response with the new status
+        return JsonResponse({'success': True, 'is_active': bird.is_active})
+    except Bird.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Bird not found.'}, status=404)
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)}, status=500)
+

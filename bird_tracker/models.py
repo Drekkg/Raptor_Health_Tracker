@@ -30,6 +30,7 @@ class Bird(models.Model):
     additional_info = models.CharField(max_length=200, blank=False)
     created_on = models.DateTimeField(auto_now_add=True, null=False)
     main_image = CloudinaryField('image', default='placeholder', format='jpg')
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ["created_on"]

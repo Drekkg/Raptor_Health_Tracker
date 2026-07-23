@@ -1,4 +1,6 @@
 {% extends "base.html" %}{% block bird_detail %} {% load static %} {% load crispy_forms_tags %}
+{% csrf_token %}
+
 <head>
   <link
     href="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/styles/index.css"
@@ -72,6 +74,11 @@
         <li class="li-style d-grid">
           <a class="btn btn-signup" aria-current="page" href="{% url 'bird_edit' bird_detail.id %}"
             >Edit Bird Data</a
+          >
+        </li>
+        <li class="li-style d-grid">
+          <a class="btn btn-signup" aria-current="page" id="toggle-status-btn" data-bird-id="{{ bird_detail.id }}" href="{% url 'home' %}"
+            >Add Bird To Archive</a
           >
         </li>
         <!-- <li class="li-style d-grid">
@@ -308,4 +315,45 @@
 <script type="module" src="{% static 'js/birdData.js' %}"></script>
 <script type="module" src="{% static 'js/graph.js' %}"></script>
 <script type="module" src="{% static 'js/exportToExcel.js' %}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const toggleButton = document.getElementById('toggle-status-btn');
+  
+      if (toggleButton) {
+          toggleButton.addEventListener('click', function() {
+              const birdId = this.dataset.birdId;
+              const url = `/toggle_bird_status/${birdId}/`; // The URL we created
+  
+              // Get the CSRF token from the page
+              const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  
+              fetch(url, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'X-CSRFToken': csrfToken // Django requires this for POST requests
+                  },
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.success) {
+                      // The update was successful!
+                      console.log('Status updated successfully!');
+                      // You can now update the UI, e.g., change the button text or color
+                      alert(`Bird is now ${data.is_active ? 'Active' : 'Inactive'}`);
+                  } else {
+                      // The update failed
+                      console.error('Error:', data.error);
+                      alert('Failed to update status.');
+                  }
+              })
+              .catch(error => {
+                  console.error('Fetch error:', error);
+                  alert('An error occurred.');
+              });
+          });
+      }
+  });
+  </script>
+  
 {% endblock %}

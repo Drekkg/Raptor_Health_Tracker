@@ -231,7 +231,7 @@ margin-bottom: 1rem;
 
 .button-card {
     background-color: #b4bed5;
-    max-height: 15rem;
+    /* max-height: 15rem; */
     border-right: 1rem;
     border-radius: 3%;
 
