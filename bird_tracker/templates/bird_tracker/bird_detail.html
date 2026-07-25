@@ -63,12 +63,12 @@
     <div class="col-md-4 button-card">
       <ul>
         <li class="li-style d-grid">
-        <span id="exportExcel" type="button" class="btn btn-primary excel-button">Export Daily Data to Excel</span>
-        </li>
-        <li class="li-style d-grid">
           <a class="btn btn-secondary btn-block" aria-current="page" href="{% url 'home' %}"
             >Back to Bird List</a
           >
+        </li>
+        <li class="li-style d-grid">
+        <span id="exportExcel" type="button" class="btn btn-primary excel-button">Export Daily Data to Excel</span>
         </li>
         {% if user.is_superuser or user.is_staff %}
         <li class="li-style d-grid">
@@ -78,21 +78,16 @@
         </li>
         {% if bird_detail.is_active %}
         <li class="li-style d-grid">
-          <a class="btn btn-signup" aria-current="page" id="toggle-status-btn" data-bird-id="{{ bird_detail.id }}" href="{% url 'home' %}"
+          <a class="btn btn-info" aria-current="page" id="toggle-status-btn" data-bird-id="{{ bird_detail.id }}" href="{% url 'home' %}"
             >Add Bird To Archive</a
           >
         </li>
         {% else %}
         <li class="li-style d-grid">
-          <a class="btn btn-signup" aria-current="page" id="toggle-status-btn" data-bird-id="{{ bird_detail.id }}" href="{% url 'home' %}"
+          <a class="btn btn-info" aria-current="page" id="toggle-status-btn" data-bird-id="{{ bird_detail.id }}" href="{% url 'archived_birds' %}"
             >Restore Bird</a
           >
         </li>
-        <!-- <li class="li-style d-grid">
-          <button class="btn btn-delete btn-block" data-bird-id="{{ selected_bird.id }}">
-            Delete Bird
-          </button>
-        </li> -->
         {% endif %}
       </ul>
     </div>
