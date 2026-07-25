@@ -76,9 +76,16 @@
             >Edit Bird Data</a
           >
         </li>
+        {% if bird_detail.is_active %}
         <li class="li-style d-grid">
           <a class="btn btn-signup" aria-current="page" id="toggle-status-btn" data-bird-id="{{ bird_detail.id }}" href="{% url 'home' %}"
             >Add Bird To Archive</a
+          >
+        </li>
+        {% else %}
+        <li class="li-style d-grid">
+          <a class="btn btn-signup" aria-current="page" id="toggle-status-btn" data-bird-id="{{ bird_detail.id }}" href="{% url 'home' %}"
+            >Restore Bird</a
           >
         </li>
         <!-- <li class="li-style d-grid">
@@ -86,6 +93,7 @@
             Delete Bird
           </button>
         </li> -->
+        {% endif %}
       </ul>
     </div>
     {% endif %}

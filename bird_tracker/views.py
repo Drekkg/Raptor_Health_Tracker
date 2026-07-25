@@ -22,6 +22,11 @@ from django.views.decorators.http import require_POST
 class BirdList(generic.ListView):
     queryset = Bird.objects.all()
     template_name = "bird_tracker/index.html"
+    
+# built in django view
+class ArchivedBirds(generic.ListView):
+    queryset = Bird.objects.all()
+    template_name = "bird_tracker/archived_birds.html"
 
 
 # view to display bird details
