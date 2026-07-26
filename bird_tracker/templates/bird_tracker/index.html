@@ -30,12 +30,14 @@
                     class="bird-list-image img-fluid"
                     src="{% static 'images/default.jpg' %}"
                     alt="placeholder image"
+                    {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy" fetchpriority="low"{% endif %}
                   />
                   {% else %}
                   <img
                     class="bird-list-image img-fluid"
                     src="{{ bird.main_image.url }}"
                     alt="{{ bird.bird_name }}"
+                    {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy" fetchpriority="low"{% endif %}
                   />
                   {% endif %}
                   <!-- Spinner -->
