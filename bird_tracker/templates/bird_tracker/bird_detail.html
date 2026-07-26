@@ -7,7 +7,7 @@
     rel="stylesheet"
   />
   <script src="https://cdn.jsdelivr.net/npm/vanilla-calendar-pro/index.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
 <!-- bird detail.html content starts here -->
 <div class="container-fluid main-item">
@@ -23,6 +23,7 @@
           class="card-img-top"
           src="{% static 'images/default.jpg' %}"
           alt="placeholder image"
+          fetchpriority="high"
         />
         {% else %}
         <img
@@ -30,6 +31,7 @@
           src=" {{ bird_detail.main_image.url }}"
           alt="{{ bird_detail.bird_name }}"
           id="main-img"
+          fetchpriority="high"
         />
         {% endif %}
       </div>
