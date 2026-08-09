@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         editButtonHTML = ``;
       }
-      const imagePlaceholder = "http://res.cloudinary.com/du9ulpbic/image/upload/placeholder";
+      const imagePlaceholder = "https://res.cloudinary.com/du9ulpbic/image/upload/placeholder";
       const selectedDateNotableImage =
         selectedDate.notable_image === imagePlaceholder
           ? "No Image"

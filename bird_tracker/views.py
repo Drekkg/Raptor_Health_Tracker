@@ -85,7 +85,7 @@ def bird_detail(request, id):
         if bird["notable_image"]:
             bird["notable_image"] = str(
                 bird["notable_image"].url
-            )  # Include the Cloudinary image URL
+            )  
 
     return render(
         request,
